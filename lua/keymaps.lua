@@ -12,6 +12,7 @@ vim.keymap.set("n", "<C-S-right>", "<C-w>L", { desc = "Move window to the right"
 vim.keymap.set("n", "<C-S-down>", "<C-w>J", { desc = "Move window to the lower" })
 vim.keymap.set("n", "<C-S-up>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- ========== Highlight when yanking (copying) text ==========
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -19,3 +20,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+-------------------------------------------------------------------------------
+
+-- ========== Disable line numbers in terminal mode ==========
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
+-------------------------------------------------------------------------------
