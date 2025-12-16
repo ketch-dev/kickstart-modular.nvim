@@ -1,4 +1,11 @@
 require('lazy').setup({
+  require 'custom.plugins.bufferline'
+  require 'custom.plugins.flash'
+  require 'custom.plugins.lazygit'
+  require 'custom.plugins.neogit'
+  require 'custom.plugins.neoscroll'
+  require 'custom.plugins.scrollbal'
+
   'NMAC427/guess-indent.nvim',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
