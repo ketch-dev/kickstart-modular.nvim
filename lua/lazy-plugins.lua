@@ -1,5 +1,5 @@
 require('lazy').setup({
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  'NMAC427/guess-indent.nvim',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.telescope',
@@ -11,14 +11,11 @@ require('lazy').setup({
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',
 
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
