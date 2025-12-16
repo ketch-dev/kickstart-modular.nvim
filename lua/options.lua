@@ -48,5 +48,3 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to d
 --   'indent-heuristic',
 --   'inline:char',
 -- }
-
--- vim: ts=2 sts=2 sw=2 et
