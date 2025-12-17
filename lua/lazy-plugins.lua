@@ -12,7 +12,7 @@ require('lazy').setup({
     require 'kickstart.plugins.gitsigns',
     require 'kickstart.plugins.which-key', --pending
     require 'kickstart.plugins.telescope',
-    require 'kickstart.plugins.lspconfig', --pending
+    require 'kickstart.plugins.lspconfig',
     require 'kickstart.plugins.conform',
     require 'kickstart.plugins.blink-cmp',
     require 'kickstart.plugins.tokyonight',
