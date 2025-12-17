@@ -1,3 +1,5 @@
+-- ========== Colorscheme ==========
+
 return {
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
