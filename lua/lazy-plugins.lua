@@ -18,7 +18,7 @@ require('lazy').setup({
     require 'kickstart.plugins.tokyonight',
     require 'kickstart.plugins.todo-comments',
     require 'kickstart.plugins.mini',
-    require 'kickstart.plugins.treesitter',--pending
+    require 'kickstart.plugins.treesitter',
 
     -- require 'kickstart.plugins.debug',
     require 'kickstart.plugins.indent_line',--pending
