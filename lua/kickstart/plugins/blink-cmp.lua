@@ -1,11 +1,13 @@
+-- ========== Autocompletion ========== 
+
 return {
-  { -- Autocompletion
+  { 
     'saghen/blink.cmp',
     cond = not vim.g.vscode,
     event = 'VimEnter',
     version = '1.*',
     dependencies = {
-      -- Snippet Engine
+      -- ========== Snippet Engine ========== 
       {
         'L3MON4D3/LuaSnip',
         version = '2.*',
@@ -20,8 +22,6 @@ return {
         end)(),
         dependencies = {
           -- `friendly-snippets` contains a variety of premade snippets.
-          --    See the README about individual language/framework/plugin snippets:
-          --    https://github.com/rafamadriz/friendly-snippets
           -- {
           --   'rafamadriz/friendly-snippets',
           --   config = function()
@@ -31,6 +31,7 @@ return {
         },
         opts = {},
       },
+      -------------------------------------------------------------------------------
       'folke/lazydev.nvim',
     },
     --- @module 'blink.cmp'
@@ -59,14 +60,14 @@ return {
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
+        ['<Tab>'] = { 'snippet_forward', 'accept' },
+        ['<S-Tab>'] = { 'snippet_backward' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
 
       appearance = {
-        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
 
@@ -82,20 +83,9 @@ return {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
       },
-
       snippets = { preset = 'luasnip' },
-
-      -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-      -- which automatically downloads a prebuilt binary when enabled.
-      --
-      -- By default, we use the Lua implementation instead, but you may enable
-      -- the rust implementation via `'prefer_rust_with_warning'`
-      --
-      -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
-
-      -- Shows a signature help window while you type arguments for a function
-      signature = { enabled = true },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
+      signature = { enabled = true }, -- Shows a signature help window while you type arguments for a function
     },
   },
 }

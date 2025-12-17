@@ -14,7 +14,7 @@ require('lazy').setup({
     require 'kickstart.plugins.telescope',
     require 'kickstart.plugins.lspconfig', --pending
     require 'kickstart.plugins.conform',
-    require 'kickstart.plugins.blink-cmp',--pending
+    require 'kickstart.plugins.blink-cmp',
     require 'kickstart.plugins.tokyonight',--pending
     require 'kickstart.plugins.todo-comments',--pending
     require 'kickstart.plugins.mini',--pending
