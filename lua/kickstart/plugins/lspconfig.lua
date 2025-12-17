@@ -114,6 +114,7 @@ return {
       -- ========== LSP servers config. LSPs install automatically (See :help lspconfig-all) ==========
       local servers = {
         ts_ls = {},
+        volar = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },

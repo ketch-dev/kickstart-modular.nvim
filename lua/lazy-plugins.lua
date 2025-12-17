@@ -1,31 +1,28 @@
 require('lazy').setup({
-  require 'custom.plugins.flash'
+  require 'custom.plugins.flash',
+  require 'custom.plugins.bufferline',
+  require 'custom.plugins.lazygit',
+  require 'custom.plugins.neogit',
+  require 'custom.plugins.neoscroll',
+  require 'custom.plugins.scrollbar',
 
-  if not vim.g.vscode then
-    require 'custom.plugins.bufferline'
-    require 'custom.plugins.lazygit'
-    require 'custom.plugins.neogit'
-    require 'custom.plugins.neoscroll'
-    require 'custom.plugins.scrollbal'
+  'NMAC427/guess-indent.nvim',
+  require 'kickstart.plugins.gitsigns',
+  require 'kickstart.plugins.which-key',
+  require 'kickstart.plugins.telescope',
+  require 'kickstart.plugins.lspconfig',
+  require 'kickstart.plugins.conform',
+  require 'kickstart.plugins.blink-cmp',
+  require 'kickstart.plugins.tokyonight',
+  require 'kickstart.plugins.todo-comments',
+  require 'kickstart.plugins.mini',
+  require 'kickstart.plugins.treesitter',
 
-    'NMAC427/guess-indent.nvim',
-    require 'kickstart.plugins.gitsigns',
-    require 'kickstart.plugins.which-key',
-    require 'kickstart.plugins.telescope',
-    require 'kickstart.plugins.lspconfig',
-    require 'kickstart.plugins.conform',
-    require 'kickstart.plugins.blink-cmp',
-    require 'kickstart.plugins.tokyonight',
-    require 'kickstart.plugins.todo-comments',
-    require 'kickstart.plugins.mini',
-    require 'kickstart.plugins.treesitter',
-
-    -- require 'kickstart.plugins.debug',
-    require 'kickstart.plugins.indent_line',
-    -- require 'kickstart.plugins.lint',
-    require 'kickstart.plugins.autopairs',
-    require 'kickstart.plugins.neo-tree',
-  end
+  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

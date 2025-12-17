@@ -18,6 +18,7 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
+      local actions = require('telescope.actions')
       require('telescope').setup {
         defaults = {
           path_display = { 'smart' },

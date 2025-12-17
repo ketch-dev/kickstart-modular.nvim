@@ -47,7 +47,7 @@ vim.keymap.set('n', 'xx', 'dd', { noremap = true })
 -------------------------------------------------------------------------------
 
 -- ========== Explorer ==========
-local toggle_both_sides = require('utils.neotree-toggle-both-sides').toggle_both_sides
+local toggle_both_sides = require('custom.utils.neotree-toggle-both-sides').toggle_both_sides
 vim.keymap.set('n', '<leader>et', toggle_both_sides, { desc = '[T]oggle' })
 vim.keymap.set('n', '<leader>ef', '<cmd>Neotree filesystem reveal left show<CR>', { desc = '[F]iles' })
 vim.keymap.set('n', '<leader>eb', '<cmd>Neotree buffers reveal left show<CR>', { desc = '[B]uffers' })
