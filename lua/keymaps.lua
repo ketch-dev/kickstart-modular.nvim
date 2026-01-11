@@ -21,6 +21,13 @@ vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower 
 vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 -------------------------------------------------------------------------------
 
+-- ========== Move windows with arrows ==========
+vim.keymap.set("n", "<C-A-left>", "<C-w>H", { desc = "Move window to the left" })
+vim.keymap.set("n", "<C-A-right>", "<C-w>L", { desc = "Move window to the right" })
+vim.keymap.set("n", "<C-A-down>", "<C-w>J", { desc = "Move window to the lower" })
+vim.keymap.set("n", "<C-A-up>", "<C-w>K", { desc = "Move window to the upper" })
+-------------------------------------------------------------------------------
+
 -- ========== Save with ctrl-s ==========
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
@@ -68,11 +75,6 @@ vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[N]ext' })
 vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[P]revious' })
 vim.keymap.set('n', '<leader>tb', '<cmd>tabnew %<CR>', { desc = 'Move [B]uffer to new tab' })
 -------------------------------------------------------------------------------
----
-vim.keymap.set("n", "<C-S-left>", "<C-w>H", { desc = "Move window to the left" })
-vim.keymap.set("n", "<C-S-right>", "<C-w>L", { desc = "Move window to the right" })
-vim.keymap.set("n", "<C-S-down>", "<C-w>J", { desc = "Move window to the lower" })
-vim.keymap.set("n", "<C-S-up>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- ========== Highlight when yanking (copying) text ==========
 vim.api.nvim_create_autocmd('TextYankPost', {
