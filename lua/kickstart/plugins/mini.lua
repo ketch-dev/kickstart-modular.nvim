@@ -25,7 +25,33 @@ return {
 
       if not vim.g.vscode then
         local statusline = require 'mini.statusline'
-        statusline.setup { use_icons = vim.g.have_nerd_font }
+        statusline.setup {
+          use_icons = vim.g.have_nerd_font,
+          content = {
+            active = function()
+              local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+              local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
+              local filename = MiniStatusline.section_filename { trunc_width = 999999 } -- Forces relative path
+              local location = MiniStatusline.section_location { trunc_width = 75 }
+              local search = MiniStatusline.section_searchcount { trunc_width = 75 }
+
+              return MiniStatusline.combine_groups {
+                { hl = mode_hl, strings = { mode } },
+                { hl = 'MiniStatuslineDevinfo', strings = { diagnostics } },
+                '%<', -- Truncation point
+                { hl = 'MiniStatuslineFilename', strings = { filename } },
+                '%=',
+                { hl = mode_hl, strings = { location } },
+                { hl = 'MiniStatuslineSearchcount', strings = { search } },
+              }
+            end,
+
+            inactive = function()
+              local filename = MiniStatusline.section_filename { trunc_width = 999999 } -- Forces relative for inactive too
+              return '%#MiniStatuslineInactive#' .. filename .. '%='
+            end,
+          },
+        }
         -- set the section for cursor location to LINE:COLUMN
         ---@diagnostic disable-next-line: duplicate-set-field
         statusline.section_location = function()
