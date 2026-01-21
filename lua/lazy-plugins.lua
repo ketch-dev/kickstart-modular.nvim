@@ -7,6 +7,7 @@ require('lazy').setup({
   require 'custom.plugins.scrollbar',
   require 'custom.plugins.fidget',
   require 'custom.plugins.colorizer',
+  require 'custom.plugins.treesitter-textobjects',
 
   'NMAC427/guess-indent.nvim',
   require 'kickstart.plugins.gitsigns',
