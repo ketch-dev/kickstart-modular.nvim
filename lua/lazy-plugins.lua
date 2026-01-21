@@ -5,6 +5,7 @@ require('lazy').setup({
   require 'custom.plugins.neogit',
   require 'custom.plugins.neoscroll',
   require 'custom.plugins.scrollbar',
+  require 'custom.plugins.colorizer',
 
   'NMAC427/guess-indent.nvim',
   require 'kickstart.plugins.gitsigns',
