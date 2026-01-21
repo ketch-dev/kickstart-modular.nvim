@@ -8,8 +8,8 @@ require('lazy').setup({
   require 'custom.plugins.fidget',
   require 'custom.plugins.colorizer',
   require 'custom.plugins.treesitter-textobjects',
+  require 'custom.plugins.guess-indent',
 
-  'NMAC427/guess-indent.nvim',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.telescope',
