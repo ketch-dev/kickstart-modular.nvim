@@ -1,14 +1,30 @@
 -- ========== Highlight, edit, and navigate code. See ':help nvim-treesitter' ==========
 
 return {
-  { 
+  {
     'nvim-treesitter/nvim-treesitter',
-    cond = not vim.g.vscode,
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'json', 'javascript', 'typescript', 'tsx', 'yaml' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'json',
+        'javascript',
+        'typescript',
+        'tsx',
+        'yaml',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
