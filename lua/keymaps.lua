@@ -14,7 +14,10 @@ vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'l', '<Nop>')
 -------------------------------------------------------------------------------
 
--- ========== Move focus with arrows ==========
+-- ========== Cycle windows with Tab ==========
+vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = 'Cycle focus to the next window' })
+-------------------------------------------------------------------------------
+-- ========== Focus windows with arrows ==========
 vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
