@@ -113,8 +113,7 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       -- ========== LSP servers config. LSPs install automatically (See :help lspconfig-all) ==========
       local servers = {
-        ts_ls = {},
-        volar = {},
+        vue_ls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -133,7 +132,8 @@ return {
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', 'prettier' 
+        'stylua',
+        'prettier',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -150,5 +150,28 @@ return {
         },
       }
     end,
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    cond = not vim.g.vscode,
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {
+      filetypes = {
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'vue',
+      },
+      settings = {
+        separate_diagnostic_server = true,
+        publish_diagnostic_on = 'insert_leave',
+        tsserver_plugins = {
+          '@vue/typescript-plugin',
+        },
+        tsserver_max_memory = 'auto',
+        code_lens = 'off',
+      },
+    },
   },
 }
