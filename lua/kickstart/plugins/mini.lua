@@ -30,6 +30,7 @@ return {
           content = {
             active = function()
               local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
+              local diff = MiniStatusline.section_diff { trunc_width = 75 }
               local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
               local filename = MiniStatusline.section_filename { trunc_width = 999999 } -- Forces relative path
               local location = MiniStatusline.section_location { trunc_width = 75 }
@@ -37,7 +38,7 @@ return {
 
               return MiniStatusline.combine_groups {
                 { hl = mode_hl, strings = { mode } },
-                { hl = 'MiniStatuslineDevinfo', strings = { diagnostics } },
+                { hl = 'MiniStatuslineDevinfo', strings = { diff, diagnostics } },
                 '%<', -- Truncation point
                 { hl = 'MiniStatuslineFilename', strings = { filename } },
                 '%=',
