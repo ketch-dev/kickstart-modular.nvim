@@ -4,7 +4,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('v', 'p', 'P') -- Make 'p' to not copy
 vim.keymap.set('n', '<Del>', '"_x') -- 'Del' to delete 1 char forward
 vim.keymap.set('n', '<BS>', '"_dh') -- 'Backspace' to delete 1 char backward
-vim.keymap.set({'i', 'c'}, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
+vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 
 -- ========== Disable hjkl ==========
@@ -22,10 +22,10 @@ vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper wi
 -------------------------------------------------------------------------------
 
 -- ========== Move windows with arrows ==========
-vim.keymap.set("n", "<C-A-left>", "<C-w>H", { desc = "Move window to the left" })
-vim.keymap.set("n", "<C-A-right>", "<C-w>L", { desc = "Move window to the right" })
-vim.keymap.set("n", "<C-A-down>", "<C-w>J", { desc = "Move window to the lower" })
-vim.keymap.set("n", "<C-A-up>", "<C-w>K", { desc = "Move window to the upper" })
+vim.keymap.set('n', '<C-A-left>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-A-right>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-A-down>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<C-A-up>', '<C-w>K', { desc = 'Move window to the upper' })
 -------------------------------------------------------------------------------
 
 -- ========== Save with ctrl-s ==========
@@ -37,7 +37,7 @@ vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
 -- ========== Undo with ctrl-z ==========
 vim.keymap.set('n', '<C-z>', 'u', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-z>', '<C-o>u', { noremap = true, silent = true })
-vim.keymap.set('n', 'u', '<Nop>', { noremap = true, silent = true }) 
+vim.keymap.set('n', 'u', '<Nop>', { noremap = true, silent = true })
 -------------------------------------------------------------------------------
 
 -- ========== Make 'd' and 'c' to not copy ==========
