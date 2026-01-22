@@ -115,6 +115,43 @@ return {
             miniFiles.open(vim.uv.cwd())
           end
         end, { desc = 'Open mini.files' })
+
+        vim.api.nvim_create_autocmd('User', {
+          pattern = 'MiniFilesBufferCreate',
+          callback = function(args)
+            local bufnr = args.data.buf_id
+
+            vim.keymap.set('n', '<C-v>', function()
+              local mini_files = require 'mini.files'
+              local entry = mini_files.get_fs_entry()
+              if not entry then
+                return
+              end
+
+              local state = mini_files.get_explorer_state()
+              if not state then
+                return
+              end
+              local target_win = state.target_window
+
+              -- Fallback if target window is invalid (rare)
+              if not target_win or not vim.api.nvim_win_is_valid(target_win) then
+                target_win = vim.api.nvim_get_current_win()
+              end
+
+              if entry.fs_type == 'file' then
+                local new_win
+                vim.api.nvim_win_call(target_win, function()
+                  vim.cmd 'vsplit'
+                  new_win = vim.api.nvim_get_current_win()
+                end)
+
+                mini_files.set_target_window(new_win)
+                mini_files.go_in { close_on_file = true }
+              end
+            end, { buffer = bufnr, desc = 'Open in vertical split' })
+          end,
+        })
       end
     end,
   },
