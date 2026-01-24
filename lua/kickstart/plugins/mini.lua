@@ -85,11 +85,9 @@ return {
           cond = not vim.g.vscode,
           mappings = {
             close = 'q',
-            go_in = '<right>',
             go_in_plus = '<CR>',
             go_out = '<left>',
-            -- go_out_plus = "H",
-            synchronize = '=', -- Save changes
+            synchronize = '=',
           },
         }
 
@@ -141,12 +139,22 @@ return {
         end, { desc = 'Mini Files (Tree View)' })
         -------------------------------------------------------------------------------
 
-        -- ========== [mini.files] Open split ==========
+        -- ========== [mini.files] Create keymap specific to mini.files ==========
         vim.api.nvim_create_autocmd('User', {
           pattern = 'MiniFilesBufferCreate',
           callback = function(args)
             local bufnr = args.data.buf_id
 
+            -- ========== [mini.files] Make right arrow open only dirs ==========
+            vim.keymap.set('n', '<right>', function()
+              local fs_entry = require('mini.files').get_fs_entry()
+              if fs_entry and fs_entry.fs_type == 'directory' then
+                require('mini.files').go_in()
+              end
+            end, { buffer = bufnr, desc = 'Go in dir' })
+            -------------------------------------------------------------------------------
+
+            -- ========== [mini.files] Open file in split ==========
             vim.keymap.set('n', '<C-v>', function()
               local mini_files = require 'mini.files'
               local entry = mini_files.get_fs_entry()
@@ -176,6 +184,7 @@ return {
                 mini_files.go_in { close_on_file = true }
               end
             end, { buffer = bufnr, desc = 'Open in vertical split' })
+            -------------------------------------------------------------------------------
           end,
         })
         -------------------------------------------------------------------------------
