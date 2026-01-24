@@ -100,38 +100,34 @@ return {
           -- 1. Open MiniFiles normally focused on the current buffer
           MiniFiles.open(buf_name)
 
-          -- Guard clause: If current buffer is not inside CWD, do nothing more
-          if not vim.startswith(buf_name, cwd) then
+          -- Guard: If we're not in a real file or outside CWD, stop here
+          if buf_name == '' or not vim.startswith(buf_name, cwd) then
             return
           end
 
-          -- 2. Calculate the depth to travel
-          -- We get the directory of the current file
           local current_dir = vim.fs.dirname(buf_name)
 
-          -- Using native vim.fs to find relative path components
-          local relative_path = vim.fs.relpath(cwd, current_dir)
-
-          if not relative_path then
+          if current_dir == cwd then
             return
           end
 
-          -- Count how many directories deep we are
-          -- (e.g., "components/menu" has 2 slashes/parts)
+          local relative_path = vim.fs.relpath(cwd, current_dir)
+          if not relative_path or relative_path == '.' then
+            return
+          end
+
+          -- 2. Calculate depth
           local depth = 0
           for _ in string.gmatch(relative_path, '[^/]+') do
             depth = depth + 1
           end
 
-          -- 3. Automate the navigation
+          -- 3. Execute navigation
           -- We use a small defer to ensure the UI is ready
           vim.schedule(function()
-            -- Go out N times to reveal parents up to CWD
             for _ = 1, depth do
               MiniFiles.go_out()
             end
-
-            -- Go back in N times to restore focus to original directory
             for _ = 1, depth do
               MiniFiles.go_in()
             end
