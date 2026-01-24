@@ -8,10 +8,11 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     config = function()
-      -- va)  - [V]isually select [A]round [)]paren
-      -- yinq - [Y]ank [I]nside [N]ext [Q]uote
-      -- ci'  - [C]hange [I]nside [']quote
+      -- ========== Improve "a" (around) and "i" (inside) ==========
       require('mini.ai').setup {
+        -- va)  - [V]isually select [A]round [)]paren
+        -- yinq - [Y]ank [I]nside [N]ext [Q]uote
+        -- ci'  - [C]hange [I]nside [']quote
         n_lines = 500,
         custom_textobjects = {
           f = require('mini.ai').gen_spec.treesitter {
@@ -20,10 +21,13 @@ return {
           },
         },
       }
-      -- saiw) - [U]rap [A]dd [I]nner [W]ord [)]Paren
-      -- sd'   - [U]rap [D]elete [']quotes
-      -- sr)'  - [U]rap [R]eplace [)] [']
+      -------------------------------------------------------------------------------
+
+      -- ========== Add surround ==========
       require('mini.surround').setup {
+        -- saiw) - [U]rap [A]dd [I]nner [W]ord [)]Paren
+        -- sd'   - [U]rap [D]elete [']quotes
+        -- sr)'  - [U]rap [R]eplace [)] [']
         mappings = {
           add = 'u',
           delete = 'ud',
@@ -34,7 +38,9 @@ return {
           highlight = 'uh',
         },
       }
+      -------------------------------------------------------------------------------
 
+      -- ========== Status line ==========
       if not vim.g.vscode then
         local statusline = require 'mini.statusline'
         statusline.setup {
@@ -71,8 +77,9 @@ return {
           return '%2l:%-2v'
         end
       end
+      -------------------------------------------------------------------------------
 
-      -- Setup mini.files (file explorer)
+      -- ========== File Explorer ==========
       if not vim.g.vscode then
         require('mini.files').setup {
           cond = not vim.g.vscode,
@@ -84,38 +91,57 @@ return {
             -- go_out_plus = "H",
             synchronize = '=', -- Save changes
           },
-          -- windows = {
-          --   preview = true,     -- Show preview of file under cursor
-          --   width_focus = 30,
-          --   width_nofocus = 15,
-          -- },
         }
 
-        -- This opens it at the directory of the current buffer (or cwd if no file)
+        -- ========== [mini.files] View full CWD tree ==========
         vim.keymap.set('n', '-', function()
-          local miniFiles = require 'mini.files'
-          local buf_path = vim.api.nvim_buf_get_name(0)
+          local MiniFiles = require 'mini.files'
+          local buf_name = vim.api.nvim_buf_get_name(0)
+          local cwd = vim.fn.getcwd()
 
-          -- If the explorer is already open, close it
-          if miniFiles.close() then
+          -- 1. Open MiniFiles normally focused on the current buffer
+          MiniFiles.open(buf_name)
+
+          -- Guard clause: If current buffer is not inside CWD, do nothing more
+          if not vim.startswith(buf_name, cwd) then
             return
           end
 
-          -- If we are in a file, open it (this focuses the file)
-          if buf_path ~= '' then
-            -- miniFiles.open(buf_path, true)
-            miniFiles.open(buf_path)
-          -- Ideally, we would 'reveal' the path from root here, but mini.files
-          -- truncates history by design.
-          -- Workaround: You can map a key inside mini.files to "Go to Root"
-          -- or just manually press 'h' until you hit root.
-          else
-            -- If no file, open CWD
-            -- miniFiles.open(nil, true) -- Open at cwd, focused
-            miniFiles.open(vim.uv.cwd())
-          end
-        end, { desc = 'Open mini.files' })
+          -- 2. Calculate the depth to travel
+          -- We get the directory of the current file
+          local current_dir = vim.fs.dirname(buf_name)
 
+          -- Using native vim.fs to find relative path components
+          local relative_path = vim.fs.relpath(cwd, current_dir)
+
+          if not relative_path then
+            return
+          end
+
+          -- Count how many directories deep we are
+          -- (e.g., "components/menu" has 2 slashes/parts)
+          local depth = 0
+          for _ in string.gmatch(relative_path, '[^/]+') do
+            depth = depth + 1
+          end
+
+          -- 3. Automate the navigation
+          -- We use a small defer to ensure the UI is ready
+          vim.schedule(function()
+            -- Go out N times to reveal parents up to CWD
+            for _ = 1, depth do
+              MiniFiles.go_out()
+            end
+
+            -- Go back in N times to restore focus to original directory
+            for _ = 1, depth do
+              MiniFiles.go_in()
+            end
+          end)
+        end, { desc = 'Mini Files (Tree View)' })
+        -------------------------------------------------------------------------------
+
+        -- ========== [mini.files] Open split ==========
         vim.api.nvim_create_autocmd('User', {
           pattern = 'MiniFilesBufferCreate',
           callback = function(args)
@@ -152,7 +178,9 @@ return {
             end, { buffer = bufnr, desc = 'Open in vertical split' })
           end,
         })
+        -------------------------------------------------------------------------------
       end
+      -------------------------------------------------------------------------------
     end,
   },
 }
