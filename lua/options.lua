@@ -41,7 +41,7 @@ vim.o.scrolloff = 10 -- Minimal number of screen lines to keep above and below t
 vim.o.confirm = true
 vim.o.backspace = 'indent,eol,start'
 vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
-vim.o.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
 
 -- vim.opt.diffopt = {
 --   'internal',
