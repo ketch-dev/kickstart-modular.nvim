@@ -7,11 +7,18 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -------------------------------------------------------------------------------
----
+
 -- ========== Sync clipboard between OS and Neovim ==========
 vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
+-------------------------------------------------------------------------------
+
+-- ========== Wrap/Break ==========
+vim.o.wrap = true
+vim.o.linebreak = true -- Break at word boundaries
+vim.o.breakindent = true -- Maintain indent when wrapping
+vim.o.showbreak = '↪ '
 -------------------------------------------------------------------------------
 
 vim.g.have_nerd_font = true
@@ -19,8 +26,6 @@ vim.o.showmode = false -- Don't show mode, it's already in the status line
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a' -- Enable mouse
-vim.o.wrap = false
-vim.o.breakindent = true -- Enable break indent
 vim.o.undofile = true -- Save undo history
 vim.o.ignorecase = true -- Enable case-insensitive searching
 vim.o.smartcase = true -- Enable case-sensitive searching if \C or 1+ capital letters in the search term
@@ -36,8 +41,7 @@ vim.o.scrolloff = 10 -- Minimal number of screen lines to keep above and below t
 vim.o.confirm = true
 vim.o.backspace = 'indent,eol,start'
 vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters
-
+vim.o.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters
 
 -- vim.opt.diffopt = {
 --   'internal',
