@@ -4,6 +4,6 @@ return {
   'karb94/neoscroll.nvim',
   cond = not vim.g.vscode,
   opts = {
-    duration_multiplier = 0.25,
+    duration_multiplier = 0.35,
   },
 }
