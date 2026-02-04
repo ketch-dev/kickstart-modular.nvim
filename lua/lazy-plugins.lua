@@ -9,6 +9,8 @@ require('lazy').setup({
   require 'custom.plugins.colorizer',
   require 'custom.plugins.treesitter-textobjects',
   require 'custom.plugins.guess-indent',
+  require 'custom.plugins.noice',
+  -- 'HiPhish/rainbow-delimiters.nvim',
 
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
@@ -20,7 +22,6 @@ require('lazy').setup({
   require 'kickstart.plugins.todo-comments',
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',
-
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
