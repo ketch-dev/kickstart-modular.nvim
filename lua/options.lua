@@ -44,6 +44,7 @@ vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blin
 vim.o.wildmenu = true
 vim.o.wildignorecase = true
 vim.o.inccommand = 'split'
+vim.opt.fillchars:append { diff = ' ' }
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
 
 -- vim.opt.diffopt = {
