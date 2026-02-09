@@ -20,6 +20,21 @@ vim.o.linebreak = true -- Break at word boundaries
 vim.o.breakindent = true -- Maintain indent when wrapping
 vim.o.showbreak = '↪ '
 -------------------------------------------------------------------------------
+-- ========== Git Diff ==========
+vim.opt.fillchars = {
+  diff = '╱',
+}
+
+vim.opt.diffopt = {
+  'internal',
+  'filler',
+  'closeoff',
+  'context:12',
+  'algorithm:histogram',
+  'indent-heuristic',
+  'inline:char',
+}
+-------------------------------------------------------------------------------
 
 vim.g.have_nerd_font = true
 vim.o.showmode = false -- Don't show mode, it's already in the status line
@@ -44,15 +59,4 @@ vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blin
 vim.o.wildmenu = true
 vim.o.wildignorecase = true
 vim.o.inccommand = 'split'
-vim.opt.fillchars:append { diff = ' ' }
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
-
--- vim.opt.diffopt = {
---   'internal',
---   'filler',
---   'closeoff',
---   'context:12',
---   'algorithm:histogram',
---   'indent-heuristic',
---   'inline:char',
--- }
