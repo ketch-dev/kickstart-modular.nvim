@@ -6,6 +6,8 @@ return {
     opts = {
       render = 'virtual',
       virtual_symbol = '██',
+      virtual_symbol_prefix = '',
+      virtual_symbol_suffix = '',
       enable_hex = true,
       enable_short_hex = true,
       enable_rgb = true,
