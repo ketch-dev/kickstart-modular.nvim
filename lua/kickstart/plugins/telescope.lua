@@ -1,13 +1,13 @@
 -- ========== Fuzzy finder. Press <c-/> (I) or ? (N) to open a window with keymaps for the current picker ==========
 
 return {
-  { 
+  {
     'nvim-telescope/telescope.nvim',
     cond = not vim.g.vscode,
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      { 
+      {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
         cond = function()
@@ -18,13 +18,13 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
-      local actions = require('telescope.actions')
+      local actions = require 'telescope.actions'
       require('telescope').setup {
         defaults = {
           path_display = { 'smart' },
           mappings = {
             i = {
-              ["<esc>"] = actions.close,
+              ['<esc>'] = actions.close,
             },
           },
         },
@@ -39,9 +39,9 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       -------------------------------------------------------------------------------
-      
+
       local builtin = require 'telescope.builtin' -- see `:help telescope.builtin`
-      
+
       vim.keymap.set('n', 'lh', builtin.help_tags, { desc = '[H]elp' })
       vim.keymap.set('n', 'lk', builtin.keymaps, { desc = '[K]eymaps' })
       vim.keymap.set('n', 'lf', builtin.find_files, { desc = '[F]iles' })
@@ -54,13 +54,13 @@ return {
       vim.keymap.set('n', 'lt', '<cmd>TodoTelescope<cr>', { desc = '[T]odo' })
       vim.keymap.set('n', 'll', builtin.buffers, { desc = 'l - Buffers' })
       vim.keymap.set('n', 'l/', function()
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
           previewer = false,
-        }))
+        })
       end, { desc = '[/] Find in buffer' })
       vim.keymap.set('n', 'ln', function()
-        builtin.find_files({ cwd = vim.fn.stdpath('config') })
+        builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[N]eovim files' })
     end,
   },
