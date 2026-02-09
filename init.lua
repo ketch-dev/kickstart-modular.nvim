@@ -5,7 +5,6 @@ require 'keymaps'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
 
-
 -- ========== IDEAS ==========
 -- Also search (find) keys
 -- Also go keys

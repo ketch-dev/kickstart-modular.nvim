@@ -9,12 +9,11 @@ require('lazy').setup({
   require 'custom.plugins.neoscroll',
   require 'custom.plugins.scrollbar',
   require 'custom.plugins.fidget',
-  require 'custom.plugins.colorizer',
   require 'custom.plugins.treesitter-textobjects',
   require 'custom.plugins.guess-indent',
   require 'custom.plugins.noice',
-  require 'custom.plugins.github-theme',
   require 'custom.plugins.rainbow-delimiters',
+  require 'custom.plugins.highlight-colors',
 
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
