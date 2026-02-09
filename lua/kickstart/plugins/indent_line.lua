@@ -8,7 +8,7 @@ return {
     -- See `:help ibl`
     main = 'ibl',
     opts = {
-      indent = { char = '╎' },
+      indent = { char = '│' },
     },
   },
 }
