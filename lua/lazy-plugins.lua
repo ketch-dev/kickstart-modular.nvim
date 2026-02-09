@@ -10,7 +10,7 @@ require('lazy').setup({
   require 'custom.plugins.treesitter-textobjects',
   require 'custom.plugins.guess-indent',
   require 'custom.plugins.noice',
-  -- 'HiPhish/rainbow-delimiters.nvim',
+  require 'custom.plugins.github-theme',
 
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
