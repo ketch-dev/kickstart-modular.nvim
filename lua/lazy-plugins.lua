@@ -11,6 +11,7 @@ require('lazy').setup({
   require 'custom.plugins.guess-indent',
   require 'custom.plugins.noice',
   require 'custom.plugins.github-theme',
+  require 'custom.plugins.rainbow-delimiters',
 
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
@@ -18,7 +19,6 @@ require('lazy').setup({
   require 'kickstart.plugins.lspconfig',
   require 'kickstart.plugins.conform',
   require 'kickstart.plugins.blink-cmp',
-  require 'kickstart.plugins.tokyonight',
   require 'kickstart.plugins.todo-comments',
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',
