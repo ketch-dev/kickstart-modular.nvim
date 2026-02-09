@@ -24,14 +24,10 @@ return {
         virt_text_pos = 'right_align',
         delay = 300,
       },
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
       on_attach = function(bufnr)
+        vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#1F3D2A' })
+        vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#5A3D18' })
+        vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#B4545B' })
         local gitsigns = require 'gitsigns'
 
         local function map(mode, l, r, opts)
