@@ -150,6 +150,16 @@ return {
             end, { buffer = bufnr, desc = 'Go in dir' })
             -------------------------------------------------------------------------------
 
+            -- ========== [mini.files] Make enter open only files ==========
+            vim.keymap.set('n', '<enter>', function()
+              local fs_entry = require('mini.files').get_fs_entry()
+              if fs_entry and fs_entry.fs_type == 'file' then
+                require('mini.files').go_in()
+                require('mini.files').close()
+              end
+            end, { buffer = bufnr, desc = 'Open file' })
+            -------------------------------------------------------------------------------
+
             -- ========== [mini.files] Open file in split ==========
             vim.keymap.set('n', '<C-v>', function()
               local mini_files = require 'mini.files'
