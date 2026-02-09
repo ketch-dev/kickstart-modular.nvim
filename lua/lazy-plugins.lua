@@ -1,7 +1,7 @@
 require('lazy').setup({
   require 'custom.plugins.flash',
   require 'custom.plugins.bufferline',
-  require 'custom.plugins.lazygit',
+  require 'custom.plugins.diffview',
   require 'custom.plugins.neogit',
   require 'custom.plugins.neoscroll',
   require 'custom.plugins.scrollbar',
