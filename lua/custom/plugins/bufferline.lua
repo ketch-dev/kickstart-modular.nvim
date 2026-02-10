@@ -28,6 +28,12 @@ return {
         numbers = function(opts)
           return tostring(opts.ordinal)
         end,
+        name_formatter = function(tab)
+          if type(tab) == 'table' and type(tab.buffers) == 'table' and #tab.buffers > 1 then
+            return ''
+          end
+          return tab.name
+        end,
         always_show_bufferline = true,
         show_buffer_icons = true,
         color_icons = true,
