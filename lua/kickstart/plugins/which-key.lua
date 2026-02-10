@@ -7,7 +7,7 @@ return {
     event = 'VimEnter',
     opts = {
       preset = 'helix',
-      sort = { 'local', 'order', 'group', 'manual', 'alphanum', 'mod' },
+      sort = { 'local', 'manual', 'order', 'group', 'alphanum', 'mod' },
       show_help = false,
       delay = 1000,
       triggers = {
