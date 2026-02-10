@@ -38,6 +38,7 @@ return {
 
       require('diffview').setup {
         enhanced_diff_hl = true,
+        show_help_hints = false,
         keymaps = {
           file_panel = {
             -- Move and auto-open ONLY files (no folder expand/collapse on movement)
