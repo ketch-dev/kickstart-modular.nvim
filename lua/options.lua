@@ -18,7 +18,7 @@ end)
 vim.o.wrap = true
 vim.o.linebreak = true -- Break at word boundaries
 vim.o.breakindent = true -- Maintain indent when wrapping
-vim.o.showbreak = '↪ '
+vim.o.showbreak = '↪'
 -------------------------------------------------------------------------------
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
