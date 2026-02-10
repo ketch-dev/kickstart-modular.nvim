@@ -6,7 +6,7 @@ return {
     cond = not vim.g.vscode,
     event = 'VimEnter',
     opts = {
-      delay = 0,
+      delay = 1000,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
