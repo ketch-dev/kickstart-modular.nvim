@@ -55,26 +55,29 @@ return {
               local search = line.section_searchcount { trunc_width = 75 }
 
               return line.combine_groups {
-                { hl = mode_hl, strings = { mode } },
-                { hl = 'MiniStatuslineDevinfo', strings = { diff, diagnostics } },
                 '%<', -- Truncation point
                 { hl = 'MiniStatuslineFilename', strings = { filename } },
-                '%=',
-                { hl = mode_hl, strings = { location } },
+                '%=', -- Fill space
                 { hl = 'MiniStatuslineSearchcount', strings = { search } },
+                { hl = 'MiniStatuslineFilename', strings = { location } },
+                { hl = 'MiniStatuslineDevinfo', strings = { diff, diagnostics } },
+                { hl = mode_hl, strings = { mode } },
               }
             end,
 
             inactive = function()
               local filename = vim.bo.buftype == 'terminal' and '%t' or '%t%m%r'
-              return '%#MiniStatuslineInactive#' .. filename .. '%='
+              return line.combine_groups {
+                { hl = 'MiniStatuslineInactive', strings = { filename } },
+                '%=', -- Fill space
+              }
             end,
           },
         }
         -- set the section for cursor location to LINE:COLUMN
         ---@diagnostic disable-next-line: duplicate-set-field
         line.section_location = function()
-          return '(%l/%L):%-2v'
+          return '%l:%-2v'
         end
       end
       -------------------------------------------------------------------------------
