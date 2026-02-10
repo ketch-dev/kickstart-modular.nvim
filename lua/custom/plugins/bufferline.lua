@@ -25,13 +25,12 @@ return {
       options = {
         separator_style = 'slant',
         mode = 'tabs',
-        name_formatter = function(tab)
-          local tabs = vim.api.nvim_list_tabpages()
-          local index = vim.fn.index(tabs, tab.tabnr)
-          return tostring(index + 1)
+        numbers = function(opts)
+          return tostring(opts.ordinal)
         end,
         always_show_bufferline = true,
-        show_buffer_icons = false,
+        show_buffer_icons = true,
+        color_icons = true,
         show_buffer_close_icons = false,
         show_close_icon = false,
         middle_mouse_command = function(id)
