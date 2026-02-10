@@ -13,7 +13,7 @@ if vim.g.vscode then
             \ 't': 'TERMINAL'
             \ }
       let mode_text = get(mode_names, current_mode, current_mode)
-      return '█ '.mode_text.' █'
+      return '-- '.mode_text.' --'
     endfunction
   ]]
 
