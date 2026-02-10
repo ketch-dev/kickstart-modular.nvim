@@ -42,19 +42,19 @@ return {
 
       -- ========== Status line ==========
       if not vim.g.vscode then
-        local statusline = require 'mini.statusline'
-        statusline.setup {
+        local line = require 'mini.statusline'
+        line.setup {
           use_icons = vim.g.have_nerd_font,
           content = {
             active = function()
-              local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
-              local diff = MiniStatusline.section_diff { trunc_width = 75 }
-              local diagnostics = MiniStatusline.section_diagnostics { trunc_width = 75 }
-              local filename = MiniStatusline.section_filename { trunc_width = 999999 } -- Forces relative path
-              local location = MiniStatusline.section_location { trunc_width = 75 }
-              local search = MiniStatusline.section_searchcount { trunc_width = 75 }
+              local mode, mode_hl = line.section_mode { trunc_width = 120 }
+              local diff = line.section_diff { trunc_width = 75 }
+              local diagnostics = line.section_diagnostics { trunc_width = 75 }
+              local filename = line.section_filename { trunc_width = 999999 } -- Forces relative path
+              local location = line.section_location { trunc_width = 75 }
+              local search = line.section_searchcount { trunc_width = 75 }
 
-              return MiniStatusline.combine_groups {
+              return line.combine_groups {
                 { hl = mode_hl, strings = { mode } },
                 { hl = 'MiniStatuslineDevinfo', strings = { diff, diagnostics } },
                 '%<', -- Truncation point
@@ -66,14 +66,14 @@ return {
             end,
 
             inactive = function()
-              local filename = MiniStatusline.section_filename { trunc_width = 999999 } -- Forces relative for inactive too
+              local filename = line.section_filename { trunc_width = 999999 } -- Forces relative for inactive too
               return '%#MiniStatuslineInactive#' .. filename .. '%='
             end,
           },
         }
         -- set the section for cursor location to LINE:COLUMN
         ---@diagnostic disable-next-line: duplicate-set-field
-        statusline.section_location = function()
+        line.section_location = function()
           return '(%l/%L):%-2v'
         end
       end
