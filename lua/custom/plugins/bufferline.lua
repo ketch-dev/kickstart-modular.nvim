@@ -30,11 +30,10 @@ return {
         color_icons = false,
         show_buffer_close_icons = false,
         show_close_icon = false,
-        name_formatter = function()
-          return ''
-        end,
-        numbers = function(opts)
-          return tostring(opts.ordinal)
+        name_formatter = function(tab)
+          local tabs = vim.api.nvim_list_tabpages()
+          local index = vim.fn.index(tabs, tab.tabnr)
+          return tostring(index + 1)
         end,
         middle_mouse_command = function(id)
           local close = require('bufferline.config').options.close_command
