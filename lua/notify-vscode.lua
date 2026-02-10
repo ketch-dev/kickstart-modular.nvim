@@ -1,5 +1,5 @@
 if vim.g.vscode then
-  vim.cmd([[
+  vim.cmd [[
     function! VSCodeMode() abort
       let current_mode = mode(1)
       let mode_names = {
@@ -15,19 +15,19 @@ if vim.g.vscode then
       let mode_text = get(mode_names, current_mode, current_mode)
       return '█ '.mode_text.' █'
     endfunction
-  ]])
+  ]]
 
   -- Set statusline to show the mode
   vim.opt.statusline = [[%{VSCodeMode()}]]
 
   -- Force updates when mode changes
-  vim.cmd([[
+  vim.cmd [[
     augroup VSCodeModeDisplay
       autocmd!
       autocmd ModeChanged * redrawstatus
     augroup END
-  ]])
+  ]]
 
   -- Initialize immediately
-  vim.cmd('redrawstatus')
+  vim.cmd 'redrawstatus'
 end

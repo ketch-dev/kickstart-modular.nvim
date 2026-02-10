@@ -1,6 +1,7 @@
 require('lazy').setup({
   -- require 'custom.plugins.themes.github-theme',
-  require 'custom.plugins.themes.vscode',
+  -- require 'custom.plugins.themes.vscode',
+  require 'kickstart.plugins.tokyonight',
 
   require 'custom.plugins.flash',
   require 'custom.plugins.bufferline',
@@ -27,7 +28,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  require 'kickstart.plugins.autopairs',
+  -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
 }, {
   ui = {

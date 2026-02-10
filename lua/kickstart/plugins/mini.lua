@@ -41,6 +41,12 @@ return {
       }
       -------------------------------------------------------------------------------
 
+      -- ========== Add corresponding pair ==========
+      if not vim.g.vscode then
+        require('mini.pairs').setup()
+      end
+      -------------------------------------------------------------------------------
+
       -- ========== Status line ==========
       if not vim.g.vscode then
         local line = require 'mini.statusline'
