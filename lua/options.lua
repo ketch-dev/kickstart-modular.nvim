@@ -23,6 +23,13 @@ vim.o.showbreak = '↪ '
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
   diff = '╱',
+  horiz = '█',
+  horizup = '█',
+  horizdown = '█',
+  vert = '█',
+  vertleft = '█',
+  vertright = '█',
+  verthoriz = '█',
 }
 
 vim.opt.diffopt = {
