@@ -164,7 +164,7 @@ return {
             -------------------------------------------------------------------------------
 
             -- ========== [mini.files] Open file in split ==========
-            vim.keymap.set('n', '<C-v>', function()
+            vim.keymap.set('n', '<C-enter>', function()
               local mini_files = require 'mini.files'
               local entry = mini_files.get_fs_entry()
               if not entry then
