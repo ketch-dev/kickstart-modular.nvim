@@ -77,7 +77,7 @@ return {
         -- set the section for cursor location to LINE:COLUMN
         ---@diagnostic disable-next-line: duplicate-set-field
         line.section_location = function()
-          return '%l:%-2v'
+          return string.format('%7s', string.format('%d:%d', vim.fn.line '.', vim.fn.charcol '.'))
         end
       end
       -------------------------------------------------------------------------------
