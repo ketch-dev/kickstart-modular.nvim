@@ -25,20 +25,17 @@ return {
       options = {
         separator_style = 'slant',
         mode = 'tabs',
+        always_show_bufferline = true,
+        show_buffer_icons = false,
+        color_icons = false,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        name_formatter = function()
+          return ''
+        end,
         numbers = function(opts)
           return tostring(opts.ordinal)
         end,
-        name_formatter = function(tab)
-          if type(tab) == 'table' and type(tab.buffers) == 'table' and #tab.buffers > 1 then
-            return ''
-          end
-          return tab.name
-        end,
-        always_show_bufferline = true,
-        show_buffer_icons = true,
-        color_icons = true,
-        show_buffer_close_icons = false,
-        show_close_icon = false,
         middle_mouse_command = function(id)
           local close = require('bufferline.config').options.close_command
           if type(close) == 'function' then
