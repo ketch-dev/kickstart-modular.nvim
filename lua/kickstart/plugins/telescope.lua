@@ -52,7 +52,7 @@ return {
       vim.keymap.set('n', 'l.', builtin.resume, { desc = 'resume' })
       vim.keymap.set('n', 'lr', builtin.oldfiles, { desc = '[R]ecent files' })
       vim.keymap.set('n', 'lt', '<cmd>TodoTelescope<cr>', { desc = '[T]odo' })
-      vim.keymap.set('n', 'll', builtin.buffers, { desc = 'l - Buffers' })
+      vim.keymap.set('n', 'll', builtin.buffers, { desc = 'Buffers' })
       vim.keymap.set('n', 'l/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
