@@ -6,6 +6,8 @@ return {
     cond = not vim.g.vscode,
     event = 'VimEnter',
     opts = {
+      preset = 'helix',
+      show_help = false,
       delay = 1000,
       triggers = {
         { '<auto>', mode = 'nixsotc' },
