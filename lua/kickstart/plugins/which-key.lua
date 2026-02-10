@@ -7,11 +7,13 @@ return {
     event = 'VimEnter',
     opts = {
       preset = 'helix',
+      sort = { 'local', 'order', 'group', 'manual', 'alphanum', 'mod' },
       show_help = false,
       delay = 1000,
       triggers = {
         { '<auto>', mode = 'nixsotc' },
         { 'l', mode = 'n' },
+        { 's', mode = 'n' },
       },
       icons = {
         -- set icon mappings to true if you have a Nerd Font
@@ -54,8 +56,16 @@ return {
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { 'l', group = '[L]ookup:' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { 'l', group = '[L]ookup:' },
+
+        { 's', group = '[S]urround', mode = { 'n', 'x' } },
+        { 'sa', desc = '[A]dd', mode = { 'n', 'x' } },
+        { 'sd', desc = '[D]elete', mode = { 'n' } },
+        { 'sr', desc = '[R]eplace', mode = { 'n' } },
+        { 'sh', desc = '[H]ighlight', mode = { 'n' } },
+        { 'sf', desc = 'Find right', mode = { 'n' } },
+        { 'st', desc = 'Find left', mode = { 'n' } },
       },
     },
   },

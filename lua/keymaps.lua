@@ -8,7 +8,6 @@ vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' 
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 
 -- ========== Disable hjkl ==========
-vim.keymap.set({ 'n', 'v' }, 'h', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
 -------------------------------------------------------------------------------
@@ -34,12 +33,6 @@ vim.keymap.set('n', '<C-A-up>', '<C-w>K', { desc = 'Move window to the upper' })
 vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
--------------------------------------------------------------------------------
-
--- ========== Undo with ctrl-z ==========
-vim.keymap.set('n', '<C-z>', 'u', { noremap = true, silent = true })
-vim.keymap.set('i', '<C-z>', '<C-o>u', { noremap = true, silent = true })
-vim.keymap.set('n', 'u', '<Nop>', { noremap = true, silent = true })
 -------------------------------------------------------------------------------
 
 -- ========== Make 'd' and 'c' to not copy ==========

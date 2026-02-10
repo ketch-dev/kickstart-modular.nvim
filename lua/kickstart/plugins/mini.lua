@@ -26,17 +26,17 @@ return {
 
       -- ========== Add surround ==========
       require('mini.surround').setup {
-        -- saiw) - [U]rap [A]dd [I]nner [W]ord [)]Paren
-        -- sd'   - [U]rap [D]elete [']quotes
-        -- sr)'  - [U]rap [R]eplace [)] [']
+        -- saiw) - [S]urround [A]dd [I]nside [W]ord [)]Paren
+        -- sd'   - [S]urround [D]elete [']quotes
+        -- sr)'  - [S]urround [R]eplace [)] [']
         mappings = {
-          add = 'u',
-          delete = 'ud',
-          find = 'uf',
-          find_left = 'ut',
-          replace = 'ur',
+          add = 'sa',
+          delete = 'sd',
+          find = 'sf',
+          find_left = 'st',
+          replace = 'sr',
           update_n_lines = '',
-          highlight = 'uh',
+          highlight = 'sh',
         },
       }
       -------------------------------------------------------------------------------
