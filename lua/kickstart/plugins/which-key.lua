@@ -7,6 +7,10 @@ return {
     event = 'VimEnter',
     opts = {
       delay = 1000,
+      triggers = {
+        { '<auto>', mode = 'nixsotc' },
+        { 'l', mode = 'n' },
+      },
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,

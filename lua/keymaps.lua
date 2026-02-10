@@ -11,7 +11,6 @@ vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 vim.keymap.set({ 'n', 'v' }, 'h', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
-vim.keymap.set({ 'n', 'v' }, 'l', '<Nop>')
 -------------------------------------------------------------------------------
 
 -- ========== Cycle windows with Tab ==========
