@@ -8,17 +8,8 @@ return {
     version = '*',
     init = function()
       _G.__bufferline_new_tab = function()
-        local function focus_last_tab()
-          local tabs = vim.api.nvim_list_tabpages()
-          local last = tabs[#tabs]
-          if last and vim.api.nvim_tabpage_is_valid(last) then
-            vim.api.nvim_set_current_tabpage(last)
-          end
-        end
-
         vim.cmd 'tabnew'
-        vim.schedule(focus_last_tab)
-        vim.defer_fn(focus_last_tab, 10)
+        vim.cmd 'tabmove'
       end
     end,
     opts = {
