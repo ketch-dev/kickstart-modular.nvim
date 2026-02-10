@@ -50,7 +50,7 @@ return {
               local mode, mode_hl = line.section_mode { trunc_width = 120 }
               local diff = line.section_diff { trunc_width = 75 }
               local diagnostics = line.section_diagnostics { trunc_width = 75 }
-              local filename = line.section_filename { trunc_width = 999999 } -- Forces relative path
+              local filename = vim.bo.buftype == 'terminal' and '%t' or '%t%m%r'
               local location = line.section_location { trunc_width = 75 }
               local search = line.section_searchcount { trunc_width = 75 }
 
@@ -66,7 +66,7 @@ return {
             end,
 
             inactive = function()
-              local filename = line.section_filename { trunc_width = 999999 } -- Forces relative for inactive too
+              local filename = vim.bo.buftype == 'terminal' and '%t' or '%t%m%r'
               return '%#MiniStatuslineInactive#' .. filename .. '%='
             end,
           },
