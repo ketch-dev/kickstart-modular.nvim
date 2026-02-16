@@ -168,7 +168,7 @@ return {
       local function is_dir_line()
         local line = vim.api.nvim_get_current_line()
         -- Default folder icons are "" (closed) and "" (open). :contentReference[oaicite:1]{index=1}
-        if line:find('', 1, true) or line:find('', 1, true) then
+        if line:find('', 1, true) or line:find('', 1, true) then
           return true
         end
         if line:match '/%s*$' then
@@ -197,6 +197,10 @@ return {
       require('diffview').setup {
         enhanced_diff_hl = true,
         show_help_hints = false,
+        icons = {
+          folder_closed = '',
+          folder_open = '',
+        },
         keymaps = {
           file_history_panel = {
             { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
