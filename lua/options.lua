@@ -36,7 +36,7 @@ vim.opt.diffopt = {
   'internal',
   'filler',
   'closeoff',
-  'context:12',
+  'context:999999', -- Keep entire file visible in diff windows
   'algorithm:histogram',
   'indent-heuristic',
   'inline:char',

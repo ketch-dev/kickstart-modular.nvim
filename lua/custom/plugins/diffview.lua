@@ -2,11 +2,29 @@ local cursor_sync_state = {
   source_path = nil,
 }
 
+local function notify_current_file_has_no_changes()
+  vim.notify('Current file has no changes.', vim.log.levels.WARN, { title = 'Diffview' })
+end
+
 local function normalize_path(path)
   if not path or path == '' then
     return nil
   end
   return vim.fn.fnamemodify(path, ':p')
+end
+
+local function file_dict_contains_path(files, path)
+  if not files or not path then
+    return false
+  end
+
+  for _, file in files:iter() do
+    if file.path == path then
+      return true
+    end
+  end
+
+  return false
 end
 
 local function set_win_cursor_clamped(winid, line, col)
@@ -48,10 +66,14 @@ local function open_diffview_for_current_file()
   if vim.bo.buftype == '' and bufname ~= '' then
     source_path = normalize_path(bufname)
     table.insert(args, '--selected-file=' .. source_path)
+  else
+    notify_current_file_has_no_changes()
+    return
   end
   cursor_sync_state.source_path = source_path
 
   local lib = require 'diffview.lib'
+  local async = require 'diffview.async'
   local view = lib.diffview_open(args)
   if not view then
     cursor_sync_state.source_path = nil
@@ -59,32 +81,39 @@ local function open_diffview_for_current_file()
   end
 
   local selected_file = view.options and view.options.selected_file
+  local ok, err, files = async.pawait(view.get_updated_files, view)
+
+  if (not ok) or err then
+    lib.dispose_view(view)
+    cursor_sync_state.source_path = nil
+    return
+  end
+
+  if not file_dict_contains_path(files, selected_file) then
+    lib.dispose_view(view)
+    cursor_sync_state.source_path = nil
+    notify_current_file_has_no_changes()
+    return
+  end
+
   if selected_file then
     view.emitter:once('files_updated', function()
-      local has_selected_file = false
-
-      for _, file in view.files:iter() do
-        if file.path == selected_file then
-          has_selected_file = true
-          break
-        end
-      end
-
-      if has_selected_file then
-        view.emitter:once('file_open_post', function()
-          vim.schedule(function()
-            local main = view.cur_layout and view.cur_layout:get_main_win()
-            if main then
-              set_win_cursor_clamped(main.id, cursor[1], cursor[2])
-            end
-          end)
+      view.emitter:once('file_open_post', function()
+        vim.schedule(function()
+          local main = view.cur_layout and view.cur_layout:get_main_win()
+          if main then
+            set_win_cursor_clamped(main.id, cursor[1], cursor[2])
+          end
         end)
-        view:set_file_by_path(selected_file, true, true)
-      end
+      end)
+      view:set_file_by_path(selected_file, true, true)
     end)
   end
 
   view:open()
+  if view.panel and view.panel:is_open() then
+    view.panel:close()
+  end
 end
 
 local function close_diffview_with_cursor_sync()
@@ -128,7 +157,8 @@ return {
     'sindrets/diffview.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { '<leader>gd', open_diffview_for_current_file, desc = '[G]it [D]iffview' },
+      { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[G]it [D]iff' },
+      { '<leader>gf', open_diffview_for_current_file, desc = '[G]it [F]ile' },
     },
     config = function()
       local actions = require 'diffview.actions'
@@ -168,22 +198,6 @@ return {
         enhanced_diff_hl = true,
         show_help_hints = false,
         keymaps = {
-          view = {
-            { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
-          },
-          file_panel = {
-            { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
-            -- Move and auto-open ONLY files (no folder expand/collapse on movement)
-            { 'n', '<Down>', move_and_preview(actions.next_entry), { desc = 'Next entry + preview file' } },
-            { 'n', '<Up>', move_and_preview(actions.prev_entry), { desc = 'Prev entry + preview file' } },
-
-            -- Folder folding on arrows (left = collapse, right = expand)
-            { 'n', '<Left>', fold_action(actions.close_fold), { desc = 'Collapse folder' } },
-            { 'n', '<Right>', fold_action(actions.open_fold), { desc = 'Expand folder' } },
-
-            -- Keep Enter as an explicit "open/toggle" action if you want
-            { 'n', '<CR>', actions.goto_file_edit, { desc = 'Open file' } },
-          },
           file_history_panel = {
             { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
           },
@@ -192,6 +206,25 @@ return {
           },
           help_panel = {
             { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
+          },
+          view = {
+            { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
+          },
+          file_panel = {
+            ['<down>'] = false,
+            ['<up>'] = false,
+            ['<cr>'] = false,
+            { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } },
+            -- Move and auto-open ONLY files (no folder expand/collapse on movement)
+            { 'n', '<down>', move_and_preview(actions.next_entry), { desc = 'Next entry + preview file' } },
+            { 'n', '<up>', move_and_preview(actions.prev_entry), { desc = 'Prev entry + preview file' } },
+
+            -- Folder folding on arrows (left = collapse, right = expand)
+            { 'n', '<left>', fold_action(actions.close_fold), { desc = 'Collapse folder' } },
+            { 'n', '<right>', fold_action(actions.open_fold), { desc = 'Expand folder' } },
+
+            -- Keep Enter as an explicit "open/toggle" action if you want
+            { 'n', '<cr>', actions.goto_file_edit, { desc = 'Open file' } },
           },
         },
       }
