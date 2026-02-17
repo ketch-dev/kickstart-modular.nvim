@@ -2,6 +2,23 @@ local api, fn = vim.api, vim.fn
 
 local state = { source_bufnr = nil }
 
+local function clear_group_bg(group)
+  local ok, hl = pcall(api.nvim_get_hl, 0, { name = group, link = false })
+  if not ok or vim.tbl_isempty(hl) then
+    return
+  end
+
+  hl.bg = nil
+  hl.ctermbg = nil
+  hl.link = nil
+  api.nvim_set_hl(0, group, hl)
+end
+
+local function clear_diffview_stats_bg()
+  clear_group_bg 'DiffviewFilePanelInsertions'
+  clear_group_bg 'DiffviewFilePanelDeletions'
+end
+
 local function set_cursor_clamped(winid, line, col)
   if not (winid and api.nvim_win_is_valid(winid)) then
     return
@@ -124,6 +141,12 @@ return {
     config = function()
       local actions = require 'diffview.actions'
       local lib = require 'diffview.lib'
+      local augroup = api.nvim_create_augroup('custom_diffview_highlights', { clear = true })
+
+      api.nvim_create_autocmd('ColorScheme', {
+        group = augroup,
+        callback = clear_diffview_stats_bg,
+      })
 
       local close = { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } }
 
@@ -189,6 +212,7 @@ return {
           },
         },
       }
+      clear_diffview_stats_bg()
     end,
   },
 }
