@@ -209,6 +209,8 @@ return {
 
       -- ========== File Explorer ==========
       if not vim.g.vscode then
+        local mini_files = require 'mini.files'
+
         require('mini.files').setup {
           cond = not vim.g.vscode,
           mappings = {
@@ -216,6 +218,15 @@ return {
             go_in_plus = '<CR>',
             go_out = '<left>',
             synchronize = '<C-s>',
+          },
+          content = {
+            prefix = function(fs_entry)
+              if fs_entry.fs_type == 'directory' then
+                return '', 'MiniFilesFile'
+              end
+
+              return mini_files.default_prefix(fs_entry)
+            end,
           },
         }
 
