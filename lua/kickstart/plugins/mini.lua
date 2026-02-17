@@ -215,12 +215,12 @@ return {
             close = '<C-c>',
             go_in_plus = '<CR>',
             go_out = '<left>',
-            synchronize = '=',
+            synchronize = '<C-s>',
           },
         }
 
         -- ========== [mini.files] View full CWD tree ==========
-        vim.keymap.set('n', '-', function()
+        vim.keymap.set('n', '<C-e>', function()
           local MiniFiles = require 'mini.files'
           local buf_name = vim.api.nvim_buf_get_name(0)
           local cwd = vim.fn.getcwd()
