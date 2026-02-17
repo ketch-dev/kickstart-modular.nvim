@@ -36,10 +36,14 @@ vim.opt.diffopt = {
   'internal',
   'filler',
   'closeoff',
-  'context:12',
+  'context:4',
   'algorithm:histogram',
   'indent-heuristic',
-  'inline:char',
+  'inline:word',
+  'linematch:60',
+  'vertical',
+  'iwhiteeol',
+  'followwrap',
 }
 -------------------------------------------------------------------------------
 
