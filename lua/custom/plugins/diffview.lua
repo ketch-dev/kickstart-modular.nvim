@@ -176,7 +176,13 @@ return {
         show_help_hints = false,
         icons = { folder_closed = '', folder_open = '' },
         keymaps = {
-          file_history_panel = { close },
+          file_history_panel = {
+            ['<down>'] = false,
+            ['<up>'] = false,
+            close,
+            { 'n', '<down>', move_and_preview(actions.next_entry), { desc = 'Next entry + preview commit' } },
+            { 'n', '<up>', move_and_preview(actions.prev_entry), { desc = 'Prev entry + preview commit' } },
+          },
           option_panel = { close },
           help_panel = { close },
           view = { close },
