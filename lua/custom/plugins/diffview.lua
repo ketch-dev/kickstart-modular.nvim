@@ -55,6 +55,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
       { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[G]it [D]iff' },
+      { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = '[G]it [H]istory' },
       {
         '<leader>gf',
         function()
