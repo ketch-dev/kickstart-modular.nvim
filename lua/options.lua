@@ -71,3 +71,7 @@ vim.o.wildmenu = true
 vim.o.wildignorecase = true
 vim.o.inccommand = 'split'
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
+vim.opt.spell = true
+vim.opt.spelllang = { 'en' }
+vim.opt.spellcapcheck = ''
+vim.opt.spelloptions = { 'camel' }
