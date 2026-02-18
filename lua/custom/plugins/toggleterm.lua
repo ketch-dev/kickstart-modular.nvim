@@ -86,21 +86,21 @@ local function bind_terminal_navigation_keys(terminal)
 
   vim.keymap.set('n', '<C-g>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = 'Close terminal' }))
 
-  vim.keymap.set('n', '<S-Left>', function()
+  vim.keymap.set('n', '<C-Left>', function()
     switch_terminal(-1)
   end, vim.tbl_extend('force', buffer_options, { desc = 'Previous terminal' }))
 
-  vim.keymap.set('n', '<S-Right>', function()
+  vim.keymap.set('n', '<C-Right>', function()
     switch_terminal(1)
   end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
 
   vim.keymap.set('t', '<C-g>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], buffer_options)
-  vim.keymap.set('t', '<S-Left>', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(-1)<CR>]], buffer_options)
-  vim.keymap.set('t', '<S-Right>', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(1)<CR>]], buffer_options)
+  vim.keymap.set('t', '<C-Left>', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(-1)<CR>]], buffer_options)
+  vim.keymap.set('t', '<C-Right>', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(1)<CR>]], buffer_options)
 
-  -- Fallback for terminals that send raw shift-arrow escape sequences.
-  vim.keymap.set('t', '<Esc>[1;2D', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(-1)<CR>]], buffer_options)
-  vim.keymap.set('t', '<Esc>[1;2C', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(1)<CR>]], buffer_options)
+  -- Fallback for terminals that send raw ctrl-arrow escape sequences.
+  vim.keymap.set('t', '<Esc>[1;5D', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(-1)<CR>]], buffer_options)
+  vim.keymap.set('t', '<Esc>[1;5C', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(1)<CR>]], buffer_options)
 end
 
 return {
