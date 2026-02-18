@@ -8,6 +8,7 @@ require('lazy').setup({
   require 'custom.plugins.diffview',
   require 'custom.plugins.neogit',
   require 'custom.plugins.neoscroll',
+  require 'custom.plugins.toggleterm',
   require 'custom.plugins.scrollbar',
   require 'custom.plugins.fidget',
   require 'custom.plugins.treesitter-textobjects',
