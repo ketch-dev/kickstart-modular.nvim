@@ -65,10 +65,26 @@ local function switch_terminal(delta)
   open_terminal(terminal)
 end
 
+local function close_current_terminal()
+  local terms = get_terms()
+  local current_id = terms.get_focused_id() or select(1, terms.identify())
+  if not current_id then
+    return
+  end
+
+  local terminal = terms.get(current_id, true)
+  if terminal and terminal:is_open() then
+    terminal:close()
+  end
+end
+
 _G.__toggleterm_switch_terminal = switch_terminal
+_G.__toggleterm_close_current_terminal = close_current_terminal
 
 local function bind_terminal_navigation_keys(terminal)
   local buffer_options = { buffer = terminal.bufnr, silent = true, noremap = true }
+
+  vim.keymap.set('n', '<C-g>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = 'Close terminal' }))
 
   vim.keymap.set('n', '<S-Left>', function()
     switch_terminal(-1)
@@ -78,6 +94,7 @@ local function bind_terminal_navigation_keys(terminal)
     switch_terminal(1)
   end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
 
+  vim.keymap.set('t', '<C-g>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], buffer_options)
   vim.keymap.set('t', '<S-Left>', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(-1)<CR>]], buffer_options)
   vim.keymap.set('t', '<S-Right>', [[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal(1)<CR>]], buffer_options)
 
