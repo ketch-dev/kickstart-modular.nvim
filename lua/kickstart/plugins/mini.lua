@@ -214,7 +214,7 @@ return {
         require('mini.files').setup {
           cond = not vim.g.vscode,
           mappings = {
-            close = '<C-c>',
+            close = '<C-g>',
             go_in_plus = '<CR>',
             go_out = '<left>',
             synchronize = '<C-s>',

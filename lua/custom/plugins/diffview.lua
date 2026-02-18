@@ -148,7 +148,7 @@ return {
         callback = clear_diffview_stats_bg,
       })
 
-      local close = { 'n', '<C-c>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } }
+      local close = { 'n', '<C-g>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } }
 
       local function move_and_preview(move)
         return function()

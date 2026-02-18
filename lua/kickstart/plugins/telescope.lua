@@ -24,7 +24,11 @@ return {
           path_display = { 'smart' },
           mappings = {
             i = {
+              ['<C-g>'] = actions.close,
               ['<esc>'] = actions.close,
+            },
+            n = {
+              ['<C-g>'] = actions.close,
             },
           },
         },
