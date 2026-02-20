@@ -25,10 +25,11 @@ return {
           mappings = {
             i = {
               ['<C-g>'] = actions.close,
-              ['<esc>'] = actions.close,
+              ['<C-CR>'] = actions.select_vertical,
             },
             n = {
               ['<C-g>'] = actions.close,
+              ['<C-CR>'] = actions.select_vertical,
             },
           },
         },
