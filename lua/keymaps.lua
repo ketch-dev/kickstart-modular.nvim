@@ -6,6 +6,7 @@ vim.keymap.set('n', '<Del>', '"_x') -- 'Del' to delete 1 char forward
 vim.keymap.set('n', '<BS>', '"_dh') -- 'Backspace' to delete 1 char backward
 vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
+vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 
 -- ========== Disable hjkl ==========
 vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')

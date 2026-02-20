@@ -10,15 +10,15 @@ vim.g.maplocalleader = ' '
 
 -- ========== Sync clipboard between OS and Neovim ==========
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  vim.opt.clipboard = 'unnamedplus'
 end)
 -------------------------------------------------------------------------------
 
 -- ========== Wrap/Break ==========
-vim.o.wrap = true
-vim.o.linebreak = true -- Break at word boundaries
-vim.o.breakindent = true -- Maintain indent when wrapping
-vim.o.showbreak = '↪'
+vim.opt.wrap = true
+vim.opt.linebreak = true -- Break at word boundaries
+vim.opt.breakindent = true -- Maintain indent when wrapping
+vim.opt.showbreak = '↪'
 -------------------------------------------------------------------------------
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
@@ -48,30 +48,31 @@ vim.opt.diffopt = {
 -------------------------------------------------------------------------------
 
 vim.g.have_nerd_font = true
-vim.o.showmode = false -- Don't show mode, it's already in the status line
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.mouse = 'a' -- Enable mouse
-vim.o.undofile = true -- Save undo history
-vim.o.ignorecase = true -- Enable case-insensitive searching
-vim.o.smartcase = true -- Enable case-sensitive searching if \C or 1+ capital letters in the search term
-vim.o.signcolumn = 'yes' -- Enable sign column (gutter)
-vim.o.updatetime = 250 -- Displays symbol under cursor highlight sooner
-vim.o.timeoutlen = 300 -- Displays which-key popup sooner
-vim.o.splitright = true -- New vertical splits right
-vim.o.splitbelow = true -- New horizontal splits below
-vim.o.list = true -- Show whitespace characters
-vim.o.inccommand = 'split' -- Preview substitutions live in split
-vim.o.cursorline = true -- Highlight current cursor line
-vim.o.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
-vim.o.confirm = true
-vim.o.backspace = 'indent,eol,start'
-vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
-vim.o.wildmenu = true
-vim.o.wildignorecase = true
-vim.o.inccommand = 'split'
+vim.opt.showmode = false -- Don't show mode, it's already in the status line
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.mouse = 'a' -- Enable mouse
+vim.opt.undofile = true -- Save undo history
+vim.opt.ignorecase = true -- Enable case-insensitive searching
+vim.opt.smartcase = true -- Enable case-sensitive searching if \C or 1+ capital letters in the search term
+vim.opt.signcolumn = 'yes' -- Enable sign column (gutter)
+vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
+vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
+vim.opt.splitright = true -- New vertical splits right
+vim.opt.splitbelow = true -- New horizontal splits below
+vim.opt.list = true -- Show whitespace characters
+vim.opt.inccommand = 'split' -- Preview substitutions live in split
+vim.opt.cursorline = true -- Highlight current cursor line
+vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
+vim.opt.confirm = true
+vim.opt.backspace = 'indent,eol,start'
+vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
+vim.opt.wildmenu = true
+vim.opt.wildignorecase = true
+vim.opt.inccommand = 'split'
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
 vim.opt.spell = true
 vim.opt.spelllang = { 'en' }
 vim.opt.spellcapcheck = ''
 vim.opt.spelloptions = { 'camel' }
+vim.opt.hidden = false
