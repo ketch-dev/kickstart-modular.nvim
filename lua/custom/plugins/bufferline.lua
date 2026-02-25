@@ -21,6 +21,24 @@ return {
         color_icons = false,
         show_buffer_close_icons = false,
         show_close_icon = false,
+        custom_areas = {
+          right = function()
+            local cwd = vim.fn.getcwd()
+            local cwd_name = vim.fn.fnamemodify(cwd, ':t')
+            if cwd_name == '' then
+              cwd_name = cwd
+            end
+
+            local ok, mini_files_dir_hl = pcall(vim.api.nvim_get_hl, 0, { name = 'MiniFilesDirectory', link = false })
+
+            return {
+              {
+                text = ' ' .. cwd_name .. ' ',
+                fg = ok and mini_files_dir_hl and mini_files_dir_hl.fg or nil,
+              },
+            }
+          end,
+        },
         name_formatter = function(tab)
           local tabs = vim.api.nvim_list_tabpages()
           local index = vim.fn.index(tabs, tab.tabnr)
