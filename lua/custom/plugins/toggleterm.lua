@@ -187,6 +187,12 @@ local function bind_terminal_navigation_keys(terminal)
   vim.keymap.set('t', '<Esc>[1;5C', next_term_cmd, buffer_options)
 end
 
+local function persist_terminal_buffer(terminal)
+  if terminal and terminal.bufnr and vim.api.nvim_buf_is_valid(terminal.bufnr) then
+    vim.bo[terminal.bufnr].bufhidden = 'hide'
+  end
+end
+
 return {
   {
     'akinsho/toggleterm.nvim',
@@ -216,7 +222,11 @@ return {
       direction = 'float',
       start_in_insert = true,
       persist_mode = false,
+      on_create = function(terminal)
+        persist_terminal_buffer(terminal)
+      end,
       on_open = function(terminal)
+        persist_terminal_buffer(terminal)
         local kind = detect_kind(terminal)
         local index = kind and get_terminal_index(kind, terminal.id)
         if kind and index then
