@@ -15,7 +15,7 @@ end)
 -------------------------------------------------------------------------------
 
 -- ========== Wrap/Break ==========
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.linebreak = true -- Break at word boundaries
 vim.opt.breakindent = true -- Maintain indent when wrapping
 vim.opt.showbreak = '↪'

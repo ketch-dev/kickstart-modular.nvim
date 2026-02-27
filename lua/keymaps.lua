@@ -112,18 +112,3 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 -------------------------------------------------------------------------------
-
--- ========== Enable lines and wrap in telescope preview ==========
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'TelescopePreviewerLoaded',
-  callback = function(args)
-    if args.data.filetype ~= 'help' then
-      vim.wo.number = true
-      vim.wo.wrap = true
-    elseif args.data.bufname:match '*.csv' then
-      vim.wo.number = false
-      vim.wo.wrap = false
-    end
-  end,
-})
--------------------------------------------------------------------------------
