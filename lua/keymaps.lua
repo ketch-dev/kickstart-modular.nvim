@@ -12,6 +12,28 @@ vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
 -------------------------------------------------------------------------------
 
+-- ========== Mouse wheel scroll without EOF overscroll ==========
+local function wheel_scroll(direction)
+  local at_edge = (direction > 0 and vim.fn.line 'w$' >= vim.fn.line '$') or (direction < 0 and vim.fn.line 'w0' <= 1)
+  if at_edge then
+    return ''
+  end
+
+  local keys = direction > 0 and '3<C-e>' or '3<C-y>'
+  if vim.api.nvim_get_mode().mode:sub(1, 1) == 'i' then
+    return '<C-o>' .. keys
+  end
+  return keys
+end
+
+vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelDown>', function()
+  return wheel_scroll(1)
+end, { expr = true, silent = true, desc = 'Scroll down without EOF overscroll' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelUp>', function()
+  return wheel_scroll(-1)
+end, { expr = true, silent = true, desc = 'Scroll up without top overscroll' })
+-------------------------------------------------------------------------------
+
 -- ========== Cycle windows with Tab ==========
 vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = 'Cycle focus to the next window' })
 -------------------------------------------------------------------------------
