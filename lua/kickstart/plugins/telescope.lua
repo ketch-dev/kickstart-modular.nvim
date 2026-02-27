@@ -28,6 +28,7 @@ return {
               ['<C-cr>'] = actions.select_vertical,
             },
             n = {
+              ['<esc>'] = false,
               ['<C-g>'] = actions.close,
               ['<C-cr>'] = actions.select_vertical,
             },
