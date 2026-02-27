@@ -57,7 +57,7 @@ return {
             width = 0.91, -- align with toggleterm
             height = 0.92, -- keep 2 rows above and below
             horizontal = {
-              preview_width = 0.6,
+              preview_width = 0.5,
             },
           },
           mappings = {
