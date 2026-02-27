@@ -52,6 +52,14 @@ return {
       require('telescope').setup {
         defaults = {
           path_display = dim_directory_prefix,
+          layout_strategy = 'horizontal',
+          layout_config = {
+            width = 0.91, -- align with toggleterm
+            height = 0.92, -- keep 2 rows above and below
+            horizontal = {
+              preview_width = 0.6,
+            },
+          },
           mappings = {
             i = {
               ['<C-g>'] = actions.close,
