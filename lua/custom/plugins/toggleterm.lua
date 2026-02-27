@@ -240,6 +240,12 @@ return {
       },
       float_opts = {
         border = 'rounded',
+        width = function()
+          return math.floor(vim.o.columns * 0.9) -- align with picker
+        end,
+        height = function()
+          return math.floor(vim.o.lines * 0.84) -- keep 2 code lines below and above
+        end,
       },
     },
   },
