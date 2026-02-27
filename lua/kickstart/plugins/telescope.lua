@@ -19,9 +19,39 @@ return {
     },
     config = function()
       local actions = require 'telescope.actions'
+      local telescope_utils = require 'telescope.utils'
+
+      local function dim_directory_prefix(opts, path)
+        local transformed_path = telescope_utils.transform_path(
+          vim.tbl_extend('force', opts or {}, {
+            path_display = { 'smart' },
+          }),
+          path
+        )
+
+        local filename = telescope_utils.path_tail(transformed_path)
+        local directory_prefix_len = #transformed_path - #filename
+
+        if directory_prefix_len > 0 then
+          return transformed_path, { { { 0, directory_prefix_len }, 'TelescopeResultsComment' } }
+        end
+
+        return transformed_path
+      end
+
+      local function set_file_path_highlights()
+        vim.api.nvim_set_hl(0, 'TelescopeResultsComment', { link = 'LineNr' })
+      end
+
+      set_file_path_highlights()
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('TelescopePathHighlights', { clear = true }),
+        callback = set_file_path_highlights,
+      })
+
       require('telescope').setup {
         defaults = {
-          path_display = { 'smart' },
+          path_display = dim_directory_prefix,
           mappings = {
             i = {
               ['<C-g>'] = actions.close,
