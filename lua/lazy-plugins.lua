@@ -1,7 +1,7 @@
 require('lazy').setup({
   -- require 'custom.plugins.themes.github-theme',
   -- require 'custom.plugins.themes.vscode',
-  require 'custom.plugins.themes.vscode-syntax-blend',
+  -- require 'custom.plugins.themes.vscode-syntax-blend',
   require 'kickstart.plugins.tokyonight',
 
   require 'custom.plugins.flash',
@@ -17,6 +17,7 @@ require('lazy').setup({
   require 'custom.plugins.noice',
   require 'custom.plugins.rainbow-delimiters',
   require 'custom.plugins.highlight-colors',
+  require 'custom.plugins.render-markdown',
 
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
