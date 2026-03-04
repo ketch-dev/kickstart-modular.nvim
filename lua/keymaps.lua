@@ -34,9 +34,6 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelUp>', function()
 end, { expr = true, silent = true, desc = 'Scroll up without top overscroll' })
 -------------------------------------------------------------------------------
 
--- ========== Cycle windows with Tab ==========
-vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = 'Cycle focus to the next window' })
--------------------------------------------------------------------------------
 -- ========== Focus windows with arrows ==========
 vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
