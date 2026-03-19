@@ -14,13 +14,16 @@ return {
     end,
     opts = {
       options = {
-        separator_style = 'slant',
+        separator_style = "slant",
         mode = 'tabs',
         always_show_bufferline = true,
         show_buffer_icons = false,
         color_icons = false,
         show_buffer_close_icons = false,
         show_close_icon = false,
+        -- When tab names are blank, bufferline considers them duplicates and
+        -- may render a directory prefix like "/" or "5/".
+        show_duplicate_prefix = false,
         custom_areas = {
           right = function()
             local cwd = vim.fn.getcwd()
@@ -39,11 +42,9 @@ return {
             }
           end,
         },
-        name_formatter = function(tab)
-          local tabs = vim.api.nvim_list_tabpages()
-          local index = vim.fn.index(tabs, tab.tabnr)
-          return tostring(index + 1)
-        end,
+        name_formatter = function(_)
+          return ''
+        end, 
         middle_mouse_command = function(id)
           local close = require('bufferline.config').options.close_command
           if type(close) == 'function' then
