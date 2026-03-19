@@ -18,6 +18,7 @@ return {
     'lewis6991/gitsigns.nvim',
     cond = not vim.g.vscode,
     opts = {
+      signs_staged_enable = false,
       signs = {
         add = { text = '+' }, ---@diagnostic disable-line: missing-fields
         change = { text = '~' }, ---@diagnostic disable-line: missing-fields
