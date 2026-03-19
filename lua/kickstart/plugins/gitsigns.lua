@@ -18,6 +18,13 @@ return {
     'lewis6991/gitsigns.nvim',
     cond = not vim.g.vscode,
     opts = {
+      signs = {
+        add = { text = '+' }, ---@diagnostic disable-line: missing-fields
+        change = { text = '~' }, ---@diagnostic disable-line: missing-fields
+        delete = { text = '_' }, ---@diagnostic disable-line: missing-fields
+        topdelete = { text = '‾' }, ---@diagnostic disable-line: missing-fields
+        changedelete = { text = '~' }, ---@diagnostic disable-line: missing-fields
+      },
       current_line_blame = true,
       current_line_blame_opts = {
         virt_text = true,
@@ -25,9 +32,9 @@ return {
         delay = 300,
       },
       on_attach = function(bufnr)
-        vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#1F3D2A' })
-        vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#5A3D18' })
-        vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#B4545B' })
+        -- vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#1F3D2A' })
+        -- vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#5A3D18' })
+        -- vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#B4545B' })
         local gitsigns = require 'gitsigns'
 
         local function map(mode, l, r, opts)
