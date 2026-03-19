@@ -1,11 +1,17 @@
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix list' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlights on search when pressing <Esc> in normal mode
+
 vim.keymap.set('v', 'p', 'P') -- Make 'p' to not copy
 vim.keymap.set('n', '<Del>', '"_x') -- 'Del' to delete 1 char forward
 vim.keymap.set('n', '<BS>', '"_dh') -- 'Backspace' to delete 1 char backward
 vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
+
+-- ========== Diagnostics ==========
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+-------------------------------------------------------------------------------
 
 -- ========== Disable hjkl ==========
 vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')
