@@ -39,6 +39,34 @@ return {
           map('gs', require('telescope.builtin').lsp_document_symbols, '[G]oto [S]ymbols')
           map('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
+          map('<C-h>', function()
+            local max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.8)
+
+            local _, winid = vim.diagnostic.open_float({
+              scope = 'cursor',
+              border = 'rounded',
+              source = 'if_many',
+              focusable = true,
+              max_width = max_width,
+            })
+            if winid then
+              return
+            end
+
+            _, winid = vim.diagnostic.open_float({
+              scope = 'line',
+              border = 'rounded',
+              source = 'if_many',
+              focusable = true,
+              max_width = max_width,
+            })
+            if winid then
+              return
+            end
+
+            vim.lsp.buf.hover()
+          end, 'Diagnostics / Hover')
+
           -- ========== Resolve a difference between neovim nightly (version 0.11) and stable (version 0.10) ==========
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
@@ -94,17 +122,14 @@ return {
             [vim.diagnostic.severity.HINT] = '󰌶 ',
           },
         } or {},
-        virtual_text = {
-          source = 'if_many',
-          spacing = 2,
+        virtual_text = false,
+        virtual_lines = {
           format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
+            return diagnostic.message
+              :gsub('\n', ' ')
+              :gsub('%s+', ' ')
+              :gsub('^%s+', '')
+              :gsub('%s+$', '')
           end,
         },
       }
