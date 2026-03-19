@@ -76,3 +76,4 @@ vim.opt.spelllang = { 'en' }
 vim.opt.spellcapcheck = ''
 vim.opt.spelloptions = { 'camel' }
 vim.opt.hidden = false
+vim.opt.swapfile = false
