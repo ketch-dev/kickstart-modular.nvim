@@ -8,6 +8,12 @@ vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' 
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 
+
+-- ========== Exit command mode ==========
+vim.keymap.set('c', '<C-g>', '<C-c>', { noremap = true, silent = true, desc = 'Cancel cmdline' })
+vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
+-------------------------------------------------------------------------------
+
 -- ========== Diagnostics ==========
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
