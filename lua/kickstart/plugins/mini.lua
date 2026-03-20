@@ -183,7 +183,8 @@ return {
                 '%=', -- Fill space
                 { hl = 'MiniStatuslineSearchcount', strings = { search } },
                 { hl = 'MiniStatuslineFilename', strings = { location } },
-                { hl = 'MiniStatuslineDevinfo', strings = { diff, diagnostics } },
+                { hl = 'MiniStatuslineDevinfo', strings = { diff } },
+                { hl = 'MiniStatuslineDiagnostics', strings = { diagnostics } },
                 { hl = mode_hl, strings = { mode } },
               }
             end,
@@ -199,6 +200,7 @@ return {
             end,
           },
         }
+
         -- set the section for cursor location to LINE:COLUMN
         ---@diagnostic disable-next-line: duplicate-set-field
         line.section_location = function()
