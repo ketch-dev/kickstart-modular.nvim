@@ -15,9 +15,6 @@ return {
     'neovim/nvim-lspconfig',
     cond = not vim.g.vscode,
     dependencies = {
-      { 'mason-org/mason.nvim', opts = {} },
-      'mason-org/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'saghen/blink.cmp',
     },
@@ -138,11 +135,9 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       -- ========== LSP servers config. LSPs install automatically (See :help lspconfig-all) ==========
       local servers = {
-        vue_ls = {},
+        volar = {},
+        angularls = {},
         lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
           settings = {
             Lua = {
               completion = {
@@ -155,25 +150,16 @@ return {
       }
       -------------------------------------------------------------------------------
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua',
-        'prettier',
-      })
+      for server_name, server in pairs(servers) do
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
+        if vim.lsp.config then
+          vim.lsp.config(server_name, server)
+          vim.lsp.enable(server_name)
+        else
+          require('lspconfig')[server_name].setup(server)
+        end
+      end
     end,
   },
   {
