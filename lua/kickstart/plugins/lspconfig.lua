@@ -180,23 +180,36 @@ return {
     'pmizio/typescript-tools.nvim',
     cond = not vim.g.vscode,
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {
-      filetypes = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        'vue',
-      },
-      settings = {
-        separate_diagnostic_server = true,
-        publish_diagnostic_on = 'insert_leave',
-        tsserver_plugins = {
-          '@vue/typescript-plugin',
+    opts = function()
+      local util = require('lspconfig.util')
+      local angular_root_dir = util.root_pattern('angular.json')
+      local default_root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')
+
+      return {
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
+          'vue',
         },
-        tsserver_max_memory = 'auto',
-        code_lens = 'off',
-      },
-    },
+        root_dir = function(fname)
+          if angular_root_dir(fname) then
+            return nil
+          end
+
+          return default_root_dir(fname)
+        end,
+        settings = {
+          separate_diagnostic_server = true,
+          publish_diagnostic_on = 'insert_leave',
+          tsserver_plugins = {
+            '@vue/typescript-plugin',
+          },
+          tsserver_max_memory = 'auto',
+          code_lens = 'off',
+        },
+      }
+    end,
   },
 }
