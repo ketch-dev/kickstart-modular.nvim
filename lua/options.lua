@@ -14,6 +14,14 @@ vim.schedule(function()
 end)
 -------------------------------------------------------------------------------
 
+-- ========== Folding (Tree-sitter) ==========
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldcolumn = '0'
+-------------------------------------------------------------------------------
+
 -- ========== Wrap/Break ==========
 vim.opt.wrap = false
 vim.opt.linebreak = true -- Break at word boundaries
@@ -30,6 +38,12 @@ vim.opt.fillchars = {
   vertleft = '█',
   vertright = '█',
   verthoriz = '█',
+
+  -- Folding UI
+  foldopen = '',
+  foldclose = '',
+  foldsep = ' ',
+  fold = ' ',
 }
 
 vim.opt.diffopt = {
