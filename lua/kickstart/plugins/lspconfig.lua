@@ -136,7 +136,9 @@ return {
       -- ========== LSP servers config. LSPs install automatically (See :help lspconfig-all) ==========
       local servers = {
         volar = {},
-        angularls = {},
+        angularls = {
+          filetypes = { 'htmlangular' },
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -167,25 +169,16 @@ return {
     cond = not vim.g.vscode,
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = function()
-      local util = require('lspconfig.util')
-      local angular_root_dir = util.root_pattern('angular.json')
-      local default_root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')
-
       return {
         filetypes = {
           'javascript',
           'javascriptreact',
+          'javascript.jsx',
           'typescript',
           'typescriptreact',
+          'typescript.tsx',
           'vue',
         },
-        root_dir = function(fname)
-          if angular_root_dir(fname) then
-            return nil
-          end
-
-          return default_root_dir(fname)
-        end,
         settings = {
           separate_diagnostic_server = true,
           publish_diagnostic_on = 'insert_leave',
