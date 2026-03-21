@@ -80,6 +80,17 @@ return {
 
           -- ========== Highlight references of the word under your cursor when your cursor rests ==========
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+          if client and client.name == 'typescript-tools' then
+            local bufname = vim.api.nvim_buf_get_name(event.buf)
+            if bufname ~= '' then
+              local angular_json = vim.fs.find('angular.json', { path = vim.fs.dirname(bufname), upward = true })[1]
+              if angular_json then
+                client.server_capabilities.referencesProvider = false
+              end
+            end
+          end
+
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -137,7 +148,7 @@ return {
       local servers = {
         volar = {},
         angularls = {
-          filetypes = { 'htmlangular' },
+          filetypes = { 'typescript', 'htmlangular' },
         },
         lua_ls = {
           settings = {
