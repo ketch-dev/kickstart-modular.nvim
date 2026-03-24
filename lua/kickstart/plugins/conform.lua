@@ -37,6 +37,7 @@ return {
         graphql = { 'prettier' },
         liquid = { 'prettier' },
         html = { 'prettier' },
+        htmlangular = { 'prettier' },
         css = { 'prettier' },
         javascript = { 'prettier' },
         typescript = { 'prettier' },
