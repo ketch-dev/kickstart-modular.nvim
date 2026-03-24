@@ -50,7 +50,7 @@ vim.opt.diffopt = {
   'internal',
   'filler',
   'closeoff',
-  'context:4',
+  'context:2',
   'algorithm:histogram',
   'indent-heuristic',
   'inline:word',
