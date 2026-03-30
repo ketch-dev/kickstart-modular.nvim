@@ -1,4 +1,4 @@
--- ========== Autoformat ========== 
+-- ========== Autoformat ==========
 
 return {
   {
@@ -39,6 +39,7 @@ return {
         html = { 'prettier' },
         htmlangular = { 'prettier' },
         css = { 'prettier' },
+        scss = { 'prettier' },
         javascript = { 'prettier' },
         typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
