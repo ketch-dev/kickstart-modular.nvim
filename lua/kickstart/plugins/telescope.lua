@@ -49,6 +49,19 @@ return {
         callback = set_file_path_highlights,
       })
 
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'TelescopePreviewerLoaded',
+        callback = function(args)
+          if args.data.filetype ~= 'help' then
+            vim.wo.wrap = true
+            vim.wo.number = true
+          elseif args.data.bufname:match '*.csv' then
+            vim.wo.wrap = false
+            vim.wo.number = false
+          end
+        end,
+      })
+
       require('telescope').setup {
         defaults = {
           path_display = dim_directory_prefix,

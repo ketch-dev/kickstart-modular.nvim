@@ -23,7 +23,7 @@ vim.opt.foldcolumn = '0'
 -------------------------------------------------------------------------------
 
 -- ========== Wrap/Break ==========
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.linebreak = true -- Break at word boundaries
 vim.opt.breakindent = true -- Maintain indent when wrapping
 vim.opt.showbreak = '↪'
