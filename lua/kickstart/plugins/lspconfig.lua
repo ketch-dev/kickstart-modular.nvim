@@ -39,24 +39,24 @@ return {
           map('<C-h>', function()
             local max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.8)
 
-            local _, winid = vim.diagnostic.open_float({
+            local _, winid = vim.diagnostic.open_float {
               scope = 'cursor',
               border = 'rounded',
               source = 'if_many',
               focusable = true,
               max_width = max_width,
-            })
+            }
             if winid then
               return
             end
 
-            _, winid = vim.diagnostic.open_float({
+            _, winid = vim.diagnostic.open_float {
               scope = 'line',
               border = 'rounded',
               source = 'if_many',
               focusable = true,
               max_width = max_width,
-            })
+            }
             if winid then
               return
             end
@@ -133,11 +133,7 @@ return {
         virtual_text = false,
         virtual_lines = {
           format = function(diagnostic)
-            return diagnostic.message
-              :gsub('\n', ' ')
-              :gsub('%s+', ' ')
-              :gsub('^%s+', '')
-              :gsub('%s+$', '')
+            return diagnostic.message:gsub('\n', ' '):gsub('%s+', ' '):gsub('^%s+', ''):gsub('%s+$', '')
           end,
         },
       }
@@ -160,6 +156,7 @@ return {
             },
           },
         },
+        nixd = {},
       }
       -------------------------------------------------------------------------------
 
