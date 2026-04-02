@@ -34,6 +34,7 @@ return {
         json = { 'prettier' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
+        nix = { 'nixfmt' },
         graphql = { 'prettier' },
         liquid = { 'prettier' },
         html = { 'prettier' },
