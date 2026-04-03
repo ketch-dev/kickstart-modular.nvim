@@ -150,6 +150,22 @@ return {
 
       local close = { 'n', '<C-g>', close_diffview_with_cursor_sync, { desc = 'Close Diffview' } }
 
+      local function open_file_and_close_diffview()
+        local view = lib.get_current_view()
+        if not view or not view:infer_cur_file() then
+          return
+        end
+
+        actions.goto_file_edit()
+
+        if view.tabpage and api.nvim_tabpage_is_valid(view.tabpage) then
+          view:close()
+          lib.dispose_view(view)
+        end
+
+        state.source_bufnr = nil
+      end
+
       local function move_and_preview(move)
         return function()
           move()
@@ -185,7 +201,11 @@ return {
           },
           option_panel = { close },
           help_panel = { close },
-          view = { close },
+          view = {
+            ['<cr>'] = false,
+            close,
+            { 'n', '<cr>', open_file_and_close_diffview, { desc = 'Open file and close Diffview' } },
+          },
           file_panel = {
             ['<down>'] = false,
             ['<up>'] = false,
@@ -195,26 +215,7 @@ return {
             { 'n', '<up>', move_and_preview(actions.prev_entry), { desc = 'Prev entry + preview file' } },
             { 'n', '<left>', fold_action(actions.close_fold), { desc = 'Collapse folder' } },
             { 'n', '<right>', fold_action(actions.open_fold), { desc = 'Expand folder' } },
-            {
-              'n',
-              '<cr>',
-              function()
-                local view = lib.get_current_view()
-                if not view or not view:infer_cur_file() then
-                  return
-                end
-
-                actions.goto_file_edit()
-
-                if view.tabpage and api.nvim_tabpage_is_valid(view.tabpage) then
-                  view:close()
-                  lib.dispose_view(view)
-                end
-
-                state.source_bufnr = nil
-              end,
-              { desc = 'Open file and close Diffview' },
-            },
+            { 'n', '<cr>', open_file_and_close_diffview, { desc = 'Open file and close Diffview' } },
           },
         },
       }
