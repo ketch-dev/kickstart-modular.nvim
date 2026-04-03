@@ -42,7 +42,21 @@ return {
 
     diff.setup {
       view = {
-        style = 'number',
+        style = 'sign',
+        signs = {
+          add = '',
+          change = '',
+          delete = '',
+        },
+      },
+      mappings = {
+        apply = '',
+        reset = '',
+        textobject = '',
+        goto_first = '',
+        goto_prev = '',
+        goto_next = '',
+        goto_last = '',
       },
     }
 
