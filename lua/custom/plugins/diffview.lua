@@ -26,8 +26,8 @@ return {
     'sindrets/diffview.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[G]it [D]iff' },
-      { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = '[G]it [H]istory' },
+      { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[d]iff' },
+      { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = 'file [h]istory' },
     },
     config = function()
       local actions = require 'diffview.actions'

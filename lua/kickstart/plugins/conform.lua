@@ -13,7 +13,7 @@ return {
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[L]ayout format',
+        desc = '[l]ayout (format)',
       },
     },
     opts = {

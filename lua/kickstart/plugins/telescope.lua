@@ -101,17 +101,17 @@ return {
 
       local builtin = require 'telescope.builtin' -- see `:help telescope.builtin`
 
-      vim.keymap.set('n', 'lh', builtin.help_tags, { desc = '[H]elp' })
-      vim.keymap.set('n', 'lk', builtin.keymaps, { desc = '[K]eymaps' })
-      vim.keymap.set('n', 'lf', builtin.find_files, { desc = '[F]iles' })
-      vim.keymap.set('n', 'ls', builtin.builtin, { desc = '[S]elect telescope' })
-      vim.keymap.set('n', 'lw', builtin.grep_string, { desc = 'current [W]ord' })
-      vim.keymap.set('n', 'lg', builtin.live_grep, { desc = '[G]rep' })
-      vim.keymap.set('n', 'ld', builtin.diagnostics, { desc = '[D]iagnostics' })
+      vim.keymap.set('n', 'lh', builtin.help_tags, { desc = '[h]elp' })
+      vim.keymap.set('n', 'lk', builtin.keymaps, { desc = '[k]eymaps' })
+      vim.keymap.set('n', 'lf', builtin.find_files, { desc = '[f]iles' })
+      vim.keymap.set('n', 'ls', builtin.builtin, { desc = '[s]elect telescope' })
+      vim.keymap.set('n', 'lw', builtin.grep_string, { desc = 'current [w]ord' })
+      vim.keymap.set('n', 'lg', builtin.live_grep, { desc = '[g]rep' })
+      vim.keymap.set('n', 'ld', builtin.diagnostics, { desc = '[d]iagnostics' })
       vim.keymap.set('n', 'l.', builtin.resume, { desc = 'resume' })
-      vim.keymap.set('n', 'lr', builtin.oldfiles, { desc = '[R]ecent files' })
-      vim.keymap.set('n', 'lt', '<cmd>TodoTelescope<cr>', { desc = '[T]odo' })
-      vim.keymap.set('n', 'll', builtin.buffers, { desc = 'Buffers' })
+      vim.keymap.set('n', 'lr', builtin.oldfiles, { desc = '[r]ecent files' })
+      vim.keymap.set('n', 'lt', '<cmd>TodoTelescope<cr>', { desc = '[t]odo' })
+      vim.keymap.set('n', 'll', builtin.buffers, { desc = 'buffers' })
       vim.keymap.set('n', 'l/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
@@ -120,7 +120,7 @@ return {
       end, { desc = '[/] Find in buffer' })
       vim.keymap.set('n', 'ln', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[N]eovim files' })
+      end, { desc = '[n]eovim files' })
     end,
   },
 }

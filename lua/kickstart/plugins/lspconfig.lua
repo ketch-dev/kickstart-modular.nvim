@@ -27,14 +27,14 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          map('gn', vim.lsp.buf.rename, '[N]ame')
-          map('ga', vim.lsp.buf.code_action, '[G]oto [A]ction', { 'n', 'x' })
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-          map('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          map('gs', require('telescope.builtin').lsp_document_symbols, '[G]oto [S]ymbols')
-          map('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+          map('gn', vim.lsp.buf.rename, '[n]ame')
+          map('ga', vim.lsp.buf.code_action, '[g]oto [a]ction', { 'n', 'x' })
+          map('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+          map('gi', require('telescope.builtin').lsp_implementations, '[g]oto [i]mplementation')
+          map('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
+          map('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
+          map('gs', require('telescope.builtin').lsp_document_symbols, '[g]oto [s]ymbols')
+          map('gt', require('telescope.builtin').lsp_type_definitions, '[g]oto [t]ype definition')
 
           map('<C-h>', function()
             local max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.8)

@@ -1,6 +1,6 @@
 return {
   'NeogitOrg/neogit',
-	lazy = true,
+  lazy = true,
   cond = not vim.g.vscode,
   dependencies = {
     'nvim-lua/plenary.nvim', -- required
@@ -9,8 +9,8 @@ return {
     -- Only one of these is needed.
     'nvim-telescope/telescope.nvim', -- optional
   },
-  cmd = "Neogit",
+  cmd = 'Neogit',
   keys = {
-    { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
-  }
+    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'neogit' },
+  },
 }

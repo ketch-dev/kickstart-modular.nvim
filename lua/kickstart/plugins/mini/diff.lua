@@ -63,7 +63,7 @@ return {
     vim.keymap.set('n', '<leader>go', function()
       overlay_enabled = not overlay_enabled
       sync_all_overlays()
-    end, { desc = '[O]verlay' })
+    end, { desc = '[o]verlay' })
 
     local overlay_group = vim.api.nvim_create_augroup('custom-mini-diff-overlay', { clear = true })
 

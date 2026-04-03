@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q]uickfix list' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlights on search when pressing <Esc> in normal mode
 
 vim.keymap.set('v', 'p', 'P') -- Make 'p' to not copy
@@ -8,15 +8,14 @@ vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' 
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 
-
 -- ========== Exit command mode ==========
 vim.keymap.set('c', '<C-g>', '<C-c>', { noremap = true, silent = true, desc = 'Cancel cmdline' })
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
 -------------------------------------------------------------------------------
 
 -- ========== Diagnostics ==========
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next [d]iagnostic' })
 -------------------------------------------------------------------------------
 
 -- ========== Disable hjkl ==========
@@ -81,25 +80,25 @@ vim.keymap.set('n', 'xx', 'dd', { noremap = true })
 
 -- ========== Explorer ==========
 local toggle_both_sides = require('custom.utils.neotree-toggle-both-sides').toggle_both_sides
-vim.keymap.set('n', '<leader>et', toggle_both_sides, { desc = '[T]oggle' })
-vim.keymap.set('n', '<leader>ef', '<cmd>Neotree filesystem reveal left show<CR>', { desc = '[F]iles' })
-vim.keymap.set('n', '<leader>eb', '<cmd>Neotree buffers reveal left show<CR>', { desc = '[B]uffers' })
-vim.keymap.set('n', '<leader>eg', '<cmd>Neotree git_status reveal right show<CR>', { desc = '[G]it' })
+vim.keymap.set('n', '<leader>et', toggle_both_sides, { desc = '[t]oggle' })
+vim.keymap.set('n', '<leader>ef', '<cmd>Neotree filesystem reveal left show<CR>', { desc = '[f]iles' })
+vim.keymap.set('n', '<leader>eb', '<cmd>Neotree buffers reveal left show<CR>', { desc = '[b]uffers' })
+vim.keymap.set('n', '<leader>eg', '<cmd>Neotree git_status reveal right show<CR>', { desc = '[g]it' })
 -------------------------------------------------------------------------------
 
 -- ========== Split ==========
-vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = '[V]ertical' })
-vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[H]orizontal' })
-vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = '[E]qual' })
-vim.keymap.set('n', '<leader>sk', '<cmd>close<CR>', { desc = '[K]ill' })
+vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = '[v]ertical' })
+vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[h]orizontal' })
+vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = '[e]qual' })
+vim.keymap.set('n', '<leader>sk', '<cmd>close<CR>', { desc = '[k]ill' })
 -------------------------------------------------------------------------------
 
 -- ========== Tabs ==========
-vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[O]pen' })
-vim.keymap.set('n', '<leader>tk', '<cmd>tabclose<CR>', { desc = '[K]ill' })
-vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[N]ext' })
-vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[P]revious' })
-vim.keymap.set('n', '<leader>tb', '<cmd>tabnew %<CR>', { desc = 'Move [B]uffer to new tab' })
+vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[o]pen' })
+vim.keymap.set('n', '<leader>tk', '<cmd>tabclose<CR>', { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[n]ext' })
+vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[p]rev' })
+vim.keymap.set('n', '<leader>tb', '<cmd>tabnew %<CR>', { desc = 'move [b]uffer to new tab' })
 -------------------------------------------------------------------------------
 
 -- ========== Highlight when yanking (copying) text ==========
