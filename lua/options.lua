@@ -9,9 +9,7 @@ vim.g.maplocalleader = ' '
 -------------------------------------------------------------------------------
 
 -- ========== Sync clipboard between OS and Neovim ==========
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 -------------------------------------------------------------------------------
 
 -- ========== Folding (Tree-sitter) ==========

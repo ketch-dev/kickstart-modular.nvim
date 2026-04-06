@@ -33,7 +33,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
-}, {
+}, { ---@diagnostic disable-line: missing-fields
   ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',

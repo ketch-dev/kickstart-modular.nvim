@@ -1,10 +1,15 @@
 -- ========== Show pending keybinds ==========
 
+---@module 'lazy'
+---@type LazySpec
 return {
   {
     'folke/which-key.nvim',
     cond = not vim.g.vscode,
     event = 'VimEnter',
+    ---@module 'which-key'
+    ---@type wk.Opts
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
       preset = 'helix',
       sort = { 'local', 'manual', 'order', 'group', 'alphanum', 'mod' },
@@ -16,40 +21,7 @@ return {
         { 's', mode = 'n' },
       },
       icons = {
-        -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
-        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-        -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = '<Up> ',
-          Down = '<Down> ',
-          Left = '<Left> ',
-          Right = '<Right> ',
-          C = '<C-…> ',
-          M = '<M-…> ',
-          D = '<D-…> ',
-          S = '<S-…> ',
-          CR = '<CR> ',
-          Esc = '<Esc> ',
-          ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ',
-          NL = '<NL> ',
-          BS = '<BS> ',
-          Space = '<Space> ',
-          Tab = '<Tab> ',
-          F1 = '<F1>',
-          F2 = '<F2>',
-          F3 = '<F3>',
-          F4 = '<F4>',
-          F5 = '<F5>',
-          F6 = '<F6>',
-          F7 = '<F7>',
-          F8 = '<F8>',
-          F9 = '<F9>',
-          F10 = '<F10>',
-          F11 = '<F11>',
-          F12 = '<F12>',
-        },
       },
 
       -- Document existing key chains
@@ -58,7 +30,6 @@ return {
         { '<leader>t', group = '[t]oggle' },
         { '<leader>h', group = '[h]unk', mode = { 'n', 'v' } },
         { 'l', group = '[l]ookup:' },
-
         { 's', group = '[s]urround', mode = { 'n', 'x' } },
         { 'sa', desc = '[a]dd', mode = { 'n', 'x' } },
         { 'sd', desc = '[d]elete', mode = { 'n' } },

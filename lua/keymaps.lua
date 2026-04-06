@@ -1,4 +1,3 @@
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q]uickfix list' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlights on search when pressing <Esc> in normal mode
 
 vim.keymap.set('v', 'p', 'P') -- Make 'p' to not copy
@@ -12,6 +11,23 @@ vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 vim.keymap.set('c', '<C-g>', '<C-c>', { noremap = true, silent = true, desc = 'Cancel cmdline' })
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
 -------------------------------------------------------------------------------
+-- Diagnostic Config & Keymaps
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config {
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+  underline = { severity = { min = vim.diagnostic.severity.WARN } },
+
+  -- Can switch between these as you prefer
+  virtual_text = false, -- Text shows up at the end of the line
+  virtual_lines = true, -- Text shows up underneath the line, with virtual lines
+
+  -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+  jump = { float = true },
+}
+
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q]uickfix list' })
 
 -- ========== Diagnostics ==========
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
@@ -26,23 +42,25 @@ vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
 -- ========== Mouse wheel scroll without EOF overscroll ==========
 local function wheel_scroll(direction)
   local at_edge = (direction > 0 and vim.fn.line 'w$' >= vim.fn.line '$') or (direction < 0 and vim.fn.line 'w0' <= 1)
-  if at_edge then
-    return ''
-  end
+  if at_edge then return '' end
 
   local keys = direction > 0 and '3<C-e>' or '3<C-y>'
-  if vim.api.nvim_get_mode().mode:sub(1, 1) == 'i' then
-    return '<C-o>' .. keys
-  end
+  if vim.api.nvim_get_mode().mode:sub(1, 1) == 'i' then return '<C-o>' .. keys end
   return keys
 end
 
-vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelDown>', function()
-  return wheel_scroll(1)
-end, { expr = true, silent = true, desc = 'Scroll down without EOF overscroll' })
-vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelUp>', function()
-  return wheel_scroll(-1)
-end, { expr = true, silent = true, desc = 'Scroll up without top overscroll' })
+vim.keymap.set(
+  { 'n', 'i', 'v' },
+  '<ScrollWheelDown>',
+  function() return wheel_scroll(1) end,
+  { expr = true, silent = true, desc = 'Scroll down without EOF overscroll' }
+)
+vim.keymap.set(
+  { 'n', 'i', 'v' },
+  '<ScrollWheelUp>',
+  function() return wheel_scroll(-1) end,
+  { expr = true, silent = true, desc = 'Scroll up without top overscroll' }
+)
 -------------------------------------------------------------------------------
 
 -- ========== Focus windows with arrows ==========
@@ -105,9 +123,7 @@ vim.keymap.set('n', '<leader>tb', '<cmd>tabnew %<CR>', { desc = 'move [b]uffer t
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
+  callback = function() vim.hl.on_yank() end,
 })
 -------------------------------------------------------------------------------
 

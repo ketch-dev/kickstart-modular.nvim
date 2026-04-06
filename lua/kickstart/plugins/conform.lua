@@ -1,5 +1,7 @@
 -- ========== Autoformat ==========
 
+---@module 'lazy'
+---@type LazySpec
 return {
   {
     'stevearc/conform.nvim',
@@ -9,13 +11,13 @@ return {
     keys = {
       {
         '<C-l>',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
+        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
         mode = '',
         desc = '[l]ayout (format)',
       },
     },
+    ---@module 'conform'
+    ---@type conform.setupOpts
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
