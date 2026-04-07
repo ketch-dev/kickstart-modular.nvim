@@ -16,7 +16,7 @@ require('lazy').setup({
   require 'custom.plugins.guess-indent',
   require 'custom.plugins.noice',
   require 'custom.plugins.rainbow-delimiters',
-  require 'custom.plugins.highlight-colors',
+  -- require 'custom.plugins.highlight-colors',
   require 'custom.plugins.render-markdown',
 
   require 'kickstart.plugins.gitsigns',
