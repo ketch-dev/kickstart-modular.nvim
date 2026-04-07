@@ -2,9 +2,9 @@
 
 ---@module 'lazy'
 ---@type LazySpec
-return   {
+return {
   'mfussenegger/nvim-lint',
-    cond = not vim.g.vscode
+  cond = not vim.g.vscode,
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lint = require 'lint'
@@ -46,7 +46,7 @@ return   {
 
     -- Create autocommand which carries out the actual linting
     -- on the specified events.
-    local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })  
+    local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = lint_augroup,
       callback = function()
