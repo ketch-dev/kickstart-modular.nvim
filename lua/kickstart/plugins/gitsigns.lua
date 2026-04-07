@@ -159,8 +159,8 @@ return {
       map('n', '<leader>hQ', function() gitsigns.setqflist 'all' end)
       map('n', '<leader>hq', gitsigns.setqflist)
       -- Toggles
-      map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-      map('n', '<leader>tw', gitsigns.toggle_word_diff)
+      map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[t]oggle git show [b]lame line' })
+      map('n', '<leader>tw', gitsigns.toggle_word_diff, { desc = '[t]oggle word diff' })
 
       -- Text object
       map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
