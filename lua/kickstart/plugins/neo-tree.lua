@@ -29,7 +29,7 @@ return {
 
         ['h'] = 'none',
         ['j'] = 'none',
-        ['k'] = 'none',
+        ['k'] = 'close_all_nodes',
         ['l'] = 'none',
 
         ['<left>'] = 'close_node',
@@ -40,17 +40,7 @@ return {
         ['n'] = 'rename',
         ['y'] = 'copy_to_clipboard',
         ['s'] = 'open_vsplit',
-        ['k'] = 'close_all_nodes',
         ['K'] = 'expand_all_nodes',
-
-        -- ['<C-p>'] = 'prev_source',
-        -- ['<C-n>'] = 'next_source',
-
-        -- Restore original functions elsewhere (e.g., <Leader> keys)
-        -- ['<Leader>r'] = 'refresh', -- Original 'r' (refresh)
-        -- ['<Leader>s'] = 'split', -- Original 's' (split)
-        -- ['<Leader>f'] = 'filter', -- Original 'f' (filter)
-        -- ['<Leader>t'] = 'open_tab', -- Original 't' (open in tab)
       },
     },
     filesystem = {
