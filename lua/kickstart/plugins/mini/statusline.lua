@@ -59,7 +59,7 @@ return {
           local mode, mode_hl = line.section_mode { trunc_width = 120 }
           local diff = line.section_diff { trunc_width = 75 }
           local diagnostic_signs = (vim.diagnostic.config().signs or {}).text or {}
-          local diagnostics = line.section_diagnostics {
+          local diagnostics = (line.section_diagnostics {
             trunc_width = 75,
             icon = '',
             signs = {
@@ -68,7 +68,7 @@ return {
               INFO = diagnostic_signs[vim.diagnostic.severity.INFO] or 'I',
               HINT = diagnostic_signs[vim.diagnostic.severity.HINT] or 'H',
             },
-          }
+          }):gsub('^%s+', '')
           local icon, icon_hl = file_icon()
           local statusline_icon_hl = file_icon_hl(icon_hl)
           local filename = vim.bo.buftype == 'terminal' and '%t' or '%t%m%r'
