@@ -11,31 +11,23 @@ vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
 vim.keymap.set('c', '<C-g>', '<C-c>', { noremap = true, silent = true, desc = 'Cancel cmdline' })
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
 -------------------------------------------------------------------------------
--- Diagnostic Config & Keymaps
--- See :help vim.diagnostic.Opts
+
+-- ========== Diagnostic ==========
 vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
-
-  -- Can switch between these as you prefer
   virtual_text = false, -- Text shows up at the end of the line
-  virtual_lines = true, -- Text shows up underneath the line, with virtual lines
-
-  -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
   jump = { float = true },
 }
-
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next [d]iagnostic' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = '[d]iagnostic list' })
 vim.keymap.set('n', '<leader>td', function()
   local enabled = vim.diagnostic.is_enabled { bufnr = 0 }
   vim.diagnostic.enable(not enabled, { bufnr = 0 })
 end, { desc = '[d]iagnostics' })
-
--- ========== Diagnostics ==========
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next [d]iagnostic' })
 -------------------------------------------------------------------------------
 
 -- ========== Disable hjkl ==========
