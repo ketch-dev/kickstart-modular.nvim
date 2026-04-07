@@ -112,11 +112,11 @@ vim.keymap.set('n', '<leader>sk', '<cmd>close<CR>', { desc = '[k]ill' })
 -------------------------------------------------------------------------------
 
 -- ========== Tabs ==========
-vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = '[o]pen' })
-vim.keymap.set('n', '<leader>tk', '<cmd>tabclose<CR>', { desc = '[k]ill' })
-vim.keymap.set('n', '<leader>tn', '<cmd>tabn<CR>', { desc = '[n]ext' })
-vim.keymap.set('n', '<leader>tp', '<cmd>tabp<CR>', { desc = '[p]rev' })
-vim.keymap.set('n', '<leader>tb', '<cmd>tabnew %<CR>', { desc = 'move [b]uffer to new tab' })
+vim.keymap.set('n', '<leader>po', '<cmd>tabnew<CR>', { desc = '[o]pen' })
+vim.keymap.set('n', '<leader>pk', '<cmd>tabclose<CR>', { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>pn', '<cmd>tabn<CR>', { desc = '[n]ext' })
+vim.keymap.set('n', '<leader>pp', '<cmd>tabp<CR>', { desc = '[p]rev' })
+vim.keymap.set('n', '<leader>pb', '<cmd>tabnew %<CR>', { desc = 'move [b]uffer to new tab' })
 -------------------------------------------------------------------------------
 
 -- ========== Highlight when yanking (copying) text ==========
