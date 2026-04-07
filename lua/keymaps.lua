@@ -28,6 +28,10 @@ vim.diagnostic.config {
 }
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = '[d]iagnostic list' })
+vim.keymap.set('n', '<leader>td', function()
+  local enabled = vim.diagnostic.is_enabled { bufnr = 0 }
+  vim.diagnostic.enable(not enabled, { bufnr = 0 })
+end, { desc = '[d]iagnostics' })
 
 -- ========== Diagnostics ==========
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
