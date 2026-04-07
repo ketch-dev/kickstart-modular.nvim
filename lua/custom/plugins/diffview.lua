@@ -82,6 +82,10 @@ return {
         icons = { folder_closed = '', folder_open = '' },
         keymaps = {
           file_history_panel = {
+            ['h'] = false,
+            ['j'] = false,
+            ['k'] = false,
+            ['l'] = false,
             ['<down>'] = false,
             ['<up>'] = false,
             close,
@@ -96,6 +100,10 @@ return {
             { 'n', '<cr>', open_file_and_close_diffview, { desc = 'Open file and close Diffview' } },
           },
           file_panel = {
+            ['h'] = false,
+            ['j'] = false,
+            ['k'] = false,
+            ['l'] = false,
             ['<down>'] = false,
             ['<up>'] = false,
             ['<cr>'] = false,
