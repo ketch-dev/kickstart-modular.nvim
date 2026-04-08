@@ -13,7 +13,7 @@ require('lazy').setup({
   require 'custom.plugins.scrollbar',
   require 'custom.plugins.fidget',
   require 'custom.plugins.treesitter-textobjects',
-  require 'custom.plugins.guess-indent',
+  require 'custom.plugins.sleuth',
   require 'custom.plugins.noice',
   require 'custom.plugins.rainbow-delimiters',
   -- require 'custom.plugins.highlight-colors',
