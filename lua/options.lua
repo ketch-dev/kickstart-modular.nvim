@@ -56,6 +56,11 @@ vim.opt.hlsearch = true -- Highlight search matches
 vim.opt.incsearch = true -- Show matches as you type
 -------------------------------------------------------------------------------
 
+-- ========== Backup ==========
+vim.opt.swapfile = false
+vim.opt.undofile = true -- Save undo history
+-------------------------------------------------------------------------------
+
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
   eob = ' ', -- hide "~" on empty lines
@@ -93,7 +98,6 @@ vim.opt.diffopt = {
 vim.g.have_nerd_font = true
 vim.opt.showmode = false -- Don't show mode, it's already in the status line
 vim.opt.mouse = 'a' -- Enable mouse
-vim.opt.undofile = true -- Save undo history
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 vim.opt.autoread = true -- Read changed made in other process
@@ -111,4 +115,3 @@ vim.opt.wildignorecase = true
 vim.opt.inccommand = 'split'
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
 vim.opt.hidden = false
-vim.opt.swapfile = false
