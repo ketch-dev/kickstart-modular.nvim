@@ -25,7 +25,15 @@ vim.opt.wrap = true
 vim.opt.linebreak = true -- Break at word boundaries
 vim.opt.breakindent = true -- Maintain indent when wrapping
 vim.opt.showbreak = '↪'
+------------------------------------------------------------------------------
+
+-- ========== Spell ==========
+vim.opt.spell = true
+vim.opt.spelllang = { 'en' }
+vim.opt.spellcapcheck = ''
+vim.opt.spelloptions = { 'camel' }
 -------------------------------------------------------------------------------
+
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
   diff = '╱',
@@ -73,7 +81,6 @@ vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 vim.opt.splitright = true -- New vertical splits right
 vim.opt.splitbelow = true -- New horizontal splits below
 vim.opt.list = true -- Show whitespace characters
-vim.opt.inccommand = 'split' -- Preview substitutions live in split
 vim.opt.cursorline = true -- Highlight current cursor line
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 10 -- Minimal number of screen lines to keep left and right the cursor
@@ -84,9 +91,5 @@ vim.opt.wildmenu = true
 vim.opt.wildignorecase = true
 vim.opt.inccommand = 'split'
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
-vim.opt.spell = true
-vim.opt.spelllang = { 'en' }
-vim.opt.spellcapcheck = ''
-vim.opt.spelloptions = { 'camel' }
 vim.opt.hidden = false
 vim.opt.swapfile = false
