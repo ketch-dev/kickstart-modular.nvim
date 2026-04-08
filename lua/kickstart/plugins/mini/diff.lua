@@ -3,7 +3,7 @@ return {
     if vim.g.vscode then return end
 
     local diff = require 'mini.diff'
-    local overlay_enabled = true
+    local overlay_enabled = false
 
     local function is_overlay_allowed(buf)
       if not vim.api.nvim_buf_is_valid(buf) then return false end
