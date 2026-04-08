@@ -278,9 +278,7 @@ function M.apply()
 end
 
 function M.setup()
-  if did_setup then
-    return
-  end
+  if did_setup then return end
   did_setup = true
 
   local group = vim.api.nvim_create_augroup('custom_syntax_overlay', { clear = true })
@@ -291,9 +289,7 @@ function M.setup()
     callback = M.apply,
   })
 
-  if vim.g.colors_name then
-    M.apply()
-  end
+  if vim.g.colors_name then M.apply() end
 end
 
 return M
