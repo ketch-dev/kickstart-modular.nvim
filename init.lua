@@ -1,6 +1,7 @@
 require 'options'
 require 'notify-vscode'
 require 'keymaps'
+require('custom.utils.syntax-overlay').setup()
 
 require 'lazy-bootstrap'
 require 'lazy-plugins'
