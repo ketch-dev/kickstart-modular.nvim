@@ -16,14 +16,7 @@ vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'D
 vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = ' ',
-      [vim.diagnostic.severity.WARN] = ' ',
-      [vim.diagnostic.severity.INFO] = ' ',
-      [vim.diagnostic.severity.HINT] = '󰌵 ',
-    },
-  },
+  signs = false,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
   virtual_text = false, -- Text shows up at the end of the line
@@ -32,9 +25,7 @@ vim.diagnostic.config {
 }
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next [d]iagnostic' })
-vim.keymap.set('n', '<leader>td', function()
-  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = '[d]iagnostics' })
+vim.keymap.set('n', '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = '[d]iagnostic' })
 -------------------------------------------------------------------------------
 
 -- ========== Disable hjkl ==========

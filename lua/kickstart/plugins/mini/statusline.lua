@@ -58,15 +58,14 @@ return {
         active = function()
           local mode, mode_hl = line.section_mode { trunc_width = 120 }
           local diff = line.section_diff { trunc_width = 75 }
-          local diagnostic_signs = (vim.diagnostic.config().signs or {}).text or {}
           local diagnostics = (line.section_diagnostics {
             trunc_width = 75,
             icon = '',
             signs = {
-              ERROR = diagnostic_signs[vim.diagnostic.severity.ERROR] or 'E',
-              WARN = diagnostic_signs[vim.diagnostic.severity.WARN] or 'W',
-              INFO = diagnostic_signs[vim.diagnostic.severity.INFO] or 'I',
-              HINT = diagnostic_signs[vim.diagnostic.severity.HINT] or 'H',
+              ERROR = ' ',
+              WARN = ' ',
+              INFO = ' ',
+              HINT = '󰌵 ',
             },
           }):gsub('^%s+', '')
           local icon, icon_hl = file_icon()
