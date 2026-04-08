@@ -96,6 +96,7 @@ vim.opt.mouse = 'a' -- Enable mouse
 vim.opt.undofile = true -- Save undo history
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
+vim.opt.autoread = true -- Read changed made in other process
 vim.opt.splitright = true -- New vertical splits right
 vim.opt.splitbelow = true -- New horizontal splits below
 vim.opt.list = true -- Show whitespace characters
