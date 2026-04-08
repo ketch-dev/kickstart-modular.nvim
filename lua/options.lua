@@ -34,6 +34,13 @@ vim.opt.spellcapcheck = ''
 vim.opt.spelloptions = { 'camel' }
 -------------------------------------------------------------------------------
 
+-- ========== Search ==========
+vim.opt.ignorecase = true -- Enable case-insensitive searching
+vim.opt.smartcase = true -- Enable case-sensitive searching if \C or 1+ capital letters in the search term
+vim.opt.hlsearch = true -- Highlight search matches
+vim.opt.incsearch = true -- Show matches as you type
+-------------------------------------------------------------------------------
+
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
   diff = '╱',
@@ -73,8 +80,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a' -- Enable mouse
 vim.opt.undofile = true -- Save undo history
-vim.opt.ignorecase = true -- Enable case-insensitive searching
-vim.opt.smartcase = true -- Enable case-sensitive searching if \C or 1+ capital letters in the search term
 vim.opt.signcolumn = 'yes' -- Enable sign column (gutter)
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
