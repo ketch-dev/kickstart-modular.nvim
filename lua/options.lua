@@ -58,6 +58,7 @@ vim.opt.incsearch = true -- Show matches as you type
 
 -- ========== Git Diff ==========
 vim.opt.fillchars = {
+  eob = ' ', -- hide "~" on empty lines
   diff = '╱',
   horiz = '█',
   horizup = '█',
