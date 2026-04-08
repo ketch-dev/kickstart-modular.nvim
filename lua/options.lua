@@ -95,23 +95,23 @@ vim.opt.diffopt = {
 }
 -------------------------------------------------------------------------------
 
-vim.g.have_nerd_font = true
-vim.opt.showmode = false -- Don't show mode, it's already in the status line
 vim.opt.mouse = 'a' -- Enable mouse
-vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
-vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
-vim.opt.autoread = true -- Read changed made in other process
-vim.opt.splitright = true -- New vertical splits right
-vim.opt.splitbelow = true -- New horizontal splits below
-vim.opt.list = true -- Show whitespace characters
-vim.opt.cursorline = true -- Highlight current cursor line
-vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
-vim.opt.sidescrolloff = 10 -- Minimal number of screen lines to keep left and right the cursor
-vim.opt.confirm = true
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
-vim.opt.wildmenu = true
-vim.opt.wildignorecase = true
 vim.opt.inccommand = 'split'
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Sets how to display whitespace characters. Has to be "opt" instead of "o"
+vim.opt.splitright = true -- New vertical splits right
+vim.opt.splitbelow = true -- New horizontal splits below
+vim.g.have_nerd_font = true
+vim.opt.autoread = true -- Read changed made in other process
+vim.opt.list = true -- Show whitespace characters
+vim.opt.cursorline = true -- Highlight current cursor line
+vim.opt.confirm = true
+vim.opt.wildmenu = true
+vim.opt.wildignorecase = true
+vim.opt.showmode = false -- Don't show mode, it's already in the status line
 vim.opt.hidden = false
+vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
+vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
+vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
+vim.opt.sidescrolloff = 10 -- Minimal number of screen lines to keep left and right the cursor
