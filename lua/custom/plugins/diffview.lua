@@ -2,9 +2,7 @@ local api = vim.api
 
 local function clear_group_bg(group)
   local ok, hl = pcall(api.nvim_get_hl, 0, { name = group, link = false })
-  if not ok or vim.tbl_isempty(hl) then
-    return
-  end
+  if not ok or vim.tbl_isempty(hl) then return end
 
   hl.bg = nil
   hl.ctermbg = nil
@@ -13,13 +11,27 @@ local function clear_group_bg(group)
 end
 
 local function clear_diffview_stats_bg()
-  clear_group_bg 'DiffviewFilePanelInsertions'
-  clear_group_bg 'DiffviewFilePanelDeletions'
+  for _, group in ipairs {
+    'DiffviewFilePanelInsertions',
+    'DiffviewFilePanelDeletions',
+    'DiffviewStatusAdded',
+    'DiffviewStatusUntracked',
+    'DiffviewStatusModified',
+    'DiffviewStatusRenamed',
+    'DiffviewStatusCopied',
+    'DiffviewStatusTypeChange',
+    'DiffviewStatusTypeChanged',
+    'DiffviewStatusUnmerged',
+    'DiffviewStatusUnknown',
+    'DiffviewStatusDeleted',
+    'DiffviewStatusBroken',
+    'DiffviewStatusIgnored',
+  } do
+    clear_group_bg(group)
+  end
 end
 
-local function close_diffview()
-  require('diffview').close()
-end
+local function close_diffview() require('diffview').close() end
 
 return {
   {
@@ -43,9 +55,7 @@ return {
 
       local function open_file_and_close_diffview()
         local view = lib.get_current_view()
-        if not view or not view:infer_cur_file() then
-          return
-        end
+        if not view or not view:infer_cur_file() then return end
 
         actions.goto_file_edit()
 
@@ -60,9 +70,7 @@ return {
           move()
           local view = lib.get_current_view()
           local item = view and view.panel and view.panel:get_item_at_cursor() or nil
-          if item and type(item.collapsed) ~= 'boolean' then
-            actions.select_entry()
-          end
+          if item and type(item.collapsed) ~= 'boolean' then actions.select_entry() end
         end
       end
 
@@ -70,9 +78,7 @@ return {
         return function()
           local view = lib.get_current_view()
           local item = view and view.panel and view.panel:get_item_at_cursor() or nil
-          if item and type(item.collapsed) == 'boolean' then
-            action()
-          end
+          if item and type(item.collapsed) == 'boolean' then action() end
         end
       end
 
