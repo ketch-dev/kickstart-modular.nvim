@@ -20,6 +20,12 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldcolumn = '0'
 -------------------------------------------------------------------------------
 
+-- ========== Gutter ==========
+vim.opt.signcolumn = 'yes' -- Enable sign column (gutter)
+vim.opt.number = true
+vim.opt.relativenumber = true
+-------------------------------------------------------------------------------
+
 -- ========== Tabs/Spaces ==========
 vim.opt.tabstop = 4 -- tabwidth
 vim.opt.shiftwidth = 4 -- indent width
@@ -85,11 +91,8 @@ vim.opt.diffopt = {
 
 vim.g.have_nerd_font = true
 vim.opt.showmode = false -- Don't show mode, it's already in the status line
-vim.opt.number = true
-vim.opt.relativenumber = true
 vim.opt.mouse = 'a' -- Enable mouse
 vim.opt.undofile = true -- Save undo history
-vim.opt.signcolumn = 'yes' -- Enable sign column (gutter)
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 vim.opt.splitright = true -- New vertical splits right
