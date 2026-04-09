@@ -18,11 +18,11 @@ const bracketArrayPerGroup = [];
 //                           ^^
 const bracketObjectPerGroup = {};
 //                            ^^
-const bracketParenPerGroup = ();
-//                           ^^
+const bracketParenPerGroup = 0;
+//                           ^ ^
 
 // @variable (#c0caf5)
-const plainVariablePerGroup;
+const plainVariablePerGroup = 1;
 //    ^^^^^^^^^^^^^^^^^^^^^
 
 // @lsp.type.generic (#c0caf5, LSP)
@@ -204,7 +204,6 @@ enum KeywordTypeEnumPerGroup {}
 namespace KeywordTypeNamespacePerGroup {}
 //^^^^^^^
 
-
 // @keyword.modifier (#bb9af7)
 class KeywordModifierPerGroup {
   public readonly label = "tokyo";
@@ -224,7 +223,7 @@ const operatorValuePerGroup = 2 + 3 * 4 === 14 && 14 > 0;
 // @constructor (#bb9af7)
 class ConstructorTargetPerGroup {
   constructor() {}
-//^^^^^^^^^^^
+  //^^^^^^^^^^^
 }
 const constructorValuePerGroup = new ConstructorTargetPerGroup();
 //                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -297,7 +296,7 @@ const semanticDefaultFunctionPerGroup = parseFloat("3.14");
 console.log("");
 //      ^^^
 
-// @variable.member (#73daca)
+// @variable.member (#c0caf5)
 const memSourcePerGroup = { name: "" };
 //                          ^^^^
 const memNamePerGroup = memSourcePerGroup.name;

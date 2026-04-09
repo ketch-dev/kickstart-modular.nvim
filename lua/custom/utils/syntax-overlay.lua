@@ -171,7 +171,7 @@ local function highlights()
     ['@variable'] = { fg = c.fg },
     ['@property'] = { fg = c.green1 },
     dosIniLabel = '@property',
-    ['@variable.member'] = { fg = c.green1 },
+    ['@variable.member'] = '@variable',
     ['@variable.parameter'] = { fg = c.yellow },
     ['@variable.parameter.builtin'] = { fg = c.parameter_builtin },
     ['@lsp.type.generic'] = '@variable',

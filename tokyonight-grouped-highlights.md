@@ -211,27 +211,24 @@ outerLoop: for (const outerIndex of [0, 1, 2]) {
 
 ## Neutral Foreground `#c0caf5`
 
-Plain variable names keep the default foreground because they are the baseline identifiers of ordinary code.
+Plain variable names and member references keep the default foreground because they are the baseline identifiers of ordinary code.
 
-Highlight groups: `@variable (#c0caf5)`
+Highlight groups: `@variable (#c0caf5)`, `@variable.member (#c0caf5)`
 
 ```ts
 const baseValue = 1;
 const totalValue = baseValue + 2;
 const finalValue = totalValue + 3;
+
+const plainUser = { name: "tokyo" };
+const plainName = plainUser.name;
 ```
 
-## Member Teal `#73daca`
+## Property Teal `#73daca`
 
-Member names and struct-field-like names share teal because they are named parts hanging off another value.
+Struct-field-like property names stay teal because they are named parts hanging off another value.
 
-Highlight groups: `@variable.member (#73daca)`, `@property (#73daca, Go-specific)`
-
-```ts
-const sharedUser = { name: "tokyo", ready: true };
-const sharedName = sharedUser.name;
-const sharedReady = sharedUser.ready;
-```
+Highlight groups: `@property (#73daca, Go-specific)`
 
 ```go
 type Profile struct {
