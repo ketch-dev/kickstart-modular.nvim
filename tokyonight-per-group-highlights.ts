@@ -7,22 +7,22 @@ export {};
 
 // @comment (#565f89)
 // muted prose line comments stay visually quiet
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @comment.documentation (#565f89)
 /** documentation comments use the same muted prose lane */
-//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @punctuation.bracket (#a9b1d6)
-const bracketArrayPerGroup = [1, 2];
-//                           ^    ^
-const bracketObjectPerGroup = { pair: "tokyo" };
-//                            ^               ^
-const bracketParenPerGroup = (1 + 2) * 3;
-//                           ^     ^
+const bracketArrayPerGroup = [];
+//                           ^^
+const bracketObjectPerGroup = {};
+//                            ^^
+const bracketParenPerGroup = ();
+//                           ^^
 
 // @variable (#c0caf5)
-const plainVariablePerGroup = 1;
+const plainVariablePerGroup;
 //    ^^^^^^^^^^^^^^^^^^^^^
 
 // @lsp.type.generic (#c0caf5, LSP)
@@ -41,9 +41,7 @@ import * as ModuleAliasPerGroup from "node:fs";
 //          ^^^^^^^^^^^^^^^^^^^
 
 // @attribute (#7dcfff)
-function sealedAttributePerGroup<T extends Function>(target: T): T {
-  return target;
-}
+function sealedAttributePerGroup() {}
 
 @sealedAttributePerGroup
 //^^^^^^^^^^^^^^^^^^^^^^
@@ -52,16 +50,15 @@ class DecoratedAttributePerGroup {}
 // @lsp.type.namespace (#7dcfff, LSP)
 namespace SemanticNamespacePerGroup {
   //      ^^^^^^^^^^^^^^^^^^^^^^^^^
-  export const value = 1;
 }
 
 const semanticNamespaceValuePerGroup = SemanticNamespacePerGroup.value;
 //                                     ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @type (#2ac3de)
-type TypeAliasPerGroup = { name: string; theme: string };
+type TypeAliasPerGroup = {};
 //   ^^^^^^^^^^^^^^^^^
-const typeValuePerGroup: TypeAliasPerGroup = { name: "tokyo", theme: "night" };
+const typeValuePerGroup: TypeAliasPerGroup = {};
 //                       ^^^^^^^^^^^^^^^^^
 
 // @type.builtin (#2ac3de)
@@ -79,32 +76,23 @@ const regexFlagsPerGroup = /tokyo\d+/gi;
 //                                   ^^
 
 // @lsp.type.interface (#2ac3de, LSP)
-interface SemanticInterfacePerGroup {
-  //      ^^^^^^^^^^^^^^^^^^^^^^^^^
-  label: string;
-}
-const semanticInterfaceValuePerGroup: SemanticInterfacePerGroup = {
-  //                                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-  label: "tokyo",
-};
+interface SemanticInterfacePerGroup {}
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^
+const semanticInterfaceValuePerGroup: SemanticInterfacePerGroup = {};
+//                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @lsp.type.builtinType (#2ac3de, LSP)
-function semanticBuiltinTypePerGroup(input: string): number {
-  //                                        ^^^^^^   ^^^^^^
-  return input.length;
-}
+function semanticBuiltinTypePerGroup(input: string): number {}
+//                                          ^^^^^^   ^^^^^^
 
 // @lsp.type.enum (#2ac3de, LSP)
-enum SemanticEnumPerGroup {
-  // ^^^^^^^^^^^^^^^^^^^^
-  First = 1,
-  Second = 2,
-}
+enum SemanticEnumPerGroup {}
+//   ^^^^^^^^^^^^^^^^^^^^
 
 // @lsp.type.typeAlias (#2ac3de, LSP)
-type SemanticAliasPerGroup = "tokyo" | "night";
+type SemanticAliasPerGroup = "t";
 //   ^^^^^^^^^^^^^^^^^^^^^
-let semanticAliasValuePerGroup: SemanticAliasPerGroup = "tokyo";
+let semanticAliasValuePerGroup: SemanticAliasPerGroup = "t";
 //                              ^^^^^^^^^^^^^^^^^^^^^
 
 // @lsp.typemod.class.defaultLibrary (#2ac3de, LSP)
@@ -209,19 +197,13 @@ delete deleteTargetPerGroup.temp;
 //^^^^
 
 // @keyword.type (#bb9af7)
-interface KeywordTypeInterfacePerGroup {
-  //^^^^^
-  value: string;
-}
-enum KeywordTypeEnumPerGroup {
-  //^
-  Left,
-  Right,
-}
-namespace KeywordTypeNamespacePerGroup {
-  //^^^^^
-  export const value = 1;
-}
+interface KeywordTypeInterfacePerGroup {}
+//^^^^^^^
+enum KeywordTypeEnumPerGroup {}
+//^^
+namespace KeywordTypeNamespacePerGroup {}
+//^^^^^^^
+
 
 // @keyword.modifier (#bb9af7)
 class KeywordModifierPerGroup {
@@ -240,7 +222,10 @@ const operatorValuePerGroup = 2 + 3 * 4 === 14 && 14 > 0;
 //                              ^   ^   ^^^    ^^    ^
 
 // @constructor (#bb9af7)
-class ConstructorTargetPerGroup {}
+class ConstructorTargetPerGroup {
+  constructor() {}
+//^^^^^^^^^^^
+}
 const constructorValuePerGroup = new ConstructorTargetPerGroup();
 //                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -270,25 +255,23 @@ const semanticOperatorValuePerGroup = 5 * 2 - 1;
 //                                      ^   ^
 
 // @function (#7aa2f7)
-function namedFunctionPerGroup(left: string, right: string): string {
+function namedFunctionPerGroup() {
   //     ^^^^^^^^^^^^^^^^^^^^^
-  return left + "-" + right;
 }
 
 // @function.call (#7aa2f7)
-const calledFunctionValuePerGroup = namedFunctionPerGroup("tokyo", "night");
-//                                  ^^^^^^^^^^^^^^^^^^^^^
+namedFunctionPerGroup();
+//^^^^^^^^^^^^^^^^^^^
 
 // @function.method (#7aa2f7)
 class MethodCarrierPerGroup {
-  combine(left: string, right: string): string {
+  combine() {
     //^^^
-    return left + right;
   }
 }
 
 // @function.method.call (#7aa2f7)
-new MethodCarrierPerGroup().combine("tokyo", "night");
+new MethodCarrierPerGroup().combine();
 //                          ^^^^^^^
 
 // @function.builtin (#7aa2f7)
@@ -303,7 +286,7 @@ innerLabelPerGroup: for (const innerIndexPerGroup of [0, 1, 2]) {
 }
 
 // @lsp.typemod.variable.callable (#7aa2f7, LSP)
-const callableVariablePerGroup = (input: string) => input.trim();
+const callableVariablePerGroup = () => {};
 //    ^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @lsp.typemod.function.defaultLibrary (#7aa2f7, LSP)
@@ -311,21 +294,20 @@ const semanticDefaultFunctionPerGroup = parseFloat("3.14");
 //                                      ^^^^^^^^^^
 
 // @lsp.typemod.method.defaultLibrary (#7aa2f7, LSP)
-console.log("semantic default library method per group");
+console.log("");
 //      ^^^
 
 // @variable.member (#73daca)
-const memberSourcePerGroup = { name: "tokyo" };
+const memberSourcePerGroup = { name: "" };
 //                             ^^^^
 const memberNamePerGroup = memberSourcePerGroup.name;
 //                                              ^^^^
 
 // @lsp.type.property (#73daca, LSP)
-const semanticPropertySourcePerGroup: { title: string; count: number } = {
+const semanticPropertySourcePerGroup: { title: string } = {
   //                                    ^^^^^
   title: "night",
   //^^^
-  count: 2,
 };
 const semanticPropertyValuePerGroup = semanticPropertySourcePerGroup.title;
 //                                                                   ^^^^^
@@ -342,20 +324,16 @@ const semanticStringPerGroup = "semantic string";
 function parameterValuePerGroup(
   leftPartPerGroup: string,
   //^^^^^^^^^^^^^^
-  rightPartPerGroup: string,
-  //^^^^^^^^^^^^^^^
 ): string {
-  return leftPartPerGroup + rightPartPerGroup;
+  return leftPartPerGroup;
 }
 
 // @lsp.type.parameter (#e0af68, LSP)
 function semanticParameterPerGroup(
-  firstSemanticPerGroup: number,
+  firstSemanticPerGroup: string,
   //^^^^^^^^^^^^^^^^^^^
-  secondSemanticPerGroup: number,
-  //^^^^^^^^^^^^^^^^^^^^
-): number {
-  return firstSemanticPerGroup + secondSemanticPerGroup;
+): string {
+  return firstSemanticPerGroup;
 }
 
 // @constant (#ff9e64)
@@ -387,11 +365,10 @@ const semanticNumberPerGroup = 108;
 // @lsp.type.enumMember (#ff9e64, LSP)
 enum LocalEnumMemberPerGroup {
   First = 1,
-  Second = 2,
-  //^^^^
+  //^^^
 }
-const localEnumMemberValuePerGroup = LocalEnumMemberPerGroup.Second;
-//                                                           ^^^^^^
+const localEnumMemberValuePerGroup = LocalEnumMemberPerGroup.First;
+//                                                           ^^^^^
 
 // @module.builtin (#f7768e)
 const moduleBuiltinValuePerGroup = Intl.NumberFormat();
@@ -419,7 +396,7 @@ class SelfKeywordPerGroup {
 
 // @lsp.type.selfTypeKeyword (#f7768e, LSP)
 class SelfTypePerGroup {
-  chain(): this {
+  chain() {
     return this;
     //     ^^^^
   }
