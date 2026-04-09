@@ -298,9 +298,9 @@ console.log("");
 //      ^^^
 
 // @variable.member (#73daca)
-const memberSourcePerGroup = { name: "" };
+const memSourcePerGroup = { name: "" };
 //                             ^^^^
-const memberNamePerGroup = memberSourcePerGroup.name;
+const memNamePerGroup = memSourcePerGroup.name;
 //                                              ^^^^
 
 // @lsp.type.property (#73daca, LSP)
@@ -363,11 +363,11 @@ const semanticNumberPerGroup = 108;
 //                             ^^^
 
 // @lsp.type.enumMember (#ff9e64, LSP)
-enum LocalEnumMemberPerGroup {
+enum LocalEnumMemPerGroup {
   First = 1,
   //^^^
 }
-const localEnumMemberValuePerGroup = LocalEnumMemberPerGroup.First;
+const localEnumMemValuePerGroup = LocalEnumMemPerGroup.First;
 //                                                           ^^^^^
 
 // @module.builtin (#f7768e)
