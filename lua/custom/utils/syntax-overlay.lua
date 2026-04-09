@@ -132,7 +132,7 @@ local function highlights()
     ['@character.printf'] = 'SpecialChar',
     ['@character.special'] = 'SpecialChar',
     ['@constant.builtin'] = 'Special',
-    ['@function.builtin'] = 'Special',
+    ['@function.builtin'] = '@function',
     ['@lsp.type.decorator'] = '@attribute',
     ['@lsp.type.deriveHelper'] = '@attribute',
     ['@module.builtin'] = { fg = c.red },

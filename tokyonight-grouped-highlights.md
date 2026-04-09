@@ -74,13 +74,11 @@ type Profile struct {
 }
 ```
 
-Runtime-provided builtin functions and builtin sentinel values use the same bright cyan because they come from the language/runtime, not from your code.
+Builtin nullish sentinel values keep the bright cyan special lane because they come from the language/runtime rather than from your code.
 
-Highlight groups: `@function.builtin (#2ac3de)`, `@constant.builtin (#2ac3de)`
+Highlight groups: `@constant.builtin (#2ac3de)`
 
 ```ts
-const parsedCount = parseInt("42", 10);
-const parsedAgain = parseInt("7", 10);
 const sharedNothing = null;
 const sharedMissing = undefined;
 ```
@@ -158,9 +156,9 @@ const escapedPath = "one\\two\\three";
 
 ## Callable Blue `#7aa2f7`
 
-Function names and method names share blue because they are all callables, whether being declared or invoked.
+Function names, method names, and builtin functions share blue because they are all callables, whether being declared or invoked.
 
-Highlight groups: `@function (#7aa2f7)`, `@function.call (#7aa2f7)`, `@function.method (#7aa2f7)`, `@function.method.call (#7aa2f7)`
+Highlight groups: `@function (#7aa2f7)`, `@function.call (#7aa2f7)`, `@function.method (#7aa2f7)`, `@function.method.call (#7aa2f7)`, `@function.builtin (#7aa2f7)`
 
 ```ts
 function stitch(left: string, right: string): string {
@@ -175,6 +173,8 @@ class SharedRunner {
 
 const runner = new SharedRunner();
 const joined = runner.join("tokyo", "night");
+const parsedCount = parseInt("42", 10);
+const parsedAgain = parseInt("7", 10);
 ```
 
 Labels use the same blue, but they are kept separate because they are jump targets rather than callables.
