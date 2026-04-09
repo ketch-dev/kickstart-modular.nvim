@@ -218,9 +218,9 @@ outerLoop: for (const outerIndex of [0, 1, 2]) {
 
 ## Neutral Foreground `#c0caf5`
 
-Plain variable names and member references keep the default foreground because they are the baseline identifiers of ordinary code.
+Plain variable names, member references, and parameter names keep the default foreground because they are the baseline identifiers of ordinary code.
 
-Highlight groups: `@variable (#c0caf5)`, `@variable.member (#c0caf5)`
+Highlight groups: `@variable (#c0caf5)`, `@variable.member (#c0caf5)`, `@variable.parameter (#c0caf5)`, `@lsp.type.parameter (#c0caf5, LSP)`
 
 ```ts
 const baseValue = 1;
@@ -229,6 +229,9 @@ const finalValue = totalValue + 3;
 
 const plainUser = { name: "tokyo" };
 const plainName = plainUser.name;
+
+const stitchParts = (leftPart: string, rightPart: string): string =>
+  leftPart + rightPart;
 ```
 
 ## Property Teal `#73daca`
@@ -248,32 +251,6 @@ func useProfile(profile Profile) {
   profile.Name = "tokyo"
   profile.Count = profile.Count + 1
   profile.Enabled = true
-}
-```
-
-## Parameter Yellow `#e0af68`
-
-Parameter names use warm yellow so inputs stand apart from surrounding locals and members.
-
-Highlight groups: `@variable.parameter (#e0af68)`
-
-```ts
-const stitchParts = (leftPart: string, rightPart: string): string =>
-  leftPart + rightPart;
-const joinThree = (
-  firstPart: string,
-  secondPart: string,
-  thirdPart: string,
-): string => firstPart + secondPart + thirdPart;
-```
-
-```go
-func stitchParts(leftPart string, rightPart string) string {
-  return leftPart + rightPart
-}
-
-func joinThree(firstPart string, secondPart string, thirdPart string) string {
-  return firstPart + secondPart + thirdPart
 }
 ```
 

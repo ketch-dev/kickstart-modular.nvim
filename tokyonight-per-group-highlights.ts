@@ -319,7 +319,7 @@ const plainStringCityPerGroup = "tokyo";
 const semanticStringPerGroup = "semantic string";
 //                             ^^^^^^^^^^^^^^^^^
 
-// @variable.parameter (#e0af68)
+// @variable.parameter (#c0caf5)
 function parameterValuePerGroup(
   leftPartPerGroup: string,
   //^^^^^^^^^^^^^^
@@ -327,7 +327,7 @@ function parameterValuePerGroup(
   return leftPartPerGroup;
 }
 
-// @lsp.type.parameter (#e0af68, LSP)
+// @lsp.type.parameter (#c0caf5, LSP)
 function semanticParameterPerGroup(
   firstSemanticPerGroup: string,
   //^^^^^^^^^^^^^^^^^^^
