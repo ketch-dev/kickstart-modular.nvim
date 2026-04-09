@@ -58,15 +58,15 @@ local function highlights()
     ['@lsp.type.comment'] = '@comment',
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
 
-    -- Boundary and preprocessor-like syntax in cyan.
+    -- Preprocessor-like syntax, decorators, and module aliases in cyan.
     PreProc = { fg = c.cyan },
     Include = { fg = c.cyan },
     Define = { fg = c.cyan },
     Macro = { fg = c.cyan },
     ['@annotation'] = 'PreProc',
     ['@attribute'] = 'PreProc',
-    ['@keyword.directive'] = 'PreProc',
-    ['@keyword.import'] = 'Include',
+    ['@keyword.directive'] = '@keyword',
+    ['@keyword.import'] = '@keyword',
     ['@keyword.directive.define'] = 'Define',
     ['@constant.macro'] = 'Define',
     ['@function.macro'] = 'Macro',
@@ -211,10 +211,10 @@ local function highlights()
     ['@string.escape'] = { fg = c.magenta },
     ['@lsp.type.escapeSequence'] = '@string.escape',
 
-    -- Operators and punctuation in bright blue-cyan.
+    -- Classic Operator and punctuation stay bright blue-cyan, but Treesitter/LSP operator captures use the keyword lane.
     Operator = { fg = c.blue5 },
-    ['@operator'] = 'Operator',
-    ['@keyword.operator'] = '@operator',
+    ['@operator'] = '@keyword',
+    ['@keyword.operator'] = '@keyword',
     ['@lsp.type.operator'] = '@operator',
     ['@lsp.typemod.operator.injected'] = '@operator',
     ['@markup.list'] = { fg = c.blue5 },

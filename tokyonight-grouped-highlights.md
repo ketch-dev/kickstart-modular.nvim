@@ -19,22 +19,20 @@ const commentAnchor = true;
 
 ## Boundary Cyan `#7dcfff`
 
-Imports and module names use cyan because they point at code boundaries and things that come from elsewhere.
+Module aliases use cyan because they point at code boundaries and things that come from elsewhere.
 
-Highlight groups: `@keyword.import (#7dcfff)`, `@module (#7dcfff)`
+Highlight groups: `@module (#7dcfff)`
 
 ```ts
 import * as SharedFS from "node:fs";
 import { readFileSync as sharedRead } from "node:fs";
 ```
 
-Directive-like fragments and decorators use the same cyan because they act like external annotations on surrounding code.
+Decorators use the same cyan because they act like external annotations on surrounding code.
 
-Highlight groups: `@keyword.directive (#7dcfff, TS-specific)`, `@attribute (#7dcfff, TS-specific)`
+Highlight groups: `@attribute (#7dcfff, TS-specific)`
 
 ```ts
-"use strict";
-
 function sealed<T extends Function>(target: T): T {
   return target;
 }
@@ -126,6 +124,24 @@ function countReadyFlags(flags: SharedFlag[]): number {
 
   return readyCount > 0 ? readyCount : 0;
 }
+```
+
+Import words, directive fragments, and operator captures share the same strong violet because they are syntax-control markers rather than values or structure.
+
+Highlight groups: `@keyword.import (#bb9af7)`, `@keyword.directive (#bb9af7, TS-specific)`, `@operator (#bb9af7)`, `@keyword.operator (#bb9af7, TS-specific)`
+
+```ts
+"use strict";
+import * as SharedFS from "node:fs";
+
+const rawValue: unknown = { kind: "demo" };
+const typedRecord = rawValue as { kind?: string };
+const keyName: keyof typeof typedRecord = "kind";
+const typedCheck = { kind: "tokyo" } satisfies { kind: string };
+const isObject =
+  typeof rawValue === "object" &&
+  rawValue instanceof Object &&
+  "kind" in typedRecord;
 ```
 
 Constructor names get the same strong violet, but they are kept separate because they represent type construction rather than branching.
@@ -294,24 +310,9 @@ const sharedPattern = /tokyo\d+/;
 const sharedWords = /(storm|night)/;
 ```
 
-## Operator Cyan `#89ddff`
+## Punctuation Cyan `#89ddff`
 
-Operator words and symbols use bright blue-cyan because they actively transform or compare values.
-
-Highlight groups: `@operator (#89ddff)`, `@keyword.operator (#89ddff, TS-specific)`
-
-```ts
-const rawValue: unknown = { kind: "demo" };
-const typedRecord = rawValue as { kind?: string };
-const keyName: keyof typeof typedRecord = "kind";
-const typedCheck = { kind: "tokyo" } satisfies { kind: string };
-const isObject =
-  typeof rawValue === "object" &&
-  rawValue instanceof Object &&
-  "kind" in typedRecord;
-```
-
-Punctuation that glues syntax together uses the same blue-cyan, but it is kept separate because delimiters and optional markers are structural separators rather than operators.
+Punctuation that glues syntax together uses bright blue-cyan because delimiters and optional markers are structural separators rather than keywords or operators.
 
 Highlight groups: `@punctuation.delimiter (#89ddff)`, `@punctuation.special (#89ddff, TS-specific)`
 
