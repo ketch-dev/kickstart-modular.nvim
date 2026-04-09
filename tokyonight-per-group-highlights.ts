@@ -109,7 +109,7 @@ type DefaultLibraryAliasPerGroup = Partial<{ count: number }>;
 
 // @lsp.typemod.enumMember.defaultLibrary (#2ac3de, LSP, server-dependent)
 const defaultLibraryEnumMemPerGroup = Node.DOCUMENT_POSITION_FOLLOWING;
-//                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @string.regexp (#b4f9f8)
 const regexpPatternPerGroup = /tokyo\d+/;
@@ -299,9 +299,9 @@ console.log("");
 
 // @variable.member (#73daca)
 const memSourcePerGroup = { name: "" };
-//                             ^^^^
+//                          ^^^^
 const memNamePerGroup = memSourcePerGroup.name;
-//                                              ^^^^
+//                                        ^^^^
 
 // @lsp.type.property (#73daca, LSP)
 const semanticPropertySourcePerGroup: { title: string } = {
@@ -368,7 +368,7 @@ enum LocalEnumMemPerGroup {
   //^^^
 }
 const localEnumMemValuePerGroup = LocalEnumMemPerGroup.First;
-//                                                           ^^^^^
+//                                                     ^^^^^
 
 // @module.builtin (#f7768e)
 const moduleBuiltinValuePerGroup = Intl.NumberFormat();
