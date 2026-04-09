@@ -49,9 +49,9 @@ class DecoratedExample {
 
 ## Type Cyan `#2ac3de`
 
-User-defined type names use bright cyan so custom types stand out from primitives and ordinary values.
+Type names stay on the same bright cyan lane whether they are user-defined, builtin, or surfaced by LSP as interface symbols.
 
-Highlight groups: `@type (#2ac3de)`, `@type.definition (#2ac3de, Go-specific)`
+Highlight groups: `@type (#2ac3de)`, `@type.builtin (#2ac3de)`, `@lsp.type.interface (#2ac3de, LSP)`, `@type.definition (#2ac3de, Go-specific)`
 
 ```ts
 type UserName = string;
@@ -61,6 +61,9 @@ interface UserRecord {
   name: UserName;
   theme: ThemeName;
 }
+
+const sharedPromise: Promise<string> = Promise.resolve("night");
+const sharedMap: Map<string, number> = new Map<string, number>();
 ```
 
 ```go
@@ -89,17 +92,6 @@ Highlight groups: `@character.special (#2ac3de, TS-specific)`
 ```ts
 import * as StarModule from "node:fs";
 const flaggedPattern = /tokyo\d+/gi;
-```
-
-## Builtin Type Teal `#27a1b9`
-
-Builtin type names use a darker teal variant so primitives and standard library types read differently from project-defined types.
-
-Highlight groups: `@type.builtin (#27a1b9)`
-
-```ts
-const sharedPromise: Promise<string> = Promise.resolve("night");
-const sharedMap: Map<string, number> = new Map<string, number>();
 ```
 
 ## Strong Violet `#bb9af7`

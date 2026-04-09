@@ -25,8 +25,6 @@ local function highlights()
     purple = '#9d7cd8',
     magenta = '#bb9af7',
     red = '#f7768e',
-    type_builtin = '#27a1b9',
-    interface = '#57c5e5',
     parameter_builtin = '#dab484',
     terminal_black = '#414868',
     tag_delimiter_tsx = '#5d7ab8',
@@ -121,7 +119,7 @@ local function highlights()
     ['@markup.list.unchecked'] = { fg = c.blue },
     ['@markup.raw.markdown_inline'] = { fg = c.blue, bg = c.terminal_black },
 
-    -- Special/type cyan for symbols, delimiters, and custom types.
+    -- Special/type cyan for symbols, delimiters, and type names.
     Special = { fg = c.blue1 },
     SpecialChar = { fg = c.blue1 },
     Delimiter = { fg = c.blue1 },
@@ -156,9 +154,9 @@ local function highlights()
     ['@lsp.typemod.type.defaultLibrary'] = '@type.builtin',
     ['@lsp.typemod.typeAlias.defaultLibrary'] = '@type.builtin',
 
-    -- Builtin types and interfaces get their own cooler variants.
-    ['@type.builtin'] = { fg = c.type_builtin },
-    ['@lsp.type.interface'] = { fg = c.interface },
+    -- Builtin and interface semantic tokens stay on the main type lane.
+    ['@type.builtin'] = '@type',
+    ['@lsp.type.interface'] = '@type',
 
     -- Runtime builtins and TSX tag names stay red.
     ['@variable.builtin'] = { fg = c.red },
