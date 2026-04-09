@@ -45,6 +45,22 @@ class DecoratedExample {
 }
 ```
 
+Constant identifiers, enum members, and builtin nullish sentinels use the same cyan lane so fixed named values read as language-level signals rather than ordinary data.
+
+Highlight groups: `@constant (#7dcfff)`, `@constant.builtin (#7dcfff)`, `@lsp.type.enumMember (#7dcfff, LSP)`, `@lsp.typemod.enumMember.defaultLibrary (#7dcfff, LSP)`
+
+```ts
+const HTTP_OK = 200;
+const sharedNothing = null;
+const sharedMissing = undefined;
+
+enum SharedStatus {
+  Ready = 1,
+}
+
+const sharedStatus = SharedStatus.Ready;
+```
+
 ## Type Cyan `#2ac3de`
 
 Type names stay on the same bright cyan lane whether they are user-defined, builtin, or surfaced by LSP as interface symbols.
@@ -70,15 +86,6 @@ type Status string
 type Profile struct {
   Name string
 }
-```
-
-Builtin nullish sentinel values keep the bright cyan special lane because they come from the language/runtime rather than from your code.
-
-Highlight groups: `@constant.builtin (#2ac3de)`
-
-```ts
-const sharedNothing = null;
-const sharedMissing = undefined;
 ```
 
 Special marker tokens like namespace-import stars and regex flags use the same bright cyan because they are compact syntax signals.
@@ -256,18 +263,20 @@ func useProfile(profile Profile) {
 
 ## Value Orange `#ff9e64`
 
-Constant identifiers, numeric literals, and booleans share orange because they read as direct data rather than structure.
+Numeric literals and booleans share orange because they read as direct data rather than structure.
 
-Highlight groups: `@constant (#ff9e64)`, `@number (#ff9e64)`, `@boolean (#ff9e64)`, `@number.float (#ff9e64, Go-specific)`
+Highlight groups: `@number (#ff9e64)`, `@boolean (#ff9e64)`, `@number.float (#ff9e64, Go-specific)`
 
 ```ts
-const HTTP_OK = 200;
 const retryLimit = 3;
 const isReady = true;
 const isActive = false;
 ```
 
 ```go
+const statusOK = 200
+const retryLimit = 3
+
 var pi = 3.14
 var half = 0.5
 var tiny = 1e-9

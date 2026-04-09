@@ -65,7 +65,7 @@ const typeValuePerGroup: TypeAliasPerGroup = {};
 const builtinTypeValuePerGroup: number = 1;
 //                              ^^^^^^
 
-// @constant.builtin (#2ac3de)
+// @constant.builtin (#7dcfff)
 const nullishValuePerGroup = null;
 //                           ^^^^
 const missingValuePerGroup = undefined;
@@ -107,7 +107,7 @@ const defaultLibraryTypePerGroup: Promise<string> = Promise.resolve("night");
 type DefaultLibraryAliasPerGroup = Partial<{ count: number }>;
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^
 
-// @lsp.typemod.enumMember.defaultLibrary (#2ac3de, LSP, server-dependent)
+// @lsp.typemod.enumMember.defaultLibrary (#7dcfff, LSP, server-dependent)
 const defaultLibraryEnumMemPerGroup = Node.DOCUMENT_POSITION_FOLLOWING;
 //                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -335,7 +335,7 @@ function semanticParameterPerGroup(
   return firstSemanticPerGroup;
 }
 
-// @constant (#ff9e64)
+// @constant (#7dcfff)
 const HTTP_OK_PER_GROUP = 200;
 //    ^^^^^^^^^^^^^^^^^
 
@@ -361,7 +361,7 @@ const semanticBooleanPerGroup = true;
 const semanticNumberPerGroup = 108;
 //                             ^^^
 
-// @lsp.type.enumMember (#ff9e64, LSP)
+// @lsp.type.enumMember (#7dcfff, LSP)
 enum LocalEnumMemPerGroup {
   First = 1,
   //^^^

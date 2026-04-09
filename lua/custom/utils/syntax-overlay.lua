@@ -131,7 +131,7 @@ local function highlights()
     SpecialComment = { fg = c.blue1 },
     ['@character.printf'] = 'SpecialChar',
     ['@character.special'] = 'SpecialChar',
-    ['@constant.builtin'] = 'Special',
+    ['@constant.builtin'] = { fg = c.cyan },
     ['@function.builtin'] = '@function',
     ['@lsp.type.decorator'] = '@attribute',
     ['@lsp.type.deriveHelper'] = '@attribute',
@@ -184,7 +184,7 @@ local function highlights()
     ['@lsp.typemod.variable.injected'] = '@variable',
 
     -- Value-like syntax in orange and parameter-adjacent yellow.
-    Constant = { fg = c.orange },
+    Constant = { fg = c.cyan },
     Boolean = { fg = c.orange },
     Number = { fg = c.orange },
     Float = { fg = c.orange },
