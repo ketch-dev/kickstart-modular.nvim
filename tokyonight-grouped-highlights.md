@@ -14,7 +14,7 @@ Highlight groups: `@comment (#565f89)`, `@comment.documentation (#565f89)`
 /**
  * Shared doc comments stay visually quiet too.
  */
-const commentAnchor = true
+const commentAnchor = true;
 ```
 
 ## Boundary Cyan `#7dcfff`
@@ -24,8 +24,8 @@ Imports and module names use cyan because they point at code boundaries and thin
 Highlight groups: `@keyword.import (#7dcfff)`, `@module (#7dcfff)`
 
 ```ts
-import * as SharedFS from 'node:fs'
-import { readFileSync as sharedRead } from 'node:fs'
+import * as SharedFS from "node:fs";
+import { readFileSync as sharedRead } from "node:fs";
 ```
 
 Directive-like fragments and decorators use the same cyan because they act like external annotations on surrounding code.
@@ -33,17 +33,17 @@ Directive-like fragments and decorators use the same cyan because they act like 
 Highlight groups: `@keyword.directive (#7dcfff, TS-specific)`, `@attribute (#7dcfff, TS-specific)`
 
 ```ts
-"use strict"
+"use strict";
 
 function sealed<T extends Function>(target: T): T {
-  return target
+  return target;
 }
 
 function track(_target: object, _key: string): void {}
 
 @sealed
 class DecoratedExample {
-  @track value = 1
+  @track value = 1;
 }
 ```
 
@@ -54,12 +54,12 @@ User-defined type names use bright cyan so custom types stand out from primitive
 Highlight groups: `@type (#2ac3de)`, `@type.definition (#2ac3de, Go-specific)`
 
 ```ts
-type UserName = string
-type ThemeName = string
+type UserName = string;
+type ThemeName = string;
 
 interface UserRecord {
-  name: UserName
-  theme: ThemeName
+  name: UserName;
+  theme: ThemeName;
 }
 ```
 
@@ -76,10 +76,10 @@ Runtime-provided builtin functions and builtin sentinel values use the same brig
 Highlight groups: `@function.builtin (#2ac3de)`, `@constant.builtin (#2ac3de)`
 
 ```ts
-const parsedCount = parseInt('42', 10)
-const parsedAgain = parseInt('7', 10)
-const sharedNothing = null
-const sharedMissing = undefined
+const parsedCount = parseInt("42", 10);
+const parsedAgain = parseInt("7", 10);
+const sharedNothing = null;
+const sharedMissing = undefined;
 ```
 
 Special marker tokens like namespace-import stars and regex flags use the same bright cyan because they are compact syntax signals.
@@ -87,8 +87,8 @@ Special marker tokens like namespace-import stars and regex flags use the same b
 Highlight groups: `@character.special (#2ac3de, TS-specific)`
 
 ```ts
-import * as StarModule from 'node:fs'
-const flaggedPattern = /tokyo\d+/gi
+import * as StarModule from "node:fs";
+const flaggedPattern = /tokyo\d+/gi;
 ```
 
 ## Builtin Type Teal `#27a1b9`
@@ -98,61 +98,43 @@ Builtin type names use a darker teal variant so primitives and standard library 
 Highlight groups: `@type.builtin (#27a1b9)`
 
 ```ts
-const sharedPromise: Promise<string> = Promise.resolve('night')
-const sharedMap: Map<string, number> = new Map<string, number>()
-```
-
-## Soft Violet `#9d7cd8`
-
-Declaration words, async markers, return words, and type-introducing keywords share soft violet because they shape code structure without being as forceful as branches or exceptions.
-
-Highlight groups: `@keyword (#9d7cd8)`, `@keyword.coroutine (#9d7cd8)`, `@keyword.return (#9d7cd8)`, `@keyword.type (#9d7cd8)`, `@keyword.modifier (#9d7cd8, TS-specific)`
-
-```ts
-interface SharedFlag {
-  ready: boolean
-}
-
-abstract class ModifiedBase {
-  protected abstract name?: string
-}
-
-class ModifiedExample extends ModifiedBase {
-  public readonly id = 1
-  private cache!: Map<string, number>
-  protected name = 'tokyo'
-}
-
-const buildSharedText = async (input: string): Promise<string> => {
-  return await Promise.resolve(input.trim())
-}
+const sharedPromise: Promise<string> = Promise.resolve("night");
+const sharedMap: Map<string, number> = new Map<string, number>();
 ```
 
 ## Strong Violet `#bb9af7`
 
-Function-introducing words plus branch, loop, exception, and ternary control syntax use the stronger violet because they create or redirect control flow.
+Function-introducing words plus branch, loop, exception, and the generic Treesitter/LSP keyword lane all use the stronger violet now. The generic keyword lane is also non-italic in the overlay.
 
-Highlight groups: `@keyword.function (#bb9af7)`, `@keyword.conditional (#bb9af7)`, `@keyword.repeat (#bb9af7)`, `@keyword.exception (#bb9af7, TS-specific)`, `@keyword.conditional.ternary (#bb9af7, TS-specific)`
+Highlight groups: `@keyword (#bb9af7)`, `@keyword.coroutine (#bb9af7)`, `@keyword.return (#bb9af7)`, `@keyword.function (#bb9af7)`, `@keyword.conditional (#bb9af7)`, `@keyword.repeat (#bb9af7)`, `@keyword.exception (#bb9af7, TS-specific)`, `@keyword.conditional.ternary (#bb9af7, TS-specific)`
 
 ```ts
+interface SharedFlag {
+  ready: boolean;
+}
+
+const buildSharedText = async (input: string): Promise<string> => {
+  return await Promise.resolve(input.trim());
+};
+
 function countReadyFlags(flags: SharedFlag[]): number {
-  let readyCount = 0
+  let readyCount = 0;
 
   for (const flag of flags) {
     if (flag.ready) {
-      readyCount += 1
+      readyCount += 1;
     }
   }
 
   try {
-    throw new Error('boom')
+    throw new Error("boom");
   } catch (error) {
-    console.error(error)
+    console.error(error);
   } finally {
-    console.info('cleanup')
+    console.info("cleanup");
   }
 
-  return readyCount > 0 ? readyCount : 0
+  return readyCount > 0 ? readyCount : 0;
 }
 ```
 
@@ -169,8 +151,8 @@ class SharedBucket {
   constructor() {}
 }
 
-const pair = new SharedPair()
-const bucket = new SharedBucket()
+const pair = new SharedPair();
+const bucket = new SharedBucket();
 ```
 
 Escape sequences also use strong violet because they are small but highly syntactic control markers inside text.
@@ -178,8 +160,8 @@ Escape sequences also use strong violet because they are small but highly syntac
 Highlight groups: `@string.escape (#bb9af7)`
 
 ```ts
-const escapedBanner = 'tokyo\nnight\tmode'
-const escapedPath = 'one\\two\\three'
+const escapedBanner = "tokyo\nnight\tmode";
+const escapedPath = "one\\two\\three";
 ```
 
 ## Callable Blue `#7aa2f7`
@@ -190,17 +172,17 @@ Highlight groups: `@function (#7aa2f7)`, `@function.call (#7aa2f7)`, `@function.
 
 ```ts
 function stitch(left: string, right: string): string {
-  return left + '-' + right
+  return left + "-" + right;
 }
 
 class SharedRunner {
   join(left: string, right: string): string {
-    return stitch(left, right)
+    return stitch(left, right);
   }
 }
 
-const runner = new SharedRunner()
-const joined = runner.join('tokyo', 'night')
+const runner = new SharedRunner();
+const joined = runner.join("tokyo", "night");
 ```
 
 Labels use the same blue, but they are kept separate because they are jump targets rather than callables.
@@ -211,10 +193,10 @@ Highlight groups: `@label (#7aa2f7)`
 outerLoop: for (const outerIndex of [0, 1, 2]) {
   innerLoop: for (const innerIndex of [0, 1, 2]) {
     if (outerIndex === 2 || innerIndex === 2) {
-      break outerLoop
+      break outerLoop;
     }
 
-    break innerLoop
+    break innerLoop;
   }
 }
 ```
@@ -226,9 +208,9 @@ Plain variable names keep the default foreground because they are the baseline i
 Highlight groups: `@variable (#c0caf5)`
 
 ```ts
-const baseValue = 1
-const totalValue = baseValue + 2
-const finalValue = totalValue + 3
+const baseValue = 1;
+const totalValue = baseValue + 2;
+const finalValue = totalValue + 3;
 ```
 
 ## Member Teal `#73daca`
@@ -238,9 +220,9 @@ Member names and struct-field-like names share teal because they are named parts
 Highlight groups: `@variable.member (#73daca)`, `@property (#73daca, Go-specific)`
 
 ```ts
-const sharedUser = { name: 'tokyo', ready: true }
-const sharedName = sharedUser.name
-const sharedReady = sharedUser.ready
+const sharedUser = { name: "tokyo", ready: true };
+const sharedName = sharedUser.name;
+const sharedReady = sharedUser.ready;
 ```
 
 ```go
@@ -264,8 +246,13 @@ Parameter names use warm yellow so inputs stand apart from surrounding locals an
 Highlight groups: `@variable.parameter (#e0af68)`
 
 ```ts
-const stitchParts = (leftPart: string, rightPart: string): string => leftPart + rightPart
-const joinThree = (firstPart: string, secondPart: string, thirdPart: string): string => firstPart + secondPart + thirdPart
+const stitchParts = (leftPart: string, rightPart: string): string =>
+  leftPart + rightPart;
+const joinThree = (
+  firstPart: string,
+  secondPart: string,
+  thirdPart: string,
+): string => firstPart + secondPart + thirdPart;
 ```
 
 ## Value Orange `#ff9e64`
@@ -275,10 +262,10 @@ Constant identifiers, numeric literals, and booleans share orange because they r
 Highlight groups: `@constant (#ff9e64)`, `@number (#ff9e64)`, `@boolean (#ff9e64)`, `@number.float (#ff9e64, Go-specific)`
 
 ```ts
-const HTTP_OK = 200
-const retryLimit = 3
-const isReady = true
-const isActive = false
+const HTTP_OK = 200;
+const retryLimit = 3;
+const isReady = true;
+const isActive = false;
 ```
 
 ```go
@@ -294,8 +281,8 @@ Plain string content uses green so textual data stays distinct from identifiers 
 Highlight groups: `@string (#9ece6a)`, `@character (#9ece6a, Go-specific)`
 
 ```ts
-const plainCity = 'tokyo'
-const plainTheme = 'night'
+const plainCity = "tokyo";
+const plainTheme = "night";
 ```
 
 ```go
@@ -311,8 +298,8 @@ Regular-expression bodies use pale cyan so they read as a special text dialect r
 Highlight groups: `@string.regexp (#b4f9f8)`
 
 ```ts
-const sharedPattern = /tokyo\d+/
-const sharedWords = /(storm|night)/
+const sharedPattern = /tokyo\d+/;
+const sharedWords = /(storm|night)/;
 ```
 
 ## Operator Cyan `#89ddff`
@@ -322,11 +309,14 @@ Operator words and symbols use bright blue-cyan because they actively transform 
 Highlight groups: `@operator (#89ddff)`, `@keyword.operator (#89ddff, TS-specific)`
 
 ```ts
-const rawValue: unknown = { kind: 'demo' }
-const typedRecord = rawValue as { kind?: string }
-const keyName: keyof typeof typedRecord = 'kind'
-const typedCheck = { kind: 'tokyo' } satisfies { kind: string }
-const isObject = typeof rawValue === 'object' && rawValue instanceof Object && 'kind' in typedRecord
+const rawValue: unknown = { kind: "demo" };
+const typedRecord = rawValue as { kind?: string };
+const keyName: keyof typeof typedRecord = "kind";
+const typedCheck = { kind: "tokyo" } satisfies { kind: string };
+const isObject =
+  typeof rawValue === "object" &&
+  rawValue instanceof Object &&
+  "kind" in typedRecord;
 ```
 
 Punctuation that glues syntax together uses the same blue-cyan, but it is kept separate because delimiters and optional markers are structural separators rather than operators.
@@ -334,12 +324,12 @@ Punctuation that glues syntax together uses the same blue-cyan, but it is kept s
 Highlight groups: `@punctuation.delimiter (#89ddff)`, `@punctuation.special (#89ddff, TS-specific)`
 
 ```ts
-type OptionalUser = { name?: string; title?: string }
-const maybeUser: OptionalUser = {}
-const optionalName = maybeUser?.name ?? 'anonymous'
-const forcedLength = optionalName!.length
-const delimiterRecord = { left: 'tokyo', right: 'night' }
-const delimiterLine = delimiterRecord.left + ':' + delimiterRecord.right
+type OptionalUser = { name?: string; title?: string };
+const maybeUser: OptionalUser = {};
+const optionalName = maybeUser?.name ?? "anonymous";
+const forcedLength = optionalName!.length;
+const delimiterRecord = { left: "tokyo", right: "night" };
+const delimiterLine = delimiterRecord.left + ":" + delimiterRecord.right;
 ```
 
 ## Bracket Blue-Gray `#a9b1d6`
@@ -349,8 +339,8 @@ Brackets use a quieter blue-gray because they frame structure rather than carryi
 Highlight groups: `@punctuation.bracket (#a9b1d6)`
 
 ```ts
-const bracketExample = [1, 2, { pair: ['tokyo', 'night'] }]
-const anotherBracketExample = ({ value: bracketExample[0] })
+const bracketExample = [1, 2, { pair: ["tokyo", "night"] }];
+const anotherBracketExample = { value: bracketExample[0] };
 ```
 
 ## Runtime Red `#f7768e`
@@ -361,10 +351,19 @@ Highlight groups: `@module.builtin (#f7768e, TS-specific)`, `@variable.builtin (
 
 ```ts
 class BuiltinCollector {
-  title = 'tokyo'
+  title = "tokyo";
 
   report(): void {
-    console.log(this.title, window, document, self, module, Intl.DateTimeFormat(), Intl.NumberFormat(), arguments.length)
+    console.log(
+      this.title,
+      window,
+      document,
+      self,
+      module,
+      Intl.DateTimeFormat(),
+      Intl.NumberFormat(),
+      arguments.length,
+    );
   }
 }
 ```
@@ -378,7 +377,7 @@ Highlight groups: `@spell (no fg)`, `@string.special.url (underline, TS-specific
 ```ts
 // Spell checking can sit on top of comments without changing the base comment color.
 /** URL-like require targets are underlined rather than recolored. */
-import FsModule = require('node:fs')
+import FsModule = require("node:fs");
 
-const plainContainer = `${'tokyo'}-${'night'}`
+const plainContainer = `${"tokyo"}-${"night"}`;
 ```

@@ -75,9 +75,9 @@ local function highlights()
     ['@markup.environment'] = 'Macro',
     ['@module'] = 'Include',
 
-    -- Classic keywords stay cyan and italic, while Treesitter/LSP generic keywords use the softer purple.
+    -- Classic keywords stay cyan and italic, while Treesitter/LSP generic keywords use magenta without italics.
     Keyword = { fg = c.cyan, italic = true },
-    ['@keyword'] = { fg = c.purple, italic = true },
+    ['@keyword'] = { fg = c.magenta },
     ['@keyword.coroutine'] = '@keyword',
     ['@keyword.return'] = '@keyword',
     ['@type.qualifier'] = '@keyword',
