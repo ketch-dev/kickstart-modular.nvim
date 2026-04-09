@@ -108,7 +108,7 @@ type DefaultLibraryAliasPerGroup = Partial<{ count: number }>;
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^   ^^^^^^^
 
 // @lsp.typemod.enumMember.defaultLibrary (#2ac3de, LSP, server-dependent)
-const defaultLibraryEnumMemberPerGroup = Node.DOCUMENT_POSITION_FOLLOWING;
+const defaultLibraryEnumMemPerGroup = Node.DOCUMENT_POSITION_FOLLOWING;
 //                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // @string.regexp (#b4f9f8)
