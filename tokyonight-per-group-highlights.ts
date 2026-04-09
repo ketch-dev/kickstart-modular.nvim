@@ -13,7 +13,7 @@ export {};
 /** documentation comments use the same muted prose lane */
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// @punctuation.bracket (#a9b1d6)
+// @punctuation.bracket (#bb9af7)
 const bracketArrayPerGroup = [];
 //                           ^^
 const bracketObjectPerGroup = {};

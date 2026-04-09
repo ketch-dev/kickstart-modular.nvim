@@ -222,8 +222,8 @@ local function highlights()
     ['@punctuation.delimiter'] = '@keyword',
     ['@punctuation.special'] = '@keyword',
 
-    -- Brackets and TSX delimiters stay slightly calmer.
-    ['@punctuation.bracket'] = { fg = c.fg_dark },
+    -- Brackets and TSX delimiters.
+    ['@punctuation.bracket'] = '@keyword',
     ['@tag.delimiter.tsx'] = { fg = c.tag_delimiter_tsx },
 
     -- Markup-specific emphasis and link styling.

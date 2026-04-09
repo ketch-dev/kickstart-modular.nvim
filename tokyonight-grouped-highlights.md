@@ -133,9 +133,9 @@ function countReadyFlags(flags: SharedFlag[]): number {
 }
 ```
 
-Import words, directive fragments, operator captures, and selected delimiter/special punctuation share the same strong violet because they are syntax-control markers rather than values or structure.
+Import words, directive fragments, operator captures, and selected punctuation including delimiters, optional markers, and brackets share the same strong violet because they are syntax-control markers rather than values or structure.
 
-Highlight groups: `@keyword.import (#bb9af7)`, `@keyword.directive (#bb9af7, TS-specific)`, `@operator (#bb9af7)`, `@keyword.operator (#bb9af7, TS-specific)`, `@punctuation.delimiter (#bb9af7)`, `@punctuation.special (#bb9af7, TS-specific)`
+Highlight groups: `@keyword.import (#bb9af7)`, `@keyword.directive (#bb9af7, TS-specific)`, `@operator (#bb9af7)`, `@keyword.operator (#bb9af7, TS-specific)`, `@punctuation.delimiter (#bb9af7)`, `@punctuation.special (#bb9af7, TS-specific)`, `@punctuation.bracket (#bb9af7)`
 
 ```ts
 "use strict";
@@ -156,6 +156,8 @@ const optionalName = maybeUser?.name ?? "anonymous";
 const forcedLength = optionalName!.length;
 const delimiterRecord = { left: "tokyo", right: "night" };
 const delimiterLine = delimiterRecord.left + ":" + delimiterRecord.right;
+const bracketExample = [1, 2, { pair: ["tokyo", "night"] }];
+const anotherBracketExample = { value: bracketExample[0] };
 ```
 
 Constructor names get the same strong violet, but they are kept separate because they represent type construction rather than branching.
@@ -308,17 +310,6 @@ Highlight groups: `@string.regexp (#b4f9f8)`
 ```ts
 const sharedPattern = /tokyo\d+/;
 const sharedWords = /(storm|night)/;
-```
-
-## Bracket Blue-Gray `#a9b1d6`
-
-Brackets use a quieter blue-gray because they frame structure rather than carrying much meaning on their own.
-
-Highlight groups: `@punctuation.bracket (#a9b1d6)`
-
-```ts
-const bracketExample = [1, 2, { pair: ["tokyo", "night"] }];
-const anotherBracketExample = { value: bracketExample[0] };
 ```
 
 ## Runtime Red `#f7768e`
