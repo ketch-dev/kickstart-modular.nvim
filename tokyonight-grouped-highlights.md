@@ -126,9 +126,9 @@ function countReadyFlags(flags: SharedFlag[]): number {
 }
 ```
 
-Import words, directive fragments, and operator captures share the same strong violet because they are syntax-control markers rather than values or structure.
+Import words, directive fragments, operator captures, and selected delimiter/special punctuation share the same strong violet because they are syntax-control markers rather than values or structure.
 
-Highlight groups: `@keyword.import (#bb9af7)`, `@keyword.directive (#bb9af7, TS-specific)`, `@operator (#bb9af7)`, `@keyword.operator (#bb9af7, TS-specific)`
+Highlight groups: `@keyword.import (#bb9af7)`, `@keyword.directive (#bb9af7, TS-specific)`, `@operator (#bb9af7)`, `@keyword.operator (#bb9af7, TS-specific)`, `@punctuation.delimiter (#bb9af7)`, `@punctuation.special (#bb9af7, TS-specific)`
 
 ```ts
 "use strict";
@@ -142,6 +142,13 @@ const isObject =
   typeof rawValue === "object" &&
   rawValue instanceof Object &&
   "kind" in typedRecord;
+
+type OptionalUser = { name?: string; title?: string };
+const maybeUser: OptionalUser = {};
+const optionalName = maybeUser?.name ?? "anonymous";
+const forcedLength = optionalName!.length;
+const delimiterRecord = { left: "tokyo", right: "night" };
+const delimiterLine = delimiterRecord.left + ":" + delimiterRecord.right;
 ```
 
 Constructor names get the same strong violet, but they are kept separate because they represent type construction rather than branching.
@@ -260,6 +267,16 @@ const joinThree = (
 ): string => firstPart + secondPart + thirdPart;
 ```
 
+```go
+func stitchParts(leftPart string, rightPart string) string {
+  return leftPart + rightPart
+}
+
+func joinThree(firstPart string, secondPart string, thirdPart string) string {
+  return firstPart + secondPart + thirdPart
+}
+```
+
 ## Value Orange `#ff9e64`
 
 Constant identifiers, numeric literals, and booleans share orange because they read as direct data rather than structure.
@@ -305,21 +322,6 @@ Highlight groups: `@string.regexp (#b4f9f8)`
 ```ts
 const sharedPattern = /tokyo\d+/;
 const sharedWords = /(storm|night)/;
-```
-
-## Punctuation Cyan `#89ddff`
-
-Punctuation that glues syntax together uses bright blue-cyan because delimiters and optional markers are structural separators rather than keywords or operators.
-
-Highlight groups: `@punctuation.delimiter (#89ddff)`, `@punctuation.special (#89ddff, TS-specific)`
-
-```ts
-type OptionalUser = { name?: string; title?: string };
-const maybeUser: OptionalUser = {};
-const optionalName = maybeUser?.name ?? "anonymous";
-const forcedLength = optionalName!.length;
-const delimiterRecord = { left: "tokyo", right: "night" };
-const delimiterLine = delimiterRecord.left + ":" + delimiterRecord.right;
 ```
 
 ## Bracket Blue-Gray `#a9b1d6`

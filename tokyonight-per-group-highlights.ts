@@ -115,14 +115,14 @@ const defaultLibraryEnumMemPerGroup = Node.DOCUMENT_POSITION_FOLLOWING;
 const regexpPatternPerGroup = /tokyo\d+/;
 //                             ^^^^^^^^
 
-// @punctuation.delimiter (#89ddff)
+// @punctuation.delimiter (#bb9af7)
 type DelimiterRecordPerGroup = { left: string; right: string };
 //                                   ^              ^
 const delimiterUnionPerGroup: string | number = 1;
 const delimiterDotPerGroup = delimiterUnionPerGroup.toString();
 //                                                 ^
 
-// @punctuation.special (#89ddff)
+// @punctuation.special (#bb9af7)
 type OptionalPerGroup = { name?: string };
 //                             ^
 const maybeUserPerGroup: OptionalPerGroup = {};

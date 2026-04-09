@@ -211,7 +211,7 @@ local function highlights()
     ['@string.escape'] = { fg = c.magenta },
     ['@lsp.type.escapeSequence'] = '@string.escape',
 
-    -- Classic Operator and punctuation stay bright blue-cyan, but Treesitter/LSP operator captures use the keyword lane.
+    -- Classic Operator stays bright blue-cyan, but Treesitter/LSP operator and selected punctuation captures use the keyword lane.
     Operator = { fg = c.blue5 },
     ['@operator'] = '@keyword',
     ['@keyword.operator'] = '@keyword',
@@ -219,8 +219,8 @@ local function highlights()
     ['@lsp.typemod.operator.injected'] = '@operator',
     ['@markup.list'] = { fg = c.blue5 },
     ['@lsp.type.formatSpecifier'] = '@markup.list',
-    ['@punctuation.delimiter'] = { fg = c.blue5 },
-    ['@punctuation.special'] = { fg = c.blue5 },
+    ['@punctuation.delimiter'] = '@keyword',
+    ['@punctuation.special'] = '@keyword',
 
     -- Brackets and TSX delimiters stay slightly calmer.
     ['@punctuation.bracket'] = { fg = c.fg_dark },
