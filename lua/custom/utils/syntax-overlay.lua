@@ -20,7 +20,7 @@ local function highlights()
     module = '#6FAFD6',
     -------------------------------------------------------------------------------
 
-    keyword = '#bbbbbb',
+    keyword = '#B0B9C3',
     type = '#5FA7A1',
     fn = '#D39B70',
     bool = '#7E9B5E',
