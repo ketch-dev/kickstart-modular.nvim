@@ -46,31 +46,44 @@ local function highlights()
     Macro = { fg = c.cyan },
     ['@annotation'] = 'PreProc',
     ['@attribute'] = 'PreProc',
-    ['@keyword.directive'] = '@keyword',
-    ['@keyword.import'] = '@keyword',
     ['@keyword.directive.define'] = 'Define',
     ['@constant.macro'] = 'Define',
     ['@function.macro'] = 'Macro',
     ['@markup.environment'] = 'Macro',
     ['@module'] = { fg = c.cyan },
 
-    -- Classic keywords stay cyan and italic, while Treesitter/LSP generic keywords use magenta without italics.
+    -- ========== Keyword ==========
     ['@keyword'] = { fg = '#8c8c8c' },
-    ['@keyword.coroutine'] = '@keyword',
-    ['@keyword.return'] = '@keyword',
-    ['@type.qualifier'] = '@keyword',
-    ['@lsp.type.keyword'] = '@keyword',
-    ['@lsp.type.lifetime'] = '@keyword.storage',
-    ['@lsp.typemod.keyword.async'] = '@keyword.coroutine',
-    ['@lsp.typemod.keyword.injected'] = '@keyword',
-
-    -- Strong magenta control-flow and declaration-introducing syntax.
+    ['@keyword.operator'] = '@keyword',
+    ['@keyword.import'] = '@keyword',
+    ['@keyword.directive'] = '@keyword',
     ['@keyword.conditional'] = '@keyword',
-    ['@keyword.repeat'] = '@keyword',
-    ['@keyword.exception'] = '@keyword',
     ['@keyword.function'] = '@keyword',
+    ['@keyword.exception'] = '@keyword',
+    ['@keyword.repeat'] = '@keyword',
+    ['@keyword.return'] = '@keyword',
+    ['@keyword.coroutine'] = '@keyword',
     ['@keyword.debug'] = { fg = c.orange },
+    ['@lsp.type.keyword'] = '@keyword',
+    ['@lsp.typemod.keyword.injected'] = '@keyword',
+    ['@type.qualifier'] = '@keyword',
+    ['@lsp.typemod.keyword.async'] = '@keyword.coroutine',
+    ['@lsp.type.lifetime'] = '@keyword.storage',
+    -------------------------------------------------------------------------------
+
+    -- ========== Keyword-like ==========
     ['@constructor'] = '@keyword',
+    ['@string.escape'] = '@keyword',
+    ['@lsp.type.escapeSequence'] = '@keyword',
+    ['@operator'] = '@keyword',
+    -------------------------------------------------------------------------------
+
+    -- ========== Punctuation ==========
+    ['@punctuation.bracket'] = '@keyword',
+    ['@punctuation.delimiter'] = '@keyword',
+    ['@punctuation.special'] = '@keyword',
+    -------------------------------------------------------------------------------
+
     ['@markup.link.label.symbol'] = { fg = c.magenta },
     ['@tag'] = { fg = c.magenta },
 
@@ -161,20 +174,13 @@ local function highlights()
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
     ['@string.regexp'] = { fg = c.blue6 },
-    ['@string.escape'] = '@keyword',
-    ['@lsp.type.escapeSequence'] = '@keyword',
 
-    ['@operator'] = '@keyword',
-    ['@keyword.operator'] = '@keyword',
     ['@lsp.type.operator'] = '@operator',
     ['@lsp.typemod.operator.injected'] = '@operator',
     ['@markup.list'] = { fg = c.blue5 },
     ['@lsp.type.formatSpecifier'] = '@markup.list',
-    ['@punctuation.delimiter'] = '@keyword',
-    ['@punctuation.special'] = '@keyword',
 
     -- Brackets and TSX delimiters.
-    ['@punctuation.bracket'] = '@keyword',
     ['@tag.delimiter.tsx'] = { fg = c.tag_delimiter_tsx },
 
     -- Diff captures get their own direct backgrounds so they stay stable across base themes.
