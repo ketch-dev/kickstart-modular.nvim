@@ -21,8 +21,6 @@ local function highlights()
     cyan = '#7dcfff',
     magenta = '#bb9af7',
     red = '#f7768e',
-    parameter_builtin = '#dab484',
-    tag_delimiter_tsx = '#5d7ab8',
   }
 
   return {
@@ -71,15 +69,16 @@ local function highlights()
     ['@string.escape'] = '@keyword',
     ['@lsp.type.escapeSequence'] = '@keyword',
     ['@operator'] = '@keyword',
+    ['@lsp.type.operator'] = '@operator',
+    ['@lsp.typemod.operator.injected'] = '@operator',
     -------------------------------------------------------------------------------
 
     -- ========== Punctuation ==========
     ['@punctuation.bracket'] = '@keyword',
     ['@punctuation.delimiter'] = '@keyword',
     ['@punctuation.special'] = '@keyword',
+    ['@variable.parameter.builtin'] = '@keyword', -- "..." spread parameter in JS
     -------------------------------------------------------------------------------
-
-    ['@tag'] = { fg = c.magenta },
 
     -- ========== Callable ==========
     ['@function'] = { fg = c.blue },
@@ -131,51 +130,47 @@ local function highlights()
     ['@lsp.typemod.variable.defaultLibrary'] = '@variable.builtin',
     -------------------------------------------------------------------------------
 
-    -- Runtime builtins and TSX tag names stay red.
-    ['@tag.javascript'] = { fg = c.red },
-    ['@tag.tsx'] = { fg = c.red },
-
-    -- Neutral variables, members, and parameters.
+    -- ========== Variable ==========
     ['@variable'] = { fg = c.fg },
+    ['@constant'] = { fg = c.cyan },
     ['@property'] = { fg = c.green1 },
     ['@variable.member'] = '@variable',
     ['@variable.parameter'] = '@variable',
-    ['@variable.parameter.builtin'] = { fg = c.parameter_builtin },
     ['@lsp.type.generic'] = '@variable',
-    ['@lsp.type.namespace'] = '@module',
     ['@lsp.type.namespace.python'] = '@variable',
     ['@lsp.type.parameter'] = '@variable.parameter',
+    ['@lsp.type.variable'] = '@variable',
+    ['@lsp.type.enumMember'] = '@variable.member',
     ['@lsp.type.property'] = '@property',
-    ['@lsp.type.variable'] = {},
     ['@lsp.typemod.variable.injected'] = '@variable',
-
-    -- Value-like syntax in orange and parameter-adjacent yellow.
-    ['@constant'] = { fg = c.cyan },
-    ['@boolean'] = { fg = c.orange },
-    ['@number'] = { fg = c.orange },
-    ['@number.float'] = { fg = c.orange },
-    ['@lsp.type.boolean'] = '@boolean',
-    ['@lsp.type.enumMember'] = '@constant',
-    ['@lsp.type.number'] = '@number',
     ['@lsp.typemod.variable.static'] = '@constant',
     ['@lsp.typemod.enumMember.defaultLibrary'] = '@constant.builtin',
-    ['@string.documentation'] = { fg = c.yellow },
+    ['@lsp.type.namespace'] = '@module', -- name of namespace
+    -------------------------------------------------------------------------------
 
-    -- Textual syntax in green and regex cyan.
+    -- ========== Literals ==========
+    ['@boolean'] = { fg = c.orange },
+    ['@lsp.type.boolean'] = '@boolean',
+
+    ['@number'] = { fg = c.orange },
+    ['@number.float'] = '@number',
+    ['@lsp.type.number'] = '@number',
+
     ['@string'] = { fg = c.green },
     ['@character'] = '@string',
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
+    ['@string.documentation'] = { fg = c.yellow },
+
     ['@string.regexp'] = { fg = c.blue6 },
+    -------------------------------------------------------------------------------
 
-    ['@lsp.type.operator'] = '@operator',
-    ['@lsp.typemod.operator.injected'] = '@operator',
+    ['@tag'] = { fg = c.magenta },
+    ['@tag.javascript'] = { fg = c.red },
+    ['@tag.tsx'] = { fg = c.red },
     ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
-
-    -- Brackets and TSX delimiters.
-    ['@tag.delimiter.tsx'] = { fg = c.tag_delimiter_tsx },
-
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
+
     -- Diff captures get their own direct backgrounds so they stay stable across base themes.
     -- ['@diff.plus'] = { bg = c.diff_add },
     -- ['@diff.delta'] = { bg = c.diff_change },
