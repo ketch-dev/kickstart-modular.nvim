@@ -27,17 +27,18 @@ local function highlights()
   }
 
   return {
-    -- Muted prose and comment diagnostics.
+    -- ========== Comments ==========
     ['@comment'] = { fg = c.comment },
+    ['@lsp.type.comment'] = '@comment',
+    ['@comment.documentation'] = '@comment',
     ['@comment.error'] = { fg = c.error },
     ['@comment.hint'] = { fg = c.hint },
     ['@comment.info'] = { fg = c.info },
     ['@comment.note'] = { fg = c.hint },
     ['@comment.todo'] = { fg = c.blue },
     ['@comment.warning'] = { fg = c.warning },
-    ['@comment.documentation'] = '@comment',
-    ['@lsp.type.comment'] = '@comment',
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
+    -------------------------------------------------------------------------------
 
     -- Preprocessor-like syntax, decorators, and module aliases in cyan.
     PreProc = { fg = c.cyan },
