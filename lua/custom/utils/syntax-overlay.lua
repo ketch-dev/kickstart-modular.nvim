@@ -11,7 +11,6 @@ local function highlights()
     hint = '#1abc9c',
     fg = '#c0caf5',
     orange = '#ff9e64',
-    yellow = '#e0af68',
     green = '#9ece6a',
     green1 = '#73daca',
     blue = '#7aa2f7',
@@ -47,7 +46,7 @@ local function highlights()
 
     -- ========== Keyword ==========
     ['@keyword'] = { fg = '#8c8c8c' },
-    ['@keyword.debug'] = { fg = c.orange },
+    ['@keyword.debug'] = { fg = c.red },
     ['@keyword.operator'] = '@keyword',
     ['@keyword.import'] = '@keyword',
     ['@keyword.directive'] = '@keyword',
@@ -160,7 +159,7 @@ local function highlights()
     ['@character'] = '@string',
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
-    ['@string.documentation'] = { fg = c.yellow },
+    ['@string.documentation'] = '@string',
 
     ['@string.regexp'] = { fg = c.blue6 },
     -------------------------------------------------------------------------------
