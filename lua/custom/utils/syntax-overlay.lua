@@ -5,14 +5,14 @@ local did_setup = false
 local function highlights()
   local c = {
     -- ========== Variables ==========
-    var = '#7b9ebd',
-    const = '#A9C7E8',
+    var = '#60a0d7',
     prop = '#6F8EA6',
+    const = '#A9C7E8',
     -------------------------------------------------------------------------------
 
     -- ========== Strings ==========
-    str = '#7da47a',
-    regex = '#A5D6BE',
+    str = '#76ac72', -- done
+    regex = '#A5D6BE', -- done
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
@@ -20,14 +20,14 @@ local function highlights()
     module = '#6FAFD6',
     -------------------------------------------------------------------------------
 
-    keyword = '#B0B9C3',
-    type = '#5FA7A1',
-    fn = '#D39B70',
-    bool = '#7E9B5E',
-    num = '#a782c9',
-    preproc = '#B56D4D',
-    comment = '#625e5a',
-    error = '#C85C5C',
+    keyword = '#B0B9C3', -- done
+    type = '#54b0a9',
+    fn = '#cec973', -- done
+    bool = '#d97757', -- done
+    num = '#a773d9', -- done
+    preproc = '#B56D4D', --done
+    comment = '#625e5a', -- done
+    error = '#ae3d3d', -- done
   }
 
   local token = {
