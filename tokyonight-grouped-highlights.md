@@ -97,11 +97,11 @@ import * as StarModule from "node:fs";
 const flaggedPattern = /tokyo\d+/gi;
 ```
 
-## Strong Violet `#bb9af7`
+## Keyword Gray `#8c8c8c`
 
-Function-introducing words plus branch, loop, exception, and the generic Treesitter/LSP keyword lane all use the stronger violet now. The generic keyword lane is also non-italic in the overlay.
+Function-introducing words plus branch, loop, exception, and the generic Treesitter/LSP keyword lane all use the same dim gray now. The generic keyword lane is also non-italic in the overlay.
 
-Highlight groups: `@keyword (#bb9af7)`, `@keyword.coroutine (#bb9af7)`, `@keyword.return (#bb9af7)`, `@keyword.function (#bb9af7)`, `@keyword.conditional (#bb9af7)`, `@keyword.repeat (#bb9af7)`, `@keyword.exception (#bb9af7, TS-specific)`, `@keyword.conditional.ternary (#bb9af7, TS-specific)`
+Highlight groups: `@keyword (#8c8c8c)`, `@keyword.coroutine (#8c8c8c)`, `@keyword.return (#8c8c8c)`, `@keyword.function (#8c8c8c)`, `@keyword.conditional (#8c8c8c)`, `@keyword.repeat (#8c8c8c)`, `@keyword.exception (#8c8c8c, TS-specific)`, `@keyword.conditional.ternary (#8c8c8c, TS-specific)`, `@lsp.type.keyword (#8c8c8c, LSP)`, `@lsp.typemod.keyword.async (#8c8c8c, LSP)`
 
 ```ts
 interface SharedFlag {
@@ -133,9 +133,9 @@ function countReadyFlags(flags: SharedFlag[]): number {
 }
 ```
 
-Import words, directive fragments, operator captures, and selected punctuation including delimiters, optional markers, and brackets share the same strong violet because they are syntax-control markers rather than values or structure.
+Import words, directive fragments, operator captures, selected punctuation including delimiters, optional markers, and brackets, plus escape sequences and constructors share the same dim gray because they are syntax-control markers rather than values or structure.
 
-Highlight groups: `@keyword.import (#bb9af7)`, `@keyword.directive (#bb9af7, TS-specific)`, `@operator (#bb9af7)`, `@keyword.operator (#bb9af7, TS-specific)`, `@punctuation.delimiter (#bb9af7)`, `@punctuation.special (#bb9af7, TS-specific)`, `@punctuation.bracket (#bb9af7)`
+Highlight groups: `@keyword.import (#8c8c8c)`, `@keyword.directive (#8c8c8c, TS-specific)`, `@operator (#8c8c8c)`, `@keyword.operator (#8c8c8c, TS-specific)`, `@punctuation.delimiter (#8c8c8c)`, `@punctuation.special (#8c8c8c, TS-specific)`, `@punctuation.bracket (#8c8c8c)`, `@constructor (#8c8c8c)`, `@string.escape (#8c8c8c)`, `@lsp.type.escapeSequence (#8c8c8c, LSP)`, `@lsp.type.operator (#8c8c8c, LSP)`
 
 ```ts
 "use strict";
@@ -158,30 +158,11 @@ const delimiterRecord = { left: "tokyo", right: "night" };
 const delimiterLine = delimiterRecord.left + ":" + delimiterRecord.right;
 const bracketExample = [1, 2, { pair: ["tokyo", "night"] }];
 const anotherBracketExample = { value: bracketExample[0] };
-```
 
-Constructor names get the same strong violet, but they are kept separate because they represent type construction rather than branching.
-
-Highlight groups: `@constructor (#bb9af7)`
-
-```ts
 class SharedPair {
   constructor() {}
 }
 
-class SharedBucket {
-  constructor() {}
-}
-
-const pair = new SharedPair();
-const bucket = new SharedBucket();
-```
-
-Escape sequences also use strong violet because they are small but highly syntactic control markers inside text.
-
-Highlight groups: `@string.escape (#bb9af7)`
-
-```ts
 const escapedBanner = "tokyo\nnight\tmode";
 const escapedPath = "one\\two\\three";
 ```

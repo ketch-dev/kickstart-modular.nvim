@@ -13,7 +13,7 @@ export {};
 /** documentation comments use the same muted prose lane */
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// @punctuation.bracket (#bb9af7)
+// @punctuation.bracket (#8c8c8c)
 const bracketArrayPerGroup = [];
 //                           ^^
 const bracketObjectPerGroup = {};
@@ -115,41 +115,41 @@ const defaultLibraryEnumMemPerGroup = Node.DOCUMENT_POSITION_FOLLOWING;
 const regexpPatternPerGroup = /tokyo\d+/;
 //                             ^^^^^^^^
 
-// @punctuation.delimiter (#bb9af7)
+// @punctuation.delimiter (#8c8c8c)
 type DelimiterRecordPerGroup = { left: string; right: string };
 //                                   ^              ^
 const delimiterUnionPerGroup: string | number = 1;
 const delimiterDotPerGroup = delimiterUnionPerGroup.toString();
 //                                                 ^
 
-// @punctuation.special (#bb9af7)
+// @punctuation.special (#8c8c8c)
 type OptionalPerGroup = { name?: string };
 //                             ^
 const maybeUserPerGroup: OptionalPerGroup = {};
 const optionalNamePerGroup = maybeUserPerGroup?.name!;
 //                                            ^^    ^
 
-// @keyword (#bb9af7)
+// @keyword (#8c8c8c)
 let keywordCountPerGroup = 1;
 //^
 
-// @keyword.coroutine (#bb9af7)
+// @keyword.coroutine (#8c8c8c)
 async function keywordCoroutinePerGroup(): Promise<string> {
   return await Promise.resolve("tokyo");
   //     ^^^^^
 }
 
-// @keyword.return (#bb9af7)
+// @keyword.return (#8c8c8c)
 function keywordReturnPerGroup(input: string): string {
   return input.trim();
   //^^^^
 }
 
-// @keyword.function (#bb9af7)
+// @keyword.function (#8c8c8c)
 function keywordFunctionPerGroup(): void {}
 //^^^^^^
 
-// @keyword.conditional (#bb9af7)
+// @keyword.conditional (#8c8c8c)
 const conditionalInputPerGroup = 2;
 if (conditionalInputPerGroup > 1) {
   //^
@@ -159,14 +159,14 @@ if (conditionalInputPerGroup > 1) {
   const conditionalFallbackPerGroup = "smaller";
 }
 
-// @keyword.repeat (#bb9af7)
+// @keyword.repeat (#8c8c8c)
 for (const repeatItemPerGroup of ["tokyo"]) {
   //^
   continue;
   //^^^^^^
 }
 
-// @keyword.exception (#bb9af7)
+// @keyword.exception (#8c8c8c)
 try {
   throw new Error("boom");
   //^^^
@@ -176,15 +176,15 @@ try {
   //^^^^^
 }
 
-// @keyword.import (#bb9af7)
+// @keyword.import (#8c8c8c)
 import { readFileSync as importedReadPerGroup } from "node:fs";
 //^^^^                                          ^^^^
 
-// @keyword.directive (#bb9af7)
+// @keyword.directive (#8c8c8c)
 ("use strict");
 //^^^^^^^^^^
 
-// @keyword.operator (#bb9af7)
+// @keyword.operator (#8c8c8c)
 const operatorObjectPerGroup = { label: "tokyo" };
 const typeofResultPerGroup = typeof operatorObjectPerGroup;
 //                           ^^^^^^
@@ -196,7 +196,7 @@ const deleteTargetPerGroup: { temp?: string } = { temp: "night" };
 delete deleteTargetPerGroup.temp;
 //^^^^
 
-// @keyword.type (#bb9af7)
+// @keyword.type (#8c8c8c)
 interface KeywordTypeInterfacePerGroup {}
 //^^^^^^^
 enum KeywordTypeEnumPerGroup {}
@@ -204,7 +204,7 @@ enum KeywordTypeEnumPerGroup {}
 namespace KeywordTypeNamespacePerGroup {}
 //^^^^^^^
 
-// @keyword.modifier (#bb9af7)
+// @keyword.modifier (#8c8c8c)
 class KeywordModifierPerGroup {
   public readonly label = "tokyo";
   //^^^^ ^^^^^^^^
@@ -212,15 +212,15 @@ class KeywordModifierPerGroup {
   //^^^^^
 }
 
-// @keyword.conditional.ternary (#bb9af7)
+// @keyword.conditional.ternary (#8c8c8c)
 const ternaryValuePerGroup = true ? "yes" : "no";
 //                                ^       ^
 
-// @operator (#bb9af7)
+// @operator (#8c8c8c)
 const operatorValuePerGroup = 2 + 3 * 4 === 14 && 14 > 0;
 //                              ^   ^   ^^^    ^^    ^
 
-// @constructor (#bb9af7)
+// @constructor (#8c8c8c)
 class ConstructorTargetPerGroup {
   constructor() {}
   //^^^^^^^^^^^
@@ -228,28 +228,28 @@ class ConstructorTargetPerGroup {
 const constructorValuePerGroup = new ConstructorTargetPerGroup();
 //                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// @string.escape (#bb9af7)
+// @string.escape (#8c8c8c)
 const escapedBannerPerGroup = "tokyo\nnight\tmode";
 //                                  ^^     ^^
 const escapedPathPerGroup = "one\\two\\three";
 //                              ^^   ^^
 
-// @lsp.type.keyword (#bb9af7, LSP)
+// @lsp.type.keyword (#8c8c8c, LSP)
 if (true) {
   //^
 }
 
-// @lsp.typemod.keyword.async (#bb9af7, LSP)
+// @lsp.typemod.keyword.async (#8c8c8c, LSP)
 async function semanticAsyncKeywordPerGroup(): Promise<number> {
   //^
   return await Promise.resolve(42);
 }
 
-// @lsp.type.escapeSequence (#bb9af7, LSP)
+// @lsp.type.escapeSequence (#8c8c8c, LSP)
 const semanticEscapePerGroup = "line-one\nline-two\tindent";
 //                                      ^^        ^^
 
-// @lsp.type.operator (#bb9af7, LSP)
+// @lsp.type.operator (#8c8c8c, LSP)
 const semanticOperatorValuePerGroup = 5 * 2 - 1;
 //                                      ^   ^
 

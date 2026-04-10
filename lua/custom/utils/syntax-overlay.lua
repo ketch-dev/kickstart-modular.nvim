@@ -205,8 +205,8 @@ local function highlights()
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
     ['@string.regexp'] = { fg = c.blue6 },
-    ['@string.escape'] = { fg = c.magenta },
-    ['@lsp.type.escapeSequence'] = '@string.escape',
+    ['@string.escape'] = '@keyword',
+    ['@lsp.type.escapeSequence'] = '@keyword',
 
     -- Classic Operator stays bright blue-cyan, but Treesitter/LSP operator and selected punctuation captures use the keyword lane.
     Operator = { fg = c.blue5 },
