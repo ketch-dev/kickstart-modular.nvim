@@ -75,7 +75,7 @@ local function highlights()
 
     -- Classic keywords stay cyan and italic, while Treesitter/LSP generic keywords use magenta without italics.
     Keyword = { fg = c.cyan, italic = true },
-    ['@keyword'] = { fg = c.magenta },
+    ['@keyword'] = { fg = '#8c8c8c' },
     ['@keyword.coroutine'] = '@keyword',
     ['@keyword.return'] = '@keyword',
     ['@type.qualifier'] = '@keyword',
@@ -86,19 +86,16 @@ local function highlights()
 
     -- Strong magenta control-flow and declaration-introducing syntax.
     Statement = { fg = c.magenta },
-    Conditional = { fg = c.magenta },
-    Repeat = { fg = c.magenta },
-    Exception = { fg = c.magenta },
     Identifier = { fg = c.magenta },
     Label = { fg = c.magenta },
     Debug = { fg = c.orange },
     htmlH1 = { fg = c.magenta, bold = true },
-    ['@keyword.conditional'] = 'Conditional',
-    ['@keyword.repeat'] = 'Repeat',
-    ['@keyword.exception'] = 'Exception',
-    ['@keyword.function'] = { fg = c.magenta },
+    ['@keyword.conditional'] = '@keyword',
+    ['@keyword.repeat'] = '@keyword',
+    ['@keyword.exception'] = '@keyword',
+    ['@keyword.function'] = '@keyword',
     ['@keyword.debug'] = 'Debug',
-    ['@constructor'] = { fg = c.magenta },
+    ['@constructor'] = '@keyword',
     ['@markup.link.label.symbol'] = 'Identifier',
     ['@tag'] = 'Label',
 
