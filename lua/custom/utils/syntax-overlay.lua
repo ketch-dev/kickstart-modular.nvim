@@ -5,29 +5,29 @@ local did_setup = false
 local function highlights()
   local c = {
     -- ========== Variables ==========
-    var = '#b7c6d9',
-    const = '#d7e4f2',
-    prop = '#94abc4',
+    var = '#7A9CB8',
+    const = '#A9C7E8',
+    prop = '#6F8EA6',
     -------------------------------------------------------------------------------
 
     -- ========== Strings ==========
-    str = '#98b79a',
-    regex = '#b9d3bc',
+    str = '#8FB59A',
+    regex = '#A5D6BE',
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
-    builtinModule = '#9cc4de',
-    module = '#77a6c6',
+    builtinModule = '#9DCAE8',
+    module = '#6FAFD6',
     -------------------------------------------------------------------------------
 
-    keyword = '#7f8fa4',
-    type = '#73b8b0',
-    fn = '#c89a60',
-    bool = '#8ba96a',
-    num = '#d0b36c',
-    preproc = '#c07a53',
-    comment = '#6a6677',
-    error = '#d16969',
+    keyword = '#bbbbbb',
+    type = '#5FA7A1',
+    fn = '#D39B70',
+    bool = '#7E9B5E',
+    num = '#C7A15A',
+    preproc = '#B56D4D',
+    comment = '#625e5a',
+    error = '#C85C5C',
   }
 
   return {
