@@ -4,10 +4,6 @@ local did_setup = false
 
 local function highlights()
   local c = {
-    -- ========== Variables ==========
-    var = '#60a0d7', -- done
-    -------------------------------------------------------------------------------
-
     -- ========== Strings ==========
     str = '#76ac72', -- done
     regex = '#A5D6BE', -- done
@@ -19,6 +15,7 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     keyword = '#B0B9C3', -- done
+    var = '#60a0d7', -- done
     type = '#54b0a9', -- done
     fn = '#cec973', -- done
     bool = '#d97757', -- done
