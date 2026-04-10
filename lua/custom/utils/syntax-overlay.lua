@@ -4,29 +4,31 @@ local did_setup = false
 
 local function highlights()
   local c = {
-    var = '#c0caf5', --  done
-    const = '#7dcfff', -- done
-    prop = '#73daca', -- done
+    var = '#c0caf5',
+    const = '#7dcfff',
+    prop = '#73daca',
 
-    str = '#9ece6a', -- done
-    regex = '#b4f9f8', -- done
+    str = '#9ece6a',
+    regex = '#b4f9f8',
 
-    builtinModule = '#f7768e', -- done
-    module = '#ff9e64', -- done
+    builtinModule = '#f7768e',
+    module = '#ff9e64',
 
-    error = '#db4b4b', -- done
+    keyword = '#8c8c8c',
 
-    comment = '#565f89', -- done
+    type = '#2ac3de',
 
-    preproc = '#ffffff', -- done
+    fn = '#7aa2f7',
 
-    bool = '#165256', -- done
+    bool = '#165256',
 
-    num = '#ff9e64', -- done
+    num = '#ff9e64',
 
-    fn = '#7aa2f7', -- done
+    preproc = '#ffffff',
 
-    type = '#2ac3de', -- done
+    comment = '#565f89',
+
+    error = '#db4b4b',
   }
 
   return {
@@ -52,7 +54,7 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Keyword ==========
-    ['@keyword'] = { fg = '#8c8c8c' },
+    ['@keyword'] = { fg = c.keyword },
     ['@keyword.storage'] = '@keyword',
     ['@keyword.debug'] = '@keyword',
     ['@keyword.operator'] = '@keyword',
