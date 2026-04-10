@@ -40,7 +40,7 @@ function genericValuePerGroup<TItem, TKey extends keyof TItem>(
 import * as ModuleAliasPerGroup from "node:fs";
 //          ^^^^^^^^^^^^^^^^^^^
 
-// @attribute (#7dcfff)
+// @attribute (#7aa2f7)
 function sealedAttributePerGroup() {}
 
 @sealedAttributePerGroup

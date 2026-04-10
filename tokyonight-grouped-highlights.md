@@ -28,23 +28,6 @@ import * as SharedFS from "node:fs";
 import { readFileSync as sharedRead } from "node:fs";
 ```
 
-Decorators use the same cyan because they act like external annotations on surrounding code.
-
-Highlight groups: `@attribute (#7dcfff, TS-specific)`
-
-```ts
-function sealed<T extends Function>(target: T): T {
-  return target;
-}
-
-function track(_target: object, _key: string): void {}
-
-@sealed
-class DecoratedExample {
-  @track value = 1;
-}
-```
-
 Constant identifiers, enum members, and builtin nullish sentinels use the same cyan lane so fixed named values read as language-level signals rather than ordinary data.
 
 Highlight groups: `@constant (#7dcfff)`, `@constant.builtin (#7dcfff)`, `@lsp.type.enumMember (#7dcfff, LSP)`, `@lsp.typemod.enumMember.defaultLibrary (#7dcfff, LSP)`
@@ -188,6 +171,23 @@ const runner = new SharedRunner();
 const joined = runner.join("tokyo", "night");
 const parsedCount = parseInt("42", 10);
 const parsedAgain = parseInt("7", 10);
+```
+
+Decorator names use the same blue callable lane because in TypeScript they are user-defined functions applied through decorator syntax.
+
+Highlight groups: `@attribute (#7aa2f7, TS-specific)`
+
+```ts
+function sealed<T extends Function>(target: T): T {
+  return target;
+}
+
+function track(_target: object, _key: string): void {}
+
+@sealed
+class DecoratedExample {
+  @track value = 1;
+}
 ```
 
 Labels use the same blue, but they are kept separate because they are jump targets rather than callables.

@@ -4,20 +4,28 @@ local did_setup = false
 
 local function highlights()
   local c = {
-    error = '#db4b4b',
+    error = '#db4b4b', -- done
 
-    comment = '#565f89',
+    comment = '#565f89', -- done
 
-    fg = '#c0caf5', -- variable
-    cyan = '#7dcfff', -- constant
-    green1 = '#73daca', -- property
+    var = '#c0caf5', --  done
+    const = '#7dcfff', -- done
+    prop = '#73daca', -- done
 
-    orange = '#ff9e64', -- number and boolean
-    green = '#9ece6a', -- string
-    blue6 = '#b4f9f8', -- regex
-    blue = '#7aa2f7',
+    preproc = '#ffffff', -- done
+
+    bool = '#165256', -- done
+
+    num = '#ff9e64', -- done
+
+    str = '#9ece6a', -- done
+    regex = '#b4f9f8', -- done
+
+    fn = '#7aa2f7', -- done
     blue1 = '#2ac3de',
-    red = '#f7768e',
+
+    builtinModule = '#f7768e', -- done
+    module = '#ff9e64', -- done
   }
 
   return {
@@ -33,18 +41,19 @@ local function highlights()
     ['@comment.warning'] = '@comment',
     -------------------------------------------------------------------------------
 
-    -- Preprocessor-like syntax, decorators, and module aliases in cyan.
-    PreProc = { fg = c.cyan },
-    Define = { fg = c.cyan },
-    ['@annotation'] = 'PreProc',
-    ['@attribute'] = 'PreProc',
-    ['@keyword.directive.define'] = 'Define',
-    ['@constant.macro'] = 'Define',
-    ['@module'] = { fg = c.cyan },
+    -- ========== Preprocess ==========
+    ['@annotation'] = { fg = c.preproc },
+    ['@attribute'] = '@annotation',
+    ['@keyword.directive.define'] = '@annotation',
+    ['@constant.macro'] = '@annotation',
+    ['@lsp.type.decorator'] = '@attribute',
+    ['@lsp.type.deriveHelper'] = '@attribute',
+    -------------------------------------------------------------------------------
 
     -- ========== Keyword ==========
     ['@keyword'] = { fg = '#8c8c8c' },
-    ['@keyword.debug'] = { fg = c.red },
+    ['@keyword.storage'] = '@keyword',
+    ['@keyword.debug'] = '@keyword',
     ['@keyword.operator'] = '@keyword',
     ['@keyword.import'] = '@keyword',
     ['@keyword.directive'] = '@keyword',
@@ -66,6 +75,8 @@ local function highlights()
     ['@string.escape'] = '@keyword',
     ['@lsp.type.escapeSequence'] = '@keyword',
     ['@operator'] = '@keyword',
+    ['@character.printf'] = '@keyword',
+    ['@character.special'] = '@keyword',
     ['@lsp.type.operator'] = '@operator',
     ['@lsp.typemod.operator.injected'] = '@operator',
     -------------------------------------------------------------------------------
@@ -78,7 +89,7 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Callable ==========
-    ['@function'] = { fg = c.blue },
+    ['@function'] = { fg = c.fn },
     ['@function.macro'] = '@function',
     ['@function.builtin'] = '@function',
     ['@function.call'] = '@function',
@@ -88,21 +99,7 @@ local function highlights()
     ['@lsp.typemod.function.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.macro.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.method.defaultLibrary'] = '@function.builtin',
-    ['@label'] = { fg = c.blue },
     -------------------------------------------------------------------------------
-
-    -- Special/type cyan for symbols, delimiters, and type names.
-    SpecialChar = { fg = c.blue1 },
-    ['@character.printf'] = 'SpecialChar',
-    ['@character.special'] = 'SpecialChar',
-    ['@constant.builtin'] = { fg = c.cyan },
-    ['@lsp.type.decorator'] = '@attribute',
-    ['@lsp.type.deriveHelper'] = '@attribute',
-    ['@module.builtin'] = { fg = c.red },
-    ['@constructor.tsx'] = { fg = c.blue1 },
-    ['@tag.delimiter'] = { fg = c.blue1 },
-    ['@tag.attribute'] = '@property',
-    ['@keyword.storage'] = { fg = c.blue1 },
 
     -- ========== Type ==========
     ['@type'] = { fg = c.blue1 },
@@ -120,7 +117,7 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Builtin ==========
-    ['@variable.builtin'] = { fg = c.red },
+    ['@variable.builtin'] = { fg = c.builtinModule },
     ['@lsp.type.selfKeyword'] = '@variable.builtin',
     ['@lsp.type.selfTypeKeyword'] = '@variable.builtin',
     ['@namespace.builtin'] = '@variable.builtin',
@@ -128,9 +125,10 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Variable ==========
-    ['@variable'] = { fg = c.fg },
-    ['@constant'] = { fg = c.cyan },
-    ['@property'] = { fg = c.green1 },
+    ['@variable'] = { fg = c.var },
+    ['@constant'] = { fg = c.const },
+    ['@property'] = { fg = c.prop },
+    ['@label'] = '@variable',
     ['@variable.member'] = '@variable',
     ['@variable.parameter'] = '@variable',
     ['@lsp.type.generic'] = '@variable',
@@ -140,35 +138,34 @@ local function highlights()
     ['@lsp.type.enumMember'] = '@variable.member',
     ['@lsp.type.property'] = '@property',
     ['@lsp.typemod.variable.injected'] = '@variable',
+    ['@constant.builtin'] = '@constant',
     ['@lsp.typemod.variable.static'] = '@constant',
     ['@lsp.typemod.enumMember.defaultLibrary'] = '@constant.builtin',
     ['@lsp.type.namespace'] = '@module', -- name of namespace
     -------------------------------------------------------------------------------
 
     -- ========== Literals ==========
-    ['@boolean'] = { fg = c.orange },
+    ['@boolean'] = { fg = c.bool },
     ['@lsp.type.boolean'] = '@boolean',
 
-    ['@number'] = { fg = c.orange },
+    ['@number'] = { fg = c.num },
     ['@number.float'] = '@number',
     ['@lsp.type.number'] = '@number',
 
-    ['@string'] = { fg = c.green },
+    ['@string'] = { fg = c.str },
     ['@character'] = '@string',
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
     ['@string.documentation'] = '@string',
 
-    ['@string.regexp'] = { fg = c.blue6 },
+    ['@string.regexp'] = { fg = c.regex },
     -------------------------------------------------------------------------------
 
-    -- ['@tag'] = { fg = c.magenta },
-    -- ['@tag.javascript'] = { fg = c.red },
-    -- ['@tag.tsx'] = { fg = c.red },
-    -- ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
-    -- ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
+    ['@module.builtin'] = { fg = c.builtinModule },
+    ['@module'] = { fg = c.module },
+    ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
+    ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
 
-    -- Diff captures get their own direct backgrounds so they stay stable across base themes.
     -- ['@diff.plus'] = { bg = c.diff_add },
     -- ['@diff.delta'] = { bg = c.diff_change },
     -- ['@diff.minus'] = { bg = c.diff_delete },
