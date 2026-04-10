@@ -109,6 +109,7 @@ local function highlights()
     ['@type'] = { fg = c.type },
     ['@type.builtin'] = '@type',
     ['@lsp.type.interface'] = '@type',
+    ['@lsp.type.generic'] = '@type',
     ['@type.definition'] = '@type',
     ['@lsp.type.enum'] = '@type',
     ['@lsp.type.typeAlias'] = '@type.definition',
@@ -133,8 +134,7 @@ local function highlights()
     ['@variable'] = { fg = c.var },
     ['@lsp.type.variable'] = '@variable',
     ['@lsp.typemod.variable.injected'] = '@variable',
-    ['@lsp.type.generic'] = '@variable',
-    ['@label'] = '@variable',
+    ['@label'] = '@variable', -- name of iteration in js
 
     ['@variable.parameter'] = '@variable',
     ['@lsp.type.parameter'] = '@variable.parameter',
