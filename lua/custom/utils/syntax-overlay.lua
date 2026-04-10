@@ -74,7 +74,6 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Keyword-like ==========
-    ['@constructor'] = '@keyword',
     ['@string.escape'] = '@keyword',
     ['@lsp.type.escapeSequence'] = '@keyword',
     ['@operator'] = '@keyword',
@@ -103,6 +102,7 @@ local function highlights()
     ['@lsp.typemod.function.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.macro.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.method.defaultLibrary'] = '@function.builtin',
+    ['@constructor'] = '@function',
     -------------------------------------------------------------------------------
 
     -- ========== Type ==========
@@ -160,10 +160,10 @@ local function highlights()
     ['@lsp.type.number'] = '@number',
 
     ['@string'] = { fg = c.str },
-    ['@character'] = '@string',
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
     ['@string.documentation'] = '@string',
+    ['@character'] = '@string',
 
     ['@string.regexp'] = { fg = c.regex },
     -------------------------------------------------------------------------------
