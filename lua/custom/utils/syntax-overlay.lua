@@ -36,22 +36,20 @@ local function highlights()
     ['@comment.note'] = { fg = c.hint },
     ['@comment.todo'] = { fg = c.blue },
     ['@comment.warning'] = { fg = c.warning },
-    ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
     -------------------------------------------------------------------------------
 
     -- Preprocessor-like syntax, decorators, and module aliases in cyan.
     PreProc = { fg = c.cyan },
     Define = { fg = c.cyan },
-    Macro = { fg = c.cyan },
     ['@annotation'] = 'PreProc',
     ['@attribute'] = 'PreProc',
     ['@keyword.directive.define'] = 'Define',
     ['@constant.macro'] = 'Define',
-    ['@function.macro'] = 'Macro',
     ['@module'] = { fg = c.cyan },
 
     -- ========== Keyword ==========
     ['@keyword'] = { fg = '#8c8c8c' },
+    ['@keyword.debug'] = { fg = c.orange },
     ['@keyword.operator'] = '@keyword',
     ['@keyword.import'] = '@keyword',
     ['@keyword.directive'] = '@keyword',
@@ -61,7 +59,6 @@ local function highlights()
     ['@keyword.repeat'] = '@keyword',
     ['@keyword.return'] = '@keyword',
     ['@keyword.coroutine'] = '@keyword',
-    ['@keyword.debug'] = { fg = c.orange },
     ['@lsp.type.keyword'] = '@keyword',
     ['@lsp.typemod.keyword.injected'] = '@keyword',
     ['@type.qualifier'] = '@keyword',
@@ -84,22 +81,25 @@ local function highlights()
 
     ['@tag'] = { fg = c.magenta },
 
-    -- Callable blue and Treesitter labels.
+    -- ========== Callable ==========
     ['@function'] = { fg = c.blue },
+    ['@function.macro'] = '@function',
+    ['@function.builtin'] = '@function',
     ['@function.call'] = '@function',
     ['@function.method'] = '@function',
     ['@function.method.call'] = '@function.method',
+    ['@lsp.typemod.variable.callable'] = '@function',
     ['@lsp.typemod.function.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.macro.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.method.defaultLibrary'] = '@function.builtin',
     ['@label'] = { fg = c.blue },
+    -------------------------------------------------------------------------------
 
     -- Special/type cyan for symbols, delimiters, and type names.
     SpecialChar = { fg = c.blue1 },
     ['@character.printf'] = 'SpecialChar',
     ['@character.special'] = 'SpecialChar',
     ['@constant.builtin'] = { fg = c.cyan },
-    ['@function.builtin'] = '@function',
     ['@lsp.type.decorator'] = '@attribute',
     ['@lsp.type.deriveHelper'] = '@attribute',
     ['@module.builtin'] = { fg = c.red },
@@ -143,7 +143,6 @@ local function highlights()
     ['@lsp.type.parameter'] = '@variable.parameter',
     ['@lsp.type.property'] = '@property',
     ['@lsp.type.variable'] = {},
-    ['@lsp.typemod.variable.callable'] = '@function',
     ['@lsp.typemod.variable.injected'] = '@variable',
 
     -- Value-like syntax in orange and parameter-adjacent yellow.
@@ -172,6 +171,7 @@ local function highlights()
     -- Brackets and TSX delimiters.
     ['@tag.delimiter.tsx'] = { fg = c.tag_delimiter_tsx },
 
+    ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
     -- Diff captures get their own direct backgrounds so they stay stable across base themes.
     -- ['@diff.plus'] = { bg = c.diff_add },
     -- ['@diff.delta'] = { bg = c.diff_change },
