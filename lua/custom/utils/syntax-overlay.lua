@@ -121,7 +121,8 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Builtin ==========
-    ['@variable.builtin'] = { fg = c.builtinModule },
+    ['@module.builtin'] = { fg = c.builtinModule },
+    ['@variable.builtin'] = '@module.builtin',
     ['@lsp.type.selfKeyword'] = '@variable.builtin',
     ['@lsp.type.selfTypeKeyword'] = '@variable.builtin',
     ['@namespace.builtin'] = '@variable.builtin',
@@ -130,22 +131,24 @@ local function highlights()
 
     -- ========== Variable ==========
     ['@variable'] = { fg = c.var },
-    ['@constant'] = { fg = c.const },
-    ['@property'] = { fg = c.prop },
-    ['@label'] = '@variable',
-    ['@variable.member'] = '@variable',
-    ['@variable.parameter'] = '@variable',
-    ['@lsp.type.generic'] = '@variable',
-    ['@lsp.type.namespace.python'] = '@variable',
-    ['@lsp.type.parameter'] = '@variable.parameter',
     ['@lsp.type.variable'] = '@variable',
-    ['@lsp.type.enumMember'] = '@variable.member',
-    ['@lsp.type.property'] = '@property',
     ['@lsp.typemod.variable.injected'] = '@variable',
+    ['@lsp.type.generic'] = '@variable',
+    ['@label'] = '@variable',
+
+    ['@variable.parameter'] = '@variable',
+    ['@lsp.type.parameter'] = '@variable.parameter',
+
+    ['@variable.member'] = '@variable',
+    ['@lsp.type.enumMember'] = '@variable.member',
+    ['@lsp.typemod.enumMember.defaultLibrary'] = '@variable.member',
+
+    ['@constant'] = { fg = c.const },
     ['@constant.builtin'] = '@constant',
     ['@lsp.typemod.variable.static'] = '@constant',
-    ['@lsp.typemod.enumMember.defaultLibrary'] = '@constant.builtin',
-    ['@lsp.type.namespace'] = '@module', -- name of namespace
+
+    ['@property'] = { fg = c.prop },
+    ['@lsp.type.property'] = '@property',
     -------------------------------------------------------------------------------
 
     -- ========== Literals ==========
@@ -166,8 +169,9 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
-    ['@module.builtin'] = { fg = c.builtinModule },
     ['@module'] = { fg = c.module },
+    ['@lsp.type.namespace.python'] = '@module', -- name of namespace
+    ['@lsp.type.namespace'] = '@module', -- name of namespace
     -------------------------------------------------------------------------------
 
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
