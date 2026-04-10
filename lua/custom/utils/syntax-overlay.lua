@@ -22,7 +22,6 @@ local function highlights()
     magenta = '#bb9af7',
     red = '#f7768e',
     parameter_builtin = '#dab484',
-    terminal_black = '#414868',
     tag_delimiter_tsx = '#5d7ab8',
   }
 
@@ -49,7 +48,6 @@ local function highlights()
     ['@keyword.directive.define'] = 'Define',
     ['@constant.macro'] = 'Define',
     ['@function.macro'] = 'Macro',
-    ['@markup.environment'] = 'Macro',
     ['@module'] = { fg = c.cyan },
 
     -- ========== Keyword ==========
@@ -84,7 +82,6 @@ local function highlights()
     ['@punctuation.special'] = '@keyword',
     -------------------------------------------------------------------------------
 
-    ['@markup.link.label.symbol'] = { fg = c.magenta },
     ['@tag'] = { fg = c.magenta },
 
     -- Callable blue and Treesitter labels.
@@ -96,9 +93,6 @@ local function highlights()
     ['@lsp.typemod.macro.defaultLibrary'] = '@function.builtin',
     ['@lsp.typemod.method.defaultLibrary'] = '@function.builtin',
     ['@label'] = { fg = c.blue },
-    ['@markup.heading'] = { fg = c.blue, bold = true },
-    ['@markup.list.unchecked'] = { fg = c.blue },
-    ['@markup.raw.markdown_inline'] = { fg = c.blue, bg = c.terminal_black },
 
     -- Special/type cyan for symbols, delimiters, and type names.
     SpecialChar = { fg = c.blue1 },
@@ -110,14 +104,11 @@ local function highlights()
     ['@lsp.type.deriveHelper'] = '@attribute',
     ['@module.builtin'] = { fg = c.red },
     ['@constructor.tsx'] = { fg = c.blue1 },
-    ['@markup.link.label'] = 'SpecialChar',
-    ['@markup.math'] = { fg = c.blue1 },
     ['@tag.delimiter'] = { fg = c.blue1 },
     ['@tag.attribute'] = '@property',
     ['@type'] = { fg = c.blue1 },
     ['@type.definition'] = { fg = c.blue1 },
     ['@keyword.storage'] = { fg = c.blue1 },
-    ['@markup.environment.name'] = '@type',
     ['@lsp.type.enum'] = '@type',
     ['@lsp.type.typeAlias'] = '@type.definition',
     ['@lsp.type.builtinType'] = '@type.builtin',
@@ -169,7 +160,6 @@ local function highlights()
 
     -- Textual syntax in green and regex cyan.
     ['@string'] = { fg = c.green },
-    ['@markup.raw'] = '@string',
     ['@character'] = '@string',
     ['@lsp.type.string'] = '@string',
     ['@lsp.typemod.string.injected'] = '@string',
@@ -177,8 +167,7 @@ local function highlights()
 
     ['@lsp.type.operator'] = '@operator',
     ['@lsp.typemod.operator.injected'] = '@operator',
-    ['@markup.list'] = { fg = c.blue5 },
-    ['@lsp.type.formatSpecifier'] = '@markup.list',
+    ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
 
     -- Brackets and TSX delimiters.
     ['@tag.delimiter.tsx'] = { fg = c.tag_delimiter_tsx },
