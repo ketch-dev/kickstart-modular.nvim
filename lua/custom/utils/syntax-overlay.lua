@@ -4,13 +4,19 @@ local did_setup = false
 
 local function highlights()
   local c = {
-    error = '#db4b4b', -- done
-
-    comment = '#565f89', -- done
-
     var = '#c0caf5', --  done
     const = '#7dcfff', -- done
     prop = '#73daca', -- done
+
+    str = '#9ece6a', -- done
+    regex = '#b4f9f8', -- done
+
+    builtinModule = '#f7768e', -- done
+    module = '#ff9e64', -- done
+
+    error = '#db4b4b', -- done
+
+    comment = '#565f89', -- done
 
     preproc = '#ffffff', -- done
 
@@ -18,14 +24,9 @@ local function highlights()
 
     num = '#ff9e64', -- done
 
-    str = '#9ece6a', -- done
-    regex = '#b4f9f8', -- done
-
     fn = '#7aa2f7', -- done
-    blue1 = '#2ac3de',
 
-    builtinModule = '#f7768e', -- done
-    module = '#ff9e64', -- done
+    type = '#2ac3de', -- done
   }
 
   return {
@@ -77,6 +78,7 @@ local function highlights()
     ['@operator'] = '@keyword',
     ['@character.printf'] = '@keyword',
     ['@character.special'] = '@keyword',
+    ['@lsp.type.formatSpecifier'] = '@keyword',
     ['@lsp.type.operator'] = '@operator',
     ['@lsp.typemod.operator.injected'] = '@operator',
     -------------------------------------------------------------------------------
@@ -102,7 +104,7 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Type ==========
-    ['@type'] = { fg = c.blue1 },
+    ['@type'] = { fg = c.type },
     ['@type.builtin'] = '@type',
     ['@lsp.type.interface'] = '@type',
     ['@type.definition'] = '@type',
@@ -161,9 +163,11 @@ local function highlights()
     ['@string.regexp'] = { fg = c.regex },
     -------------------------------------------------------------------------------
 
+    -- ========== Modules ==========
     ['@module.builtin'] = { fg = c.builtinModule },
     ['@module'] = { fg = c.module },
-    ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
+    -------------------------------------------------------------------------------
+
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
 
     -- ['@diff.plus'] = { bg = c.diff_add },
