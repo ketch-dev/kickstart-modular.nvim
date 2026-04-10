@@ -4,21 +4,19 @@ local did_setup = false
 
 local function highlights()
   local c = {
-    comment = '#565f89',
     error = '#db4b4b',
-    warning = '#e0af68',
-    info = '#0db9d7',
-    hint = '#1abc9c',
-    fg = '#c0caf5',
-    orange = '#ff9e64',
-    green = '#9ece6a',
-    green1 = '#73daca',
+
+    comment = '#565f89',
+
+    fg = '#c0caf5', -- variable
+    cyan = '#7dcfff', -- constant
+    green1 = '#73daca', -- property
+
+    orange = '#ff9e64', -- number and boolean
+    green = '#9ece6a', -- string
+    blue6 = '#b4f9f8', -- regex
     blue = '#7aa2f7',
     blue1 = '#2ac3de',
-    blue5 = '#89ddff',
-    blue6 = '#b4f9f8',
-    cyan = '#7dcfff',
-    magenta = '#bb9af7',
     red = '#f7768e',
   }
 
@@ -27,12 +25,12 @@ local function highlights()
     ['@comment'] = { fg = c.comment },
     ['@lsp.type.comment'] = '@comment',
     ['@comment.documentation'] = '@comment',
-    ['@comment.error'] = { fg = c.error },
-    ['@comment.hint'] = { fg = c.hint },
-    ['@comment.info'] = { fg = c.info },
-    ['@comment.note'] = { fg = c.hint },
-    ['@comment.todo'] = { fg = c.blue },
-    ['@comment.warning'] = { fg = c.warning },
+    ['@comment.error'] = '@comment',
+    ['@comment.hint'] = '@comment',
+    ['@comment.info'] = '@comment',
+    ['@comment.note'] = '@comment',
+    ['@comment.todo'] = '@comment',
+    ['@comment.warning'] = '@comment',
     -------------------------------------------------------------------------------
 
     -- Preprocessor-like syntax, decorators, and module aliases in cyan.
@@ -164,11 +162,11 @@ local function highlights()
     ['@string.regexp'] = { fg = c.blue6 },
     -------------------------------------------------------------------------------
 
-    ['@tag'] = { fg = c.magenta },
-    ['@tag.javascript'] = { fg = c.red },
-    ['@tag.tsx'] = { fg = c.red },
-    ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
-    ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
+    -- ['@tag'] = { fg = c.magenta },
+    -- ['@tag.javascript'] = { fg = c.red },
+    -- ['@tag.tsx'] = { fg = c.red },
+    -- ['@lsp.type.formatSpecifier'] = { fg = c.blue5 },
+    -- ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
 
     -- Diff captures get their own direct backgrounds so they stay stable across base themes.
     -- ['@diff.plus'] = { bg = c.diff_add },
