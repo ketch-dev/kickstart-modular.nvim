@@ -5,9 +5,7 @@ local did_setup = false
 local function highlights()
   local c = {
     -- ========== Variables ==========
-    var = '#60a0d7',
-    prop = '#6F8EA6',
-    const = '#A9C7E8',
+    var = '#60a0d7', -- done
     -------------------------------------------------------------------------------
 
     -- ========== Strings ==========
@@ -21,7 +19,7 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     keyword = '#B0B9C3', -- done
-    type = '#54b0a9',
+    type = '#54b0a9', -- done
     fn = '#cec973', -- done
     bool = '#d97757', -- done
     num = '#a773d9', -- done
@@ -169,11 +167,11 @@ local function highlights()
     ['@lsp.type.enumMember'] = '@variable.member',
     ['@lsp.typemod.enumMember.defaultLibrary'] = '@variable.member',
 
-    ['@constant'] = { fg = c.const },
+    ['@constant'] = '@variable',
     ['@constant.builtin'] = '@constant',
     ['@lsp.typemod.variable.static'] = '@constant',
 
-    ['@property'] = { fg = c.prop },
+    ['@property'] = '@variable',
     ['@lsp.type.property'] = '@property',
     -------------------------------------------------------------------------------
 
