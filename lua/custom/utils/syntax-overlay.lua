@@ -106,9 +106,13 @@ local function highlights()
     ['@constructor.tsx'] = { fg = c.blue1 },
     ['@tag.delimiter'] = { fg = c.blue1 },
     ['@tag.attribute'] = '@property',
-    ['@type'] = { fg = c.blue1 },
-    ['@type.definition'] = { fg = c.blue1 },
     ['@keyword.storage'] = { fg = c.blue1 },
+
+    -- ========== Type ==========
+    ['@type'] = { fg = c.blue1 },
+    ['@type.builtin'] = '@type',
+    ['@lsp.type.interface'] = '@type',
+    ['@type.definition'] = '@type',
     ['@lsp.type.enum'] = '@type',
     ['@lsp.type.typeAlias'] = '@type.definition',
     ['@lsp.type.builtinType'] = '@type.builtin',
@@ -117,19 +121,19 @@ local function highlights()
     ['@lsp.typemod.struct.defaultLibrary'] = '@type.builtin',
     ['@lsp.typemod.type.defaultLibrary'] = '@type.builtin',
     ['@lsp.typemod.typeAlias.defaultLibrary'] = '@type.builtin',
+    -------------------------------------------------------------------------------
 
-    -- Builtin and interface semantic tokens stay on the main type lane.
-    ['@type.builtin'] = '@type',
-    ['@lsp.type.interface'] = '@type',
-
-    -- Runtime builtins and TSX tag names stay red.
+    -- ========== Builtin ==========
     ['@variable.builtin'] = { fg = c.red },
-    ['@namespace.builtin'] = '@variable.builtin',
-    ['@tag.javascript'] = { fg = c.red },
-    ['@tag.tsx'] = { fg = c.red },
     ['@lsp.type.selfKeyword'] = '@variable.builtin',
     ['@lsp.type.selfTypeKeyword'] = '@variable.builtin',
+    ['@namespace.builtin'] = '@variable.builtin',
     ['@lsp.typemod.variable.defaultLibrary'] = '@variable.builtin',
+    -------------------------------------------------------------------------------
+
+    -- Runtime builtins and TSX tag names stay red.
+    ['@tag.javascript'] = { fg = c.red },
+    ['@tag.tsx'] = { fg = c.red },
 
     -- Neutral variables, members, and parameters.
     ['@variable'] = { fg = c.fg },
