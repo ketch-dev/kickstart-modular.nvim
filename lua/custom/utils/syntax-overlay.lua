@@ -5,13 +5,13 @@ local did_setup = false
 local function highlights()
   local c = {
     -- ========== Variables ==========
-    var = '#7A9CB8',
+    var = '#7b9ebd',
     const = '#A9C7E8',
     prop = '#6F8EA6',
     -------------------------------------------------------------------------------
 
     -- ========== Strings ==========
-    str = '#8FB59A',
+    str = '#7da47a',
     regex = '#A5D6BE',
     -------------------------------------------------------------------------------
 
@@ -24,10 +24,37 @@ local function highlights()
     type = '#5FA7A1',
     fn = '#D39B70',
     bool = '#7E9B5E',
-    num = '#C7A15A',
+    num = '#a782c9',
     preproc = '#B56D4D',
     comment = '#625e5a',
     error = '#C85C5C',
+  }
+
+  local token = {
+    -- ========== Variables ==========
+    var = '#e8e4dc',
+    const = '#a68bbf',
+    prop = '#e8e4dc',
+    -------------------------------------------------------------------------------
+
+    -- ========== Strings ==========
+    str = '#7da47a',
+    regex = '#a68bbf',
+    -------------------------------------------------------------------------------
+
+    -- ========== Modules ==========
+    builtinModule = '#7b9ebd',
+    module = '#7b9ebd',
+    -------------------------------------------------------------------------------
+
+    keyword = '#c4956a',
+    type = '#7b9ebd',
+    fn = '#d97757',
+    bool = '#c4956a',
+    num = '#a68bbf',
+    preproc = '#a68bbf',
+    comment = '#938e87',
+    error = '#c67777',
   }
 
   return {
