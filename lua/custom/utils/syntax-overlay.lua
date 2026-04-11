@@ -4,13 +4,11 @@ local oklch = require('custom.utils.oklch').to_hex
 
 local did_setup = false
 
-local function hue(h) return oklch(72, 12, h) end
-local function neutral_hue(h) return oklch(72, 2, h) end
-local function subtle_hue(h) return oklch(45, 2, h) end
+local function hue(h) return oklch(70, 9, h) end
 
 local function highlights()
-  local nc1_steel = neutral_hue(240)
-  local sc1_grey = neutral_hue(240)
+  local nc45 = oklch(45, 0, 0)
+  local nc70 = oklch(70, 0, 0)
 
   local c1_red = hue(0)
   local c2_orange = hue(30)
@@ -27,8 +25,8 @@ local function highlights()
 
   local c = {
     -- ========== Neutral ==========
-    keyword = nc1_steel,
-    comment = sc1_grey,
+    comment = nc45,
+    keyword = nc70,
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========

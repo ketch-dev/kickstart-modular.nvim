@@ -1,8 +1,9 @@
 require('lazy').setup({
+  require 'custom.plugins.themes.gruvbox',
   -- require 'custom.plugins.themes.github-theme',
   -- require 'custom.plugins.themes.vscode',
   -- require 'custom.plugins.themes.vscode-syntax-blend',
-  require 'custom.plugins.kanagawa',
+  -- require 'custom.plugins.kanagawa',
 
   require 'custom.plugins.flash',
   require 'custom.plugins.bufferline',

@@ -1,10 +1,10 @@
 require 'options'
 require 'notify-vscode'
 require 'keymaps'
-require('custom.utils.syntax-overlay').setup()
 
 require 'lazy-bootstrap'
 require 'lazy-plugins'
+require('custom.utils.syntax-overlay').setup()
 
 -- ========== IDEAS ==========
 -- Also search (find) keys
