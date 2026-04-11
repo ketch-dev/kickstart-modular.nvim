@@ -14,7 +14,7 @@ return {
     end,
     opts = {
       options = {
-        separator_style = "slant",
+        separator_style = 'slant',
         mode = 'tabs',
         always_show_bufferline = true,
         show_buffer_icons = false,
@@ -28,9 +28,7 @@ return {
           right = function()
             local cwd = vim.fn.getcwd()
             local cwd_name = vim.fn.fnamemodify(cwd, ':t')
-            if cwd_name == '' then
-              cwd_name = cwd
-            end
+            if cwd_name == '' then cwd_name = cwd end
 
             local ok, mini_files_dir_hl = pcall(vim.api.nvim_get_hl, 0, { name = 'MiniFilesDirectory', link = false })
 
@@ -42,9 +40,7 @@ return {
             }
           end,
         },
-        name_formatter = function(_)
-          return ''
-        end, 
+        name_formatter = function(_) return '' end,
         middle_mouse_command = function(id)
           local close = require('bufferline.config').options.close_command
           if type(close) == 'function' then

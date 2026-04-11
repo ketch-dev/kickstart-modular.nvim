@@ -4,58 +4,49 @@ local oklch = require('custom.utils.oklch').to_hex
 
 local did_setup = false
 
-local function hue(h) return oklch(70, 9, h) end
-
 local function highlights()
-  local nc45 = oklch(45, 0, 0)
   local nc70 = oklch(70, 0, 0)
 
-  local c1_red = hue(0)
-  local c2_orange = hue(30)
-  local c3_yellow = hue(60)
-  local c4_lime = hue(90)
-  local c5_green = hue(120)
-  local c6_teal = hue(150)
-  local c7_cyan = hue(180)
-  local c8_sky = hue(210)
-  local c9_blue = hue(240)
-  local c10_violet = hue(270)
-  local c11_magenta = hue(300)
-  local c12_pink = hue(330)
+  local r = hsl(0, 52, 64)
+  local o = hsl(27, 51, 60)
+  local y = hsl(62, 39, 58)
+  local l = hsl(95, 27, 57)
+  local g = hsl(125, 22, 55)
+  local t = hsl(165, 29, 56)
+  local b = hsl(205, 39, 60)
+  local v = hsl(235, 34, 62)
+  local p = hsl(275, 32, 65)
+  local x = hsl(318, 40, 63)
 
   local c = {
-    -- ========== Neutral ==========
-    comment = nc45,
-    keyword = nc70,
+    -- ========== Outside palette ==========
+    error = '#c85151',
+    comment = '#555555',
+    keyword = '#9e9e9e',
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
-    builtinModule = c7_cyan,
-    module = c8_sky,
+    builtinModule = ,
+    module = ,
     -------------------------------------------------------------------------------
 
     -- ========== Vars ==========
-    var = c9_blue,
-    type = c10_violet,
+    var = ,
+    type = ,
     -------------------------------------------------------------------------------
 
     -- ========== Act ==========
-    fn = c3_yellow,
-    preproc = c2_orange,
-    -------------------------------------------------------------------------------
-
-    -- ========== Strings ==========
-    str = c5_green,
-    regex = c4_lime,
+    fn = y,
+    preproc = o,
     -------------------------------------------------------------------------------
 
     -- ========== Numbers ==========
-    num = c11_magenta,
-    float = c12_pink,
+    num = ,
+    float = ,
     -------------------------------------------------------------------------------
 
-    bool = c6_teal,
-    error = c1_red,
+    str = g,
+    bool = ,
   }
 
   return {
@@ -192,7 +183,7 @@ local function highlights()
     ['@string.documentation'] = '@string',
     ['@character'] = '@string',
 
-    ['@string.regexp'] = { fg = c.regex },
+    ['@string.regexp'] = { fg = c.str, italic = true },
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
