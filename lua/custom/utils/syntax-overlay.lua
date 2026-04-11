@@ -1,55 +1,63 @@
 local M = {}
 
+local oklch = require('custom.utils.oklch').to_hex
+
 local did_setup = false
 
+local function hue(h) return oklch(72, 12, h) end
+local function neutral_hue(h) return oklch(72, 2, h) end
+local function subtle_hue(h) return oklch(45, 2, h) end
+
 local function highlights()
+  local nc1_steel = neutral_hue(240)
+  local sc1_grey = neutral_hue(240)
+
+  local c1_red = hue(0)
+  local c2_orange = hue(30)
+  local c3_yellow = hue(60)
+  local c4_lime = hue(90)
+  local c5_green = hue(120)
+  local c6_teal = hue(150)
+  local c7_cyan = hue(180)
+  local c8_sky = hue(210)
+  local c9_blue = hue(240)
+  local c10_violet = hue(270)
+  local c11_magenta = hue(300)
+  local c12_pink = hue(330)
+
   local c = {
-    -- ========== Strings ==========
-    str = '#76ac72', -- done
-    regex = '#A5D6BE', -- done
+    -- ========== Neutral ==========
+    keyword = nc1_steel,
+    comment = sc1_grey,
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
-    builtinModule = '#9DCAE8',
-    module = '#6FAFD6',
+    builtinModule = c7_cyan,
+    module = c8_sky,
     -------------------------------------------------------------------------------
 
-    keyword = '#B0B9C3', -- done
-    var = '#60a0d7', -- done
-    type = '#54b0a9', -- done
-    fn = '#cec973', -- done
-    bool = '#d97757', -- done
-    num = '#a773d9', -- done
-    preproc = '#B56D4D', --done
-    comment = '#625e5a', -- done
-    error = '#ae3d3d', -- done
-  }
+    -- ========== Vars ==========
+    var = c9_blue,
+    type = c10_violet,
+    -------------------------------------------------------------------------------
 
-  local token = {
-    -- ========== Variables ==========
-    var = '#e8e4dc',
-    const = '#a68bbf',
-    prop = '#e8e4dc',
+    -- ========== Act ==========
+    fn = c3_yellow,
+    preproc = c2_orange,
     -------------------------------------------------------------------------------
 
     -- ========== Strings ==========
-    str = '#7da47a',
-    regex = '#a68bbf',
+    str = c5_green,
+    regex = c4_lime,
     -------------------------------------------------------------------------------
 
-    -- ========== Modules ==========
-    builtinModule = '#7b9ebd',
-    module = '#7b9ebd',
+    -- ========== Numbers ==========
+    num = c11_magenta,
+    float = c12_pink,
     -------------------------------------------------------------------------------
 
-    keyword = '#c4956a',
-    type = '#7b9ebd',
-    fn = '#d97757',
-    bool = '#c4956a',
-    num = '#a68bbf',
-    preproc = '#a68bbf',
-    comment = '#938e87',
-    error = '#c67777',
+    bool = c6_teal,
+    error = c1_red,
   }
 
   return {
@@ -177,8 +185,8 @@ local function highlights()
     ['@lsp.type.boolean'] = '@boolean',
 
     ['@number'] = { fg = c.num },
-    ['@number.float'] = '@number',
     ['@lsp.type.number'] = '@number',
+    ['@number.float'] = { fg = c.float },
 
     ['@string'] = { fg = c.str },
     ['@lsp.type.string'] = '@string',
