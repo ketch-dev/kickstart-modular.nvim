@@ -5,17 +5,17 @@ local hsl = require('custom.utils.hsl').to_hex
 local did_setup = false
 
 local function highlights()
-  local r = hsl(0, 52, 64) -- booleal
-  local o = hsl(27, 51, 60) -- preproc
-  local y = hsl(62, 39, 58) -- function
-  local l = hsl(95, 27, 57) -- module
-  local g = hsl(125, 22, 55) -- string
-  local t = hsl(165, 29, 56) -- built-in module
-  local b = hsl(205, 39, 60) -- variable
-  local v = hsl(235, 34, 62) -- type
-  local p = hsl(275, 32, 65) -- number
+  local builtin = hsl(0, 52, 64)
+  local preproc = hsl(27, 51, 60)
+  local fn = hsl(62, 39, 58)
+  local mod = hsl(95, 27, 57)
+  local string = hsl(125, 22, 55)
+  local boolean = hsl(165, 29, 56)
+  local variable = hsl(205, 39, 60)
+  local type = hsl(235, 34, 62)
+  local number = hsl(275, 32, 65)
 
-  -- num, bool, module, built-in module
+  -- bool, module, built-in module, type
   local c = {
     -- ========== Outside palette ==========
     error = '#c85151',
@@ -24,24 +24,23 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
-    builtinModule = t,
-    module = l,
+    builtinModule = builtin,
+    module = mod,
     -------------------------------------------------------------------------------
 
     -- ========== Vars ==========
-    -- var = '#dddddd',
-    var = b,
-    type = v,
+    var = variable,
+    type = type,
     -------------------------------------------------------------------------------
 
     -- ========== Act ==========
-    fn = y,
-    preproc = o,
+    fn = fn,
+    preproc = preproc,
     -------------------------------------------------------------------------------
 
-    num = p,
-    str = g,
-    bool = r,
+    num = number,
+    str = string,
+    bool = boolean,
   }
 
   return {
