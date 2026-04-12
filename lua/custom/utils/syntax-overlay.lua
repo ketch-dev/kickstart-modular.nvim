@@ -5,7 +5,7 @@ local hsl = require('custom.utils.hsl').to_hex
 local did_setup = false
 
 local function highlights()
-  local neutral = '#bbbbbb'
+  local neutral = '#aaaaaa'
   local builtin = hsl(0, 52, 64)
   local preproc = hsl(27, 51, 60)
   local fn = hsl(62, 39, 58)
