@@ -90,6 +90,7 @@ return {
         angularls = {
           filetypes = { 'typescript', 'htmlangular' },
         },
+        gopls = {},
         lua_ls = {
           settings = {
             Lua = {
