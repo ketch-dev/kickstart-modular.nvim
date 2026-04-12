@@ -19,13 +19,26 @@ const commentAnchor = true;
 
 ## Boundary Cyan `#7dcfff`
 
-Module aliases use cyan because they point at code boundaries and things that come from elsewhere.
+Module aliases use cyan because they point at code boundaries and things that come from elsewhere. In Go, this capture applies to package/import declaration identifiers, not later selector uses.
 
 Highlight groups: `@module (#7dcfff)`
 
 ```ts
 import * as SharedFS from "node:fs";
 import { readFileSync as sharedRead } from "node:fs";
+```
+
+```go
+package forestdemo
+
+import (
+  fmtpkg "fmt"
+  regexppkg "regexp"
+)
+
+func showModuleDemo() {
+  fmtpkg.Println(regexppkg.MustCompile("forest"))
+}
 ```
 
 Constant identifiers, enum members, and builtin nullish sentinels use the same cyan lane so fixed named values read as language-level signals rather than ordinary data.

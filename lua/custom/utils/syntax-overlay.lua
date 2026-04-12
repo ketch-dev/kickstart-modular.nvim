@@ -1,38 +1,37 @@
 local M = {}
 
-local oklch = require('custom.utils.oklch').to_hex
+local hsl = require('custom.utils.hsl').to_hex
 
 local did_setup = false
 
 local function highlights()
-  local nc70 = oklch(70, 0, 0)
+  local r = hsl(0, 52, 64) -- booleal
+  local o = hsl(27, 51, 60) -- preproc
+  local y = hsl(62, 39, 58) -- function
+  local l = hsl(95, 27, 57) -- module
+  local g = hsl(125, 22, 55) -- string
+  local t = hsl(165, 29, 56) -- built-in module
+  local b = hsl(205, 39, 60) -- variable
+  local v = hsl(235, 34, 62) -- type
+  local p = hsl(275, 32, 65) -- number
 
-  local r = hsl(0, 52, 64)
-  local o = hsl(27, 51, 60)
-  local y = hsl(62, 39, 58)
-  local l = hsl(95, 27, 57)
-  local g = hsl(125, 22, 55)
-  local t = hsl(165, 29, 56)
-  local b = hsl(205, 39, 60)
-  local v = hsl(235, 34, 62)
-  local p = hsl(275, 32, 65)
-  local x = hsl(318, 40, 63)
-
+  -- num, bool, module, built-in module
   local c = {
     -- ========== Outside palette ==========
     error = '#c85151',
     comment = '#555555',
-    keyword = '#9e9e9e',
+    keyword = '#cccccc',
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
-    builtinModule = ,
-    module = ,
+    builtinModule = t,
+    module = l,
     -------------------------------------------------------------------------------
 
     -- ========== Vars ==========
-    var = ,
-    type = ,
+    -- var = '#dddddd',
+    var = b,
+    type = v,
     -------------------------------------------------------------------------------
 
     -- ========== Act ==========
@@ -40,13 +39,9 @@ local function highlights()
     preproc = o,
     -------------------------------------------------------------------------------
 
-    -- ========== Numbers ==========
-    num = ,
-    float = ,
-    -------------------------------------------------------------------------------
-
+    num = p,
     str = g,
-    bool = ,
+    bool = r,
   }
 
   return {
@@ -175,7 +170,7 @@ local function highlights()
 
     ['@number'] = { fg = c.num },
     ['@lsp.type.number'] = '@number',
-    ['@number.float'] = { fg = c.float },
+    ['@number.float'] = '@number',
 
     ['@string'] = { fg = c.str },
     ['@lsp.type.string'] = '@string',
