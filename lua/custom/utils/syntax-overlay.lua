@@ -5,6 +5,7 @@ local hsl = require('custom.utils.hsl').to_hex
 local did_setup = false
 
 local function highlights()
+  local neutral = '#bbbbbb'
   local builtin = hsl(0, 52, 64)
   local preproc = hsl(27, 51, 60)
   local fn = hsl(62, 39, 58)
@@ -20,7 +21,7 @@ local function highlights()
     -- ========== Outside palette ==========
     error = '#c85151',
     comment = '#555555',
-    keyword = '#cccccc',
+    keyword = neutral,
     -------------------------------------------------------------------------------
 
     -- ========== Modules ==========
@@ -66,7 +67,8 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== Keyword ==========
-    ['@keyword'] = { fg = c.keyword },
+    ['@keyword'] = { fg = neutral, italic = true },
+    ['@keyword.type'] = '@keyword',
     ['@keyword.storage'] = '@keyword',
     ['@keyword.debug'] = '@keyword',
     ['@keyword.operator'] = '@keyword',
@@ -85,22 +87,22 @@ local function highlights()
     ['@lsp.type.lifetime'] = '@keyword.storage',
     -------------------------------------------------------------------------------
 
-    -- ========== Keyword-like ==========
-    ['@string.escape'] = '@keyword',
-    ['@lsp.type.escapeSequence'] = '@keyword',
-    ['@operator'] = '@keyword',
-    ['@character.printf'] = '@keyword',
-    ['@character.special'] = '@keyword',
-    ['@lsp.type.formatSpecifier'] = '@keyword',
-    ['@lsp.type.operator'] = '@operator',
-    ['@lsp.typemod.operator.injected'] = '@operator',
+    -- ========== Neutral ==========
+    ['@string.escape'] = { fg = neutral },
+    ['@lsp.type.escapeSequence'] = { fg = neutral },
+    ['@operator'] = { fg = neutral },
+    ['@character.printf'] = { fg = neutral },
+    ['@character.special'] = { fg = neutral },
+    ['@lsp.type.formatSpecifier'] = { fg = neutral },
+    ['@lsp.type.operator'] = { fg = neutral },
+    ['@lsp.typemod.operator.injected'] = { fg = neutral },
     -------------------------------------------------------------------------------
 
     -- ========== Punctuation ==========
-    ['@punctuation.bracket'] = '@keyword',
-    ['@punctuation.delimiter'] = '@keyword',
-    ['@punctuation.special'] = '@keyword',
-    ['@variable.parameter.builtin'] = '@keyword', -- "..." spread parameter in JS
+    ['@punctuation.bracket'] = { fg = neutral },
+    ['@punctuation.delimiter'] = { fg = neutral },
+    ['@punctuation.special'] = { fg = neutral },
+    ['@variable.parameter.builtin'] = { fg = neutral }, -- "..." spread parameter in JS
     -------------------------------------------------------------------------------
 
     -- ========== Callable ==========
