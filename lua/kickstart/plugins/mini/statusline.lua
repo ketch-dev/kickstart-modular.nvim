@@ -52,6 +52,13 @@ return {
       return merged_hl
     end
 
+    local function cwd_suffix()
+      local cwd = vim.fn.getcwd()
+      local cwd_name = vim.fn.fnamemodify(cwd, ':t')
+      if cwd_name == '' then cwd_name = cwd end
+      return cwd_name
+    end
+
     line.setup {
       use_icons = vim.g.have_nerd_font,
       content = {
@@ -71,6 +78,7 @@ return {
           local icon, icon_hl = file_icon()
           local statusline_icon_hl = file_icon_hl(icon_hl)
           local filename = vim.bo.buftype == 'terminal' and '%t' or '%t%m%r'
+          local cwd = cwd_suffix()
           local location = line.section_location { trunc_width = 75 }
           local search = line.section_searchcount { trunc_width = 75 }
 
@@ -78,6 +86,7 @@ return {
             '%<',
             { hl = statusline_icon_hl, strings = { icon } },
             '%<%#MiniStatuslineFilename#' .. filename,
+            { hl = 'WinBarNC', strings = { cwd } },
             '%=',
             { hl = 'MiniStatuslineSearchcount', strings = { search } },
             { hl = 'MiniStatuslineFilename', strings = { location } },
