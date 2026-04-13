@@ -33,12 +33,20 @@ end
 
 local function close_diffview() require('diffview').close() end
 
+local function open_or_refresh_diffview()
+  if require('diffview.lib').get_current_view() then
+    vim.cmd 'DiffviewRefresh'
+  else
+    vim.cmd 'DiffviewOpen'
+  end
+end
+
 return {
   {
     'sindrets/diffview.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = '[d]iff' },
+      { '<leader>gd', open_or_refresh_diffview, desc = '[d]iff' },
       { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = 'file [h]istory' },
     },
     config = function()
