@@ -14,7 +14,7 @@ local function highlights()
   local string = hsl(125, 22, 55)
   local boolean = hsl(165, 29, 56)
   local variable = hsl(205, 39, 60)
-  local type = hsl(235, 34, 62)
+  local type = hsl(250, 34, 62)
   local number = hsl(275, 32, 65)
 
   -- bool, module, built-in module, type
