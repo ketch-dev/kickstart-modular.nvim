@@ -5,6 +5,7 @@ require 'keymaps'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
 require('custom.utils.syntax-overlay').setup()
+require('custom.utils.ui-overlay').setup()
 
 -- ========== IDEAS ==========
 -- Also search (find) keys
