@@ -189,6 +189,12 @@ local function highlights()
     ['@lsp.type.namespace'] = '@module', -- name of namespace
     -------------------------------------------------------------------------------
 
+    -- ========== HTML ==========
+    ['@tag.attribute'] = { fg = neutral },
+    ['@none.html'] = '@string',
+    ['@none.angular'] = '@string',
+    -------------------------------------------------------------------------------
+
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
 
     -- ['@diff.plus'] = { bg = c.diff_add },
