@@ -7,9 +7,10 @@ local did_setup = false
 local function highlights()
   local neutral = '#aaaaaa'
   local builtin = hsl(0, 52, 64)
-  local preproc = hsl(27, 51, 60)
+  local mod = hsl(15, 51, 60)
+  local preproc = hsl(35, 51, 60)
   local fn = hsl(62, 39, 58)
-  local mod = hsl(95, 27, 57)
+  -- local mod = hsl(95, 27, 57)
   local string = hsl(125, 22, 55)
   local boolean = hsl(165, 29, 56)
   local variable = hsl(205, 39, 60)
@@ -190,6 +191,8 @@ local function highlights()
     -------------------------------------------------------------------------------
 
     -- ========== HTML ==========
+    ['@tag'] = '@module',
+    ['@tag.builtin'] = '@module.builtin',
     ['@tag.attribute'] = { fg = neutral },
     ['@none.html'] = '@string',
     ['@none.angular'] = '@string',
