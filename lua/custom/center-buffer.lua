@@ -2,7 +2,7 @@ if vim.g.vscode then return end
 
 local M = {}
 
-local target_text_width = 100
+local target_text_width = 122
 local min_margin = 4
 
 local ignored_filetypes = {
