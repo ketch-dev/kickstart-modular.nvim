@@ -2,7 +2,6 @@
 
 return {
   'petertriho/nvim-scrollbar',
-  cond = not vim.g.vscode,
   opts = {
     handlers = {
       cursor = false,

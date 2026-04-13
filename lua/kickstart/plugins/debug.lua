@@ -11,7 +11,6 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  cond = not vim.g.vscode,
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -37,7 +36,6 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|

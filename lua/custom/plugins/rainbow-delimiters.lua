@@ -1,7 +1,6 @@
 return {
   {
     'HiPhish/rainbow-delimiters.nvim',
-    cond = not vim.g.vscode,
     config = function()
       vim.api.nvim_set_hl(0, 'Rainbow1', { fg = '#a6b6ff' })
       vim.api.nvim_set_hl(0, 'Rainbow2', { fg = '#7aa2f7' })

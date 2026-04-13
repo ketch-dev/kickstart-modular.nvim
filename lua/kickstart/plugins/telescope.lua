@@ -5,7 +5,6 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    cond = not vim.g.vscode,
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',

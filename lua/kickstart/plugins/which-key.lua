@@ -5,7 +5,6 @@
 return {
   {
     'folke/which-key.nvim',
-    cond = not vim.g.vscode,
     event = 'VimEnter',
     ---@module 'which-key'
     ---@type wk.Opts

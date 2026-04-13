@@ -1,7 +1,6 @@
 return {
   {
     'Mofiqul/vscode.nvim',
-    cond = not vim.g.vscode,
     lazy = false,
     priority = 1100, -- Register before the base colorscheme is applied.
     config = function()
@@ -16,9 +15,7 @@ return {
 
       local function apply_vscode_syntax()
         local ok, vscode_syntax = pcall(require, 'custom.utils.vscode-syntax-overrides')
-        if not ok then
-          return
-        end
+        if not ok then return end
 
         local syntax_overrides = vscode_syntax.get(opts)
         for hl_group, spec in pairs(syntax_overrides) do
@@ -32,9 +29,7 @@ return {
         callback = apply_vscode_syntax,
       })
 
-      if vim.g.colors_name then
-        apply_vscode_syntax()
-      end
+      if vim.g.colors_name then apply_vscode_syntax() end
     end,
   },
 }

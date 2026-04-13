@@ -1,7 +1,6 @@
 return {
   {
     'Mofiqul/vscode.nvim',
-    cond = not vim.g.vscode,
     lazy = false, -- load during startup
     priority = 1000, -- load before other UI plugins
     config = function()

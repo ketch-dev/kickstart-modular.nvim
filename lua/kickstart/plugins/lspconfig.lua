@@ -5,7 +5,6 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
-    cond = not vim.g.vscode,
     dependencies = {
       { 'j-hui/fidget.nvim', opts = {} },
     },
@@ -113,7 +112,6 @@ return {
   },
   {
     'pmizio/typescript-tools.nvim',
-    cond = not vim.g.vscode,
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = function()
       return {

@@ -5,7 +5,6 @@
 ---@type LazySpec
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  cond = not vim.g.vscode,
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',

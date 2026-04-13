@@ -23,13 +23,9 @@ local state = {
   kind_by_id = {},
 }
 
-local function get_terms()
-  return require 'toggleterm.terminal'
-end
+local function get_terms() return require 'toggleterm.terminal' end
 
-local function get_kind_config(kind)
-  return assert(kinds[kind], 'Unknown terminal kind: ' .. tostring(kind))
-end
+local function get_kind_config(kind) return assert(kinds[kind], 'Unknown terminal kind: ' .. tostring(kind)) end
 
 local function get_terminal_id(kind, index)
   local config = get_kind_config(kind)
@@ -39,34 +35,24 @@ end
 local function get_terminal_index(kind, terminal_id)
   local config = get_kind_config(kind)
   local index = terminal_id - config.id_base
-  if index < 1 then
-    return nil
-  end
+  if index < 1 then return nil end
   return index
 end
 
 local function get_terminal_name(kind, index)
   local config = get_kind_config(kind)
-  if config.prefix == '' then
-    return tostring(index)
-  end
+  if config.prefix == '' then return tostring(index) end
   return config.prefix .. index
 end
 
 local function detect_kind(terminal)
-  if not terminal then
-    return nil
-  end
+  if not terminal then return nil end
 
   local known_kind = state.kind_by_id[terminal.id]
-  if known_kind then
-    return known_kind
-  end
+  if known_kind then return known_kind end
 
   local name = terminal.display_name or ''
-  if name:match '^AI%-%d+$' then
-    return 'ai'
-  end
+  if name:match '^AI%-%d+$' then return 'ai' end
 
   return 'numeric'
 end
@@ -74,9 +60,7 @@ end
 local function close_other_open_terms(target_id)
   local terms = get_terms()
   for _, terminal in ipairs(terms.get_all(true)) do
-    if terminal.id ~= target_id and terminal:is_open() then
-      terminal:close()
-    end
+    if terminal.id ~= target_id and terminal:is_open() then terminal:close() end
   end
 end
 
@@ -90,9 +74,7 @@ local function ensure_terminal(kind, index)
   state.kind_by_id[terminal_id] = kind
   terminal.display_name = terminal_name
 
-  if created and config.command then
-    terminal.cmd = config.command
-  end
+  if created and config.command then terminal.cmd = config.command end
 
   return terminal
 end
@@ -110,9 +92,7 @@ local function open_terminal(kind, index)
   state.last_index[kind] = index
 end
 
-local function open_last_terminal(kind)
-  open_terminal(kind, state.last_index[kind] or 1)
-end
+local function open_last_terminal(kind) open_terminal(kind, state.last_index[kind] or 1) end
 
 local function resolve_current_index(kind)
   local terms = get_terms()
@@ -121,9 +101,7 @@ local function resolve_current_index(kind)
     local current_terminal = terms.get(current_id, true)
     if current_terminal and detect_kind(current_terminal) == kind then
       local index = get_terminal_index(kind, current_id)
-      if index then
-        return index
-      end
+      if index then return index end
     end
   end
 
@@ -138,9 +116,7 @@ local function switch_terminal(kind, delta)
 
   local terminal = terms.get(target_id, true)
   if not terminal then
-    if delta < 0 then
-      return
-    end
+    if delta < 0 then return end
   end
 
   open_terminal(kind, target_index)
@@ -149,14 +125,10 @@ end
 local function close_current_terminal()
   local terms = get_terms()
   local current_id = terms.get_focused_id() or select(1, terms.identify())
-  if not current_id then
-    return
-  end
+  if not current_id then return end
 
   local terminal = terms.get(current_id, true)
-  if terminal and terminal:is_open() then
-    terminal:close()
-  end
+  if terminal and terminal:is_open() then terminal:close() end
 end
 
 _G.__toggleterm_switch_terminal = switch_terminal
@@ -170,13 +142,9 @@ local function bind_terminal_navigation_keys(terminal)
 
   vim.keymap.set('n', '<C-g>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = 'Close terminal' }))
 
-  vim.keymap.set('n', '<C-Left>', function()
-    switch_terminal(kind, -1)
-  end, vim.tbl_extend('force', buffer_options, { desc = 'Previous terminal' }))
+  vim.keymap.set('n', '<C-Left>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'Previous terminal' }))
 
-  vim.keymap.set('n', '<C-Right>', function()
-    switch_terminal(kind, 1)
-  end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
+  vim.keymap.set('n', '<C-Right>', function() switch_terminal(kind, 1) end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
 
   vim.keymap.set('t', '<C-g>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], buffer_options)
   vim.keymap.set('t', '<C-Left>', prev_term_cmd, buffer_options)
@@ -188,31 +156,24 @@ local function bind_terminal_navigation_keys(terminal)
 end
 
 local function persist_terminal_buffer(terminal)
-  if terminal and terminal.bufnr and vim.api.nvim_buf_is_valid(terminal.bufnr) then
-    vim.bo[terminal.bufnr].bufhidden = 'hide'
-  end
+  if terminal and terminal.bufnr and vim.api.nvim_buf_is_valid(terminal.bufnr) then vim.bo[terminal.bufnr].bufhidden = 'hide' end
 end
 
 return {
   {
     'akinsho/toggleterm.nvim',
-    cond = not vim.g.vscode,
     version = '*',
     cmd = { 'ToggleTerm', 'TermExec' },
     keys = {
       {
         '<C-t>',
-        function()
-          open_last_terminal 'numeric'
-        end,
+        function() open_last_terminal 'numeric' end,
         mode = { 'n', 'i', 't' },
         desc = 'Open last terminal',
       },
       {
         '<C-a>',
-        function()
-          open_last_terminal 'ai'
-        end,
+        function() open_last_terminal 'ai' end,
         mode = { 'n', 'i', 't' },
         desc = 'Open AI terminal',
       },
@@ -222,16 +183,12 @@ return {
       direction = 'float',
       start_in_insert = true,
       persist_mode = false,
-      on_create = function(terminal)
-        persist_terminal_buffer(terminal)
-      end,
+      on_create = function(terminal) persist_terminal_buffer(terminal) end,
       on_open = function(terminal)
         persist_terminal_buffer(terminal)
         local kind = detect_kind(terminal)
         local index = kind and get_terminal_index(kind, terminal.id)
-        if kind and index then
-          state.last_index[kind] = index
-        end
+        if kind and index then state.last_index[kind] = index end
         bind_terminal_navigation_keys(terminal)
       end,
       highlights = {

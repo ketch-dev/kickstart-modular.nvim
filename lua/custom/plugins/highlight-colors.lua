@@ -1,7 +1,6 @@
 return {
   {
     'brenoprata10/nvim-highlight-colors',
-    cond = not vim.g.vscode,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       render = 'virtual',
