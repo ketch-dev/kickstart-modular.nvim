@@ -7,7 +7,7 @@ local did_setup = false
 local function highlights()
   local neutral = '#aaaaaa'
   local builtin = hsl(0, 52, 64)
-  local mod = hsl(15, 51, 60)
+  local mod = hsl(22, 51, 60)
   local preproc = hsl(35, 51, 60)
   local fn = hsl(62, 39, 58)
   -- local mod = hsl(95, 27, 57)
