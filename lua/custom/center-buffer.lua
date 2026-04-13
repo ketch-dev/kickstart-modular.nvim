@@ -1,9 +1,8 @@
 if vim.g.vscode then return end
 
-local M = {}
-
 local target_text_width = 122
 local min_margin = 4
+local pad_buf_var = 'custom_center_buffer_padding'
 
 local ignored_filetypes = {
   DiffviewFiles = true,
@@ -17,7 +16,25 @@ local group = vim.api.nvim_create_augroup('custom-center-buffer', { clear = true
 local state = {
   applying = false,
   refresh_scheduled = false,
-  tabs = {},
+}
+
+local pad_window_options = {
+  colorcolumn = '',
+  cursorcolumn = false,
+  cursorline = false,
+  foldcolumn = '0',
+  list = false,
+  number = false,
+  relativenumber = false,
+  signcolumn = 'no',
+  spell = false,
+  statuscolumn = '',
+  statusline = ' ',
+  winbar = '',
+  winfixbuf = true,
+  winfixwidth = true,
+  winhighlight = 'EndOfBuffer:Normal,Normal:Normal,SignColumn:Normal,FoldColumn:Normal',
+  wrap = false,
 }
 
 local function is_valid_win(win) return type(win) == 'number' and win ~= 0 and vim.api.nvim_win_is_valid(win) end
@@ -26,13 +43,12 @@ local function is_valid_buf(buf) return type(buf) == 'number' and buf ~= 0 and v
 
 local function is_floating(win) return is_valid_win(win) and vim.api.nvim_win_get_config(win).relative ~= '' end
 
-local function get_buf_var(buf, name)
-  local ok, value = pcall(vim.api.nvim_buf_get_var, buf, name)
-  if ok then return value end
-  return nil
-end
+local function is_padding_buffer(buf)
+  if not is_valid_buf(buf) then return false end
 
-local function is_padding_buffer(buf) return is_valid_buf(buf) and get_buf_var(buf, 'custom_center_buffer_padding') == true end
+  local ok, value = pcall(vim.api.nvim_buf_get_var, buf, pad_buf_var)
+  return ok and value == true
+end
 
 local function is_padding_window(win) return is_valid_win(win) and is_padding_buffer(vim.api.nvim_win_get_buf(win)) end
 
@@ -49,12 +65,15 @@ local function is_centerable(win)
   return true
 end
 
+local function get_window_info(win) return vim.fn.getwininfo(win)[1] end
+
 local function create_pad_buffer()
   local buf = vim.api.nvim_create_buf(false, true)
 
-  vim.api.nvim_buf_set_var(buf, 'custom_center_buffer_padding', true)
+  vim.api.nvim_buf_set_var(buf, pad_buf_var, true)
   vim.bo[buf].buftype = 'nofile'
   vim.bo[buf].bufhidden = 'wipe'
+  vim.bo[buf].buflisted = false
   vim.bo[buf].filetype = 'center-buffer-padding'
   vim.bo[buf].modifiable = true
   vim.bo[buf].swapfile = false
@@ -65,25 +84,7 @@ local function create_pad_buffer()
 end
 
 local function configure_pad_window(win)
-  local local_options = {
-    colorcolumn = '',
-    cursorcolumn = false,
-    cursorline = false,
-    foldcolumn = '0',
-    list = false,
-    number = false,
-    relativenumber = false,
-    signcolumn = 'no',
-    spell = false,
-    statuscolumn = '',
-    statusline = ' ',
-    winbar = '',
-    winfixwidth = true,
-    winhighlight = 'EndOfBuffer:Normal,Normal:Normal,SignColumn:Normal,FoldColumn:Normal',
-    wrap = false,
-  }
-
-  for name, value in pairs(local_options) do
+  for name, value in pairs(pad_window_options) do
     vim.api.nvim_set_option_value(name, value, { scope = 'local', win = win })
   end
 end
@@ -92,39 +93,52 @@ local function close_pad_window(win)
   if is_valid_win(win) then pcall(vim.api.nvim_win_close, win, true) end
 end
 
-local function close_tab_pads(tabpage)
-  local entry = state.tabs[tabpage]
-  if not entry then return end
-
-  state.tabs[tabpage] = nil
-  close_pad_window(entry.left_win)
-  close_pad_window(entry.right_win)
+local function close_pad_windows(windows)
+  for _, win in ipairs(windows) do
+    close_pad_window(win)
+  end
 end
 
-local function list_user_windows(tabpage)
-  local windows = {}
+local function compare_window_position(left, right)
+  local left_info = get_window_info(left)
+  local right_info = get_window_info(right)
+
+  if not left_info or not right_info then return left < right end
+  if left_info.wincol == right_info.wincol then return left_info.winrow < right_info.winrow end
+
+  return left_info.wincol < right_info.wincol
+end
+
+local function scan_tab(tabpage)
+  local layout = {
+    main_win = nil,
+    pad_windows = {},
+    user_windows = {},
+  }
 
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
-    if not is_floating(win) and not is_padding_window(win) then windows[#windows + 1] = win end
+    if not is_floating(win) then
+      if is_padding_window(win) then
+        layout.pad_windows[#layout.pad_windows + 1] = win
+      else
+        layout.user_windows[#layout.user_windows + 1] = win
+      end
+    end
   end
 
-  return windows
+  table.sort(layout.pad_windows, compare_window_position)
+
+  if #layout.user_windows == 1 and is_centerable(layout.user_windows[1]) then layout.main_win = layout.user_windows[1] end
+
+  return layout
 end
 
-local function get_single_main_window(tabpage)
-  local windows = list_user_windows(tabpage)
-  if #windows ~= 1 then return nil end
-
-  local main_win = windows[1]
-  if not is_centerable(main_win) then return nil end
-
-  return main_win
-end
+local function close_tab_pads(tabpage) close_pad_windows(scan_tab(tabpage).pad_windows) end
 
 local function get_target_text_width() return math.max(1, math.min(target_text_width, vim.o.columns - (min_margin * 2))) end
 
 local function get_padding_widths(main_win)
-  local wininfo = vim.fn.getwininfo(main_win)[1]
+  local wininfo = get_window_info(main_win)
   if not wininfo then return 0, 0 end
 
   local desired_main_width = math.min(vim.o.columns, get_target_text_width() + wininfo.textoff)
@@ -146,35 +160,40 @@ local function open_pad_window(main_win, position)
   vim.api.nvim_win_set_buf(win, buf)
   configure_pad_window(win)
 
-  return win, buf
+  return win
 end
 
-local function ensure_tab_pads(tabpage, main_win, left_width, right_width)
-  local entry = state.tabs[tabpage]
-  local needs_recreate = not entry or entry.main_win ~= main_win or not is_valid_win(entry.left_win) or not is_valid_win(entry.right_win)
+local function pads_need_recreate(layout, main_win)
+  if #layout.pad_windows ~= 2 then return true end
 
-  if needs_recreate then
-    close_tab_pads(tabpage)
+  local main_info = get_window_info(main_win)
+  local left_info = get_window_info(layout.pad_windows[1])
+  local right_info = get_window_info(layout.pad_windows[2])
+  if not main_info or not left_info or not right_info then return true end
 
-    entry = { main_win = main_win }
-    entry.left_win, entry.left_buf = open_pad_window(main_win, 'left')
+  return not (left_info.wincol < main_info.wincol and right_info.wincol > main_info.wincol)
+end
 
+local function ensure_tab_pads(tabpage, layout, main_win, left_width, right_width)
+  if pads_need_recreate(layout, main_win) then
+    close_pad_windows(layout.pad_windows)
+
+    open_pad_window(main_win, 'left')
     vim.api.nvim_set_current_win(main_win)
-    entry.right_win, entry.right_buf = open_pad_window(main_win, 'right')
-    state.tabs[tabpage] = entry
+    open_pad_window(main_win, 'right')
+    layout = scan_tab(tabpage)
   end
 
-  entry.main_win = main_win
+  if #layout.pad_windows ~= 2 then return end
 
-  if is_valid_win(entry.left_win) then
-    configure_pad_window(entry.left_win)
-    vim.api.nvim_win_set_width(entry.left_win, left_width)
-  end
+  local left_pad = layout.pad_windows[1]
+  local right_pad = layout.pad_windows[2]
 
-  if is_valid_win(entry.right_win) then
-    configure_pad_window(entry.right_win)
-    vim.api.nvim_win_set_width(entry.right_win, right_width)
-  end
+  configure_pad_window(left_pad)
+  vim.api.nvim_win_set_width(left_pad, left_width)
+
+  configure_pad_window(right_pad)
+  vim.api.nvim_win_set_width(right_pad, right_width)
 end
 
 local function restore_focus(tabpage, preferred_win)
@@ -183,10 +202,8 @@ local function restore_focus(tabpage, preferred_win)
     return
   end
 
-  local entry = state.tabs[tabpage]
-  if entry and is_valid_win(entry.main_win) and vim.api.nvim_win_get_tabpage(entry.main_win) == tabpage then
-    pcall(vim.api.nvim_set_current_win, entry.main_win)
-  end
+  local layout = scan_tab(tabpage)
+  if layout.main_win then pcall(vim.api.nvim_set_current_win, layout.main_win) end
 end
 
 local function refresh()
@@ -194,24 +211,28 @@ local function refresh()
 
   local tabpage = vim.api.nvim_get_current_tabpage()
   local current_win = vim.api.nvim_get_current_win()
-  local main_win = get_single_main_window(tabpage)
 
   state.applying = true
+  local ok, err = xpcall(function()
+    local layout = scan_tab(tabpage)
 
-  if main_win then
-    local left_width, right_width = get_padding_widths(main_win)
+    if layout.main_win then
+      local left_width, right_width = get_padding_widths(layout.main_win)
 
-    if left_width > 0 and right_width > 0 then
-      ensure_tab_pads(tabpage, main_win, left_width, right_width)
+      if left_width > 0 and right_width > 0 then
+        ensure_tab_pads(tabpage, layout, layout.main_win, left_width, right_width)
+      else
+        close_pad_windows(layout.pad_windows)
+      end
     else
-      close_tab_pads(tabpage)
+      close_pad_windows(layout.pad_windows)
     end
-  else
-    close_tab_pads(tabpage)
-  end
 
-  restore_focus(tabpage, current_win)
+    restore_focus(tabpage, current_win)
+  end, debug.traceback)
   state.applying = false
+
+  if not ok then vim.schedule(function() error(err) end) end
 end
 
 local function schedule_refresh()
@@ -224,7 +245,32 @@ local function schedule_refresh()
   end)
 end
 
-M.refresh = refresh
+local function on_layout_event()
+  if state.applying then return end
+
+  local current_win = vim.api.nvim_get_current_win()
+  if is_padding_window(current_win) then
+    vim.schedule(function()
+      if state.applying then return end
+      restore_focus(vim.api.nvim_get_current_tabpage(), nil)
+    end)
+    return
+  end
+
+  schedule_refresh()
+end
+
+local function on_quit_pre()
+  if state.applying then return end
+
+  local tabpage = vim.api.nvim_get_current_tabpage()
+  local layout = scan_tab(tabpage)
+  if not layout.main_win or vim.api.nvim_get_current_win() ~= layout.main_win then return end
+
+  state.applying = true
+  close_tab_pads(tabpage)
+  state.applying = false
+end
 
 vim.api.nvim_create_autocmd({
   'BufEnter',
@@ -242,20 +288,7 @@ vim.api.nvim_create_autocmd({
   'WinResized',
 }, {
   group = group,
-  callback = function()
-    if state.applying then return end
-
-    local current_win = vim.api.nvim_get_current_win()
-    if is_padding_window(current_win) then
-      vim.schedule(function()
-        if state.applying then return end
-        restore_focus(vim.api.nvim_get_current_tabpage(), nil)
-      end)
-      return
-    end
-
-    schedule_refresh()
-  end,
+  callback = on_layout_event,
 })
 
 vim.api.nvim_create_autocmd('OptionSet', {
@@ -266,19 +299,7 @@ vim.api.nvim_create_autocmd('OptionSet', {
 
 vim.api.nvim_create_autocmd('QuitPre', {
   group = group,
-  callback = function()
-    if state.applying then return end
-
-    local tabpage = vim.api.nvim_get_current_tabpage()
-    local entry = state.tabs[tabpage]
-    if not entry or vim.api.nvim_get_current_win() ~= entry.main_win then return end
-
-    state.applying = true
-    close_tab_pads(tabpage)
-    state.applying = false
-  end,
+  callback = on_quit_pre,
 })
 
 schedule_refresh()
-
-return M
