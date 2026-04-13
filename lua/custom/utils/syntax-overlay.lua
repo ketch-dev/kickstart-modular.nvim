@@ -69,6 +69,7 @@ local function highlights()
     -- ========== Keyword ==========
     ['@keyword'] = { fg = neutral, italic = true },
     ['@keyword.type'] = '@keyword',
+    ['@keyword.modifier'] = '@keyword',
     ['@keyword.storage'] = '@keyword',
     ['@keyword.debug'] = '@keyword',
     ['@keyword.operator'] = '@keyword',
