@@ -110,6 +110,7 @@ vim.opt.confirm = true
 vim.opt.wildmenu = true
 vim.opt.wildignorecase = true
 vim.opt.showmode = false -- Don't show mode, it's already in the status line
+vim.opt.showtabline = 0
 vim.opt.hidden = false
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
