@@ -15,6 +15,7 @@ local ignored_filetypes = {
 local group = vim.api.nvim_create_augroup('custom-center-buffer', { clear = true })
 local state = {
   applying = false,
+  enabled = true,
   refresh_scheduled = false,
 }
 
@@ -135,6 +136,12 @@ end
 
 local function close_tab_pads(tabpage) close_pad_windows(scan_tab(tabpage).pad_windows) end
 
+local function close_all_pads()
+  for _, tabpage in ipairs(vim.api.nvim_list_tabpages()) do
+    close_tab_pads(tabpage)
+  end
+end
+
 local function get_target_text_width() return math.max(1, math.min(target_text_width, vim.o.columns - (min_margin * 2))) end
 
 local function get_padding_widths(main_win)
@@ -216,6 +223,12 @@ local function refresh()
   local ok, err = xpcall(function()
     local layout = scan_tab(tabpage)
 
+    if not state.enabled then
+      close_pad_windows(layout.pad_windows)
+      restore_focus(tabpage, current_win)
+      return
+    end
+
     if layout.main_win then
       local left_width, right_width = get_padding_widths(layout.main_win)
 
@@ -236,7 +249,7 @@ local function refresh()
 end
 
 local function schedule_refresh()
-  if state.applying or state.refresh_scheduled then return end
+  if not state.enabled or state.applying or state.refresh_scheduled then return end
 
   state.refresh_scheduled = true
   vim.schedule(function()
@@ -246,7 +259,7 @@ local function schedule_refresh()
 end
 
 local function on_layout_event()
-  if state.applying then return end
+  if not state.enabled or state.applying then return end
 
   local current_win = vim.api.nvim_get_current_win()
   if is_padding_window(current_win) then
@@ -261,7 +274,7 @@ local function on_layout_event()
 end
 
 local function on_quit_pre()
-  if state.applying then return end
+  if not state.enabled or state.applying then return end
 
   local tabpage = vim.api.nvim_get_current_tabpage()
   local layout = scan_tab(tabpage)
@@ -270,6 +283,24 @@ local function on_quit_pre()
   state.applying = true
   close_tab_pads(tabpage)
   state.applying = false
+end
+
+local function toggle()
+  state.enabled = not state.enabled
+
+  if state.enabled then
+    schedule_refresh()
+    return
+  end
+
+  local tabpage = vim.api.nvim_get_current_tabpage()
+  local current_win = vim.api.nvim_get_current_win()
+
+  state.applying = true
+  close_all_pads()
+  state.applying = false
+
+  restore_focus(tabpage, current_win)
 end
 
 vim.api.nvim_create_autocmd({
@@ -300,6 +331,10 @@ vim.api.nvim_create_autocmd('OptionSet', {
 vim.api.nvim_create_autocmd('QuitPre', {
   group = group,
   callback = on_quit_pre,
+})
+
+vim.api.nvim_create_user_command('CenterBufferToggle', toggle, {
+  desc = 'Toggle centered buffer padding',
 })
 
 schedule_refresh()

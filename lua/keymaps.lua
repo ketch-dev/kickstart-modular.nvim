@@ -26,6 +26,7 @@ vim.diagnostic.config {
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'prev [d]iagnostic' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next [d]iagnostic' })
 vim.keymap.set('n', '<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = '[d]iagnostic' })
+vim.keymap.set('n', '<leader>tc', '<cmd>CenterBufferToggle<CR>', { desc = '[c]enter buffer' })
 -------------------------------------------------------------------------------
 
 -- ========== Disable hjkl ==========
