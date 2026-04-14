@@ -36,7 +36,7 @@ vim.opt.autoindent = true -- copy indent from current line
 -------------------------------------------------------------------------------
 
 -- ========== Wrap/Break ==========
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.linebreak = true -- Break at word boundaries
 vim.opt.breakindent = true -- Maintain indent when wrapping
 vim.opt.showbreak = '↪'
@@ -115,4 +115,4 @@ vim.opt.hidden = false
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
-vim.opt.sidescrolloff = 10 -- Minimal number of screen lines to keep left and right the cursor
+vim.opt.sidescrolloff = 20 -- Minimal number of screen columns to keep left and right the cursor
