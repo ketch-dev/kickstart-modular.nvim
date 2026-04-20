@@ -1,6 +1,6 @@
 require 'options'
 require 'notify-vscode'
-require 'custom.center-buffer'
+-- require 'custom.center-buffer'
 require 'keymaps'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
