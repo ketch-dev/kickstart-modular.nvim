@@ -78,7 +78,6 @@ return {
           local icon, icon_hl = file_icon()
           local statusline_icon_hl = file_icon_hl(icon_hl)
           local filename = vim.bo.buftype == 'terminal' and '%t' or '%t%m%r'
-          local cwd = cwd_suffix()
           local location = line.section_location { trunc_width = 75 }
           local search = line.section_searchcount { trunc_width = 75 }
 
@@ -86,7 +85,7 @@ return {
             '%<',
             { hl = statusline_icon_hl, strings = { icon } },
             '%<%#MiniStatuslineFilename#' .. filename,
-            { hl = 'WinBarNC', strings = { cwd } },
+            { hl = 'WinBarNC', strings = { cwd_suffix() } },
             '%=',
             { hl = 'MiniStatuslineSearchcount', strings = { search } },
             { hl = 'MiniStatuslineFilename', strings = { location } },
@@ -103,6 +102,7 @@ return {
           return line.combine_groups {
             { hl = 'MiniStatuslineInactive', strings = { icon } },
             '%<%#MiniStatuslineInactive#' .. filename,
+            { hl = 'MiniStatuslineInactive', strings = { cwd_suffix() } },
             '%=',
           }
         end,
