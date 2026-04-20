@@ -7,12 +7,21 @@ return {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
+    init = function()
+      if vim.g.autoformat_on_save == nil then vim.g.autoformat_on_save = true end
+    end,
     keys = {
       {
-        '<C-l>',
+        '<C-f>',
         function() require('conform').format { async = true, lsp_format = 'fallback' } end,
         mode = '',
-        desc = '[l]ayout (format)',
+        desc = '[f]ormat buffer',
+      },
+      {
+        '<leader>tf',
+        function() vim.g.autoformat_on_save = not vim.g.autoformat_on_save end,
+        mode = 'n',
+        desc = '[f]ormat on save',
       },
     },
     ---@module 'conform'
@@ -21,6 +30,8 @@ return {
       notify_on_error = false,
       format_on_save = function(bufnr)
         local disable_filetypes = { c = true, cpp = true } -- Disable "format_on_save lsp_fallback" for languages that don't have a well standardized coding style
+        if not vim.g.autoformat_on_save then return nil end
+
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
