@@ -45,6 +45,12 @@ local function highlights()
     bool = boolean,
   }
 
+  local diff = {
+    change = c.preproc,
+    changeBg = hsl(40, 32, 20),
+    changeInline = hsl(40, 38, 28),
+  }
+
   return {
     -- ========== Comments ==========
     ['@comment'] = { fg = c.comment },
@@ -200,9 +206,35 @@ local function highlights()
 
     ['@lsp.type.unresolvedReference'] = { undercurl = true, sp = c.error },
 
-    -- ['@diff.plus'] = { bg = c.diff_add },
-    -- ['@diff.delta'] = { bg = c.diff_change },
-    -- ['@diff.minus'] = { bg = c.diff_delete },
+    -- ========== Diff: Change ==========
+    DiffChange = { bg = diff.changeBg },
+    DiffText = { bg = diff.changeInline },
+    Changed = { fg = diff.change },
+
+    diffChanged = 'Changed',
+    DiffviewStatusModified = 'Changed',
+    DiffviewStatusTypeChange = 'Changed',
+    DiffviewStatusTypeChanged = 'Changed',
+    GitSignsChange = 'Changed',
+    GitSignsChangeNr = 'Changed',
+    GitSignsChangeCul = 'Changed',
+    GitSignsChangedelete = 'Changed',
+    GitSignsChangedeleteNr = 'Changed',
+    GitSignsChangedeleteCul = 'Changed',
+    MiniDiffSignChange = 'Changed',
+    NeogitChangeModified = 'Changed',
+    TelescopeResultsDiffChange = 'Changed',
+
+    ['@diff.delta'] = 'DiffChange',
+    GitSignsChangeLn = 'DiffChange',
+    GitSignsChangedeleteLn = 'DiffChange',
+    MiniDiffOverContext = 'DiffChange',
+
+    GitSignsChangeInline = { bg = diff.changeInline },
+    GitSignsChangeLnInline = { bg = diff.changeInline },
+    MiniDiffOverChange = { bg = diff.changeInline },
+    MiniDiffOverChangeBuf = { bg = diff.changeInline },
+    -------------------------------------------------------------------------------
   }
 end
 
