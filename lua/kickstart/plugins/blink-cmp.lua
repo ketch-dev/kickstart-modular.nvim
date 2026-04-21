@@ -1,5 +1,29 @@
 -- ========== Autocompletion ==========
 
+local function get_import_source(ctx)
+  if ctx.label_description ~= '' then return ctx.label_description end
+
+  local item = ctx.item or {}
+  local is_module = item.kind == vim.lsp.protocol.CompletionItemKind.Module or item.kind_name == 'Module'
+
+  if type(item.source) == 'string' and item.source ~= '' then return item.source end
+
+  local data = item.data
+  if type(data) == 'table' and type(data.entryNames) == 'table' then
+    local entry = data.entryNames[1]
+    if type(entry) == 'table' and type(entry.source) == 'string' and entry.source ~= '' then return entry.source end
+  end
+
+  if type(item.detail) == 'string' then
+    local detail_source = item.detail:match 'from%s+"([^"]+)"'
+      or item.detail:match '^Auto import from ([^\n]+)'
+      or (is_module and item.detail:match '^"([^"]+)"$')
+    if detail_source and detail_source ~= '' then return detail_source end
+  end
+
+  return ''
+end
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -69,6 +93,21 @@ return {
       },
 
       completion = {
+        menu = {
+          draw = {
+            columns = {
+              { 'kind_icon' },
+              { 'label', 'import_source', gap = 1 },
+            },
+            components = {
+              import_source = {
+                width = { max = 40 },
+                text = get_import_source,
+                highlight = 'BlinkCmpLabelDescription',
+              },
+            },
+          },
+        },
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
