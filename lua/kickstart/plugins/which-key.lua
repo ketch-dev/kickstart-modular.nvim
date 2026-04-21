@@ -28,6 +28,7 @@ return {
         { '<leader>p', group = '[p]age' },
         { '<leader>s', group = '[s]earch' },
         { '<leader>t', group = '[t]oggle' },
+        { '<leader>g', group = '[g]it' },
         { '<leader>h', group = '[h]unk', mode = { 'n', 'v' } },
         { 'l', group = '[l]ookup:' },
         { 's', group = '[s]urround', mode = { 'n', 'x' } },
