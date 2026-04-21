@@ -17,7 +17,7 @@ function M.apply()
 
   vim.api.nvim_set_hl(0, 'NormalNC', vim.tbl_extend('force', normal_nc, { bg = normal.bg }))
   vim.api.nvim_set_hl(0, 'LineNr', vim.tbl_extend('force', line_nr, { bg = normal.bg }))
-  vim.api.nvim_set_hl(0, 'CursorLineNr', vim.tbl_extend('force', cursor_line_nr, { bg = normal.bg, fg = '#dddddd' }))
+  vim.api.nvim_set_hl(0, 'CursorLineNr', vim.tbl_extend('force', cursor_line_nr, { bg = normal.bg, fg = '#bbbbbb' }))
   vim.api.nvim_set_hl(0, 'SignColumn', vim.tbl_extend('force', sign_column, { bg = normal.bg }))
   vim.api.nvim_set_hl(0, 'Folded', vim.tbl_extend('force', folded, { bg = '#1b1b1b', fg = '#2f2f2f', italic = true }))
   vim.api.nvim_set_hl(0, 'FoldColumn', vim.tbl_extend('force', fold_column, { bg = normal.bg }))
