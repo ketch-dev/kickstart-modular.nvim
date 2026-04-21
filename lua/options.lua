@@ -26,6 +26,7 @@ vim.opt.foldopen:remove 'hor'
 vim.opt.signcolumn = 'yes' -- Enable sign column (gutter)
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.statuscolumn = '%C%s%3l ' -- Keep the current line number aligned with relative numbers
 -------------------------------------------------------------------------------
 
 -- ========== Tabs/Spaces ==========
@@ -107,7 +108,8 @@ vim.opt.splitbelow = true -- New horizontal splits below
 vim.g.have_nerd_font = true
 vim.opt.autoread = true -- Read changed made in other process
 vim.opt.list = true -- Show whitespace characters
-vim.opt.cursorline = true -- Highlight current cursor line
+vim.opt.cursorline = true -- Enable cursor line so current line number can be highlighted
+vim.opt.cursorlineopt = 'number' -- Only highlight the current line number, not the full line
 vim.opt.confirm = true
 vim.opt.wildmenu = true
 vim.opt.wildignorecase = true
@@ -117,4 +119,4 @@ vim.opt.hidden = false
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
-vim.opt.sidescrolloff = 20 -- Minimal number of screen columns to keep left and right the cursor
+vim.opt.sidescrolloff = 40 -- Minimal number of screen columns to keep left and right the cursor
