@@ -19,6 +19,7 @@ vim.opt.foldtext = "printf('   %d', v:foldend - v:foldstart + 1)"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldcolumn = '0'
+vim.opt.foldopen:remove 'hor'
 -------------------------------------------------------------------------------
 
 -- ========== Gutter ==========
