@@ -6,6 +6,7 @@ require 'lazy-bootstrap'
 require 'lazy-plugins'
 require('custom.utils.syntax-overlay').setup()
 require('custom.utils.ui-overlay').setup()
+require('custom.adaptive-gutter').setup()
 
 -- ========== IDEAS ==========
 -- Also search (find) keys

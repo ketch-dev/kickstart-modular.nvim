@@ -26,7 +26,8 @@ vim.opt.foldopen:remove 'hor'
 vim.opt.signcolumn = 'yes' -- Enable sign column (gutter)
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.statuscolumn = '%C%s%3l ' -- Keep the current line number aligned with relative numbers
+vim.opt.numberwidth = 4
+vim.opt.statuscolumn = "%{%v:virtnum == 0 ? '%C%3{v:relnum?v:relnum:v:lnum} %s' : '' %}" -- Keep aligned line numbers before signs on real lines only
 -------------------------------------------------------------------------------
 
 -- ========== Tabs/Spaces ==========
