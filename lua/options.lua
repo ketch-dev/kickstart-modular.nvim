@@ -13,11 +13,9 @@ vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 -------------------------------------------------------------------------------
 
 -- ========== Folding (Tree-sitter) ==========
-function _G.custom_fold_text() return string.format('   %d', vim.v.foldend - vim.v.foldstart + 1) end
-
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldtext = 'v:lua.custom_fold_text()'
+vim.opt.foldtext = "printf('   %d', v:foldend - v:foldstart + 1)"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldcolumn = '0'
