@@ -2,21 +2,23 @@ local M = {}
 
 local did_setup = false
 
-local function set_bg_from_normal(group)
+function M.apply()
   local normal = vim.api.nvim_get_hl(0, { name = 'Normal', link = false })
-  local current = vim.api.nvim_get_hl(0, { name = group, link = false })
-
   if normal.bg == nil then return end
 
-  vim.api.nvim_set_hl(0, group, vim.tbl_extend('force', current, { bg = normal.bg }))
-end
+  local normal_nc = vim.api.nvim_get_hl(0, { name = 'NormalNC', link = false })
+  local line_nr = vim.api.nvim_get_hl(0, { name = 'LineNr', link = false })
+  local sign_column = vim.api.nvim_get_hl(0, { name = 'SignColumn', link = false })
+  local fold_column = vim.api.nvim_get_hl(0, { name = 'FoldColumn', link = false })
+  local cursor_line_sign = vim.api.nvim_get_hl(0, { name = 'CursorLineSign', link = false })
+  local cursor_line_fold = vim.api.nvim_get_hl(0, { name = 'CursorLineFold', link = false })
 
-function M.apply()
-  -- ========== Builtin ==========
-  set_bg_from_normal 'NormalNC'
-  set_bg_from_normal 'LineNr'
-  set_bg_from_normal 'SignColumn'
-  set_bg_from_normal 'FoldColumn'
+  vim.api.nvim_set_hl(0, 'NormalNC', vim.tbl_extend('force', normal_nc, { bg = normal.bg }))
+  vim.api.nvim_set_hl(0, 'LineNr', vim.tbl_extend('force', line_nr, { bg = normal.bg }))
+  vim.api.nvim_set_hl(0, 'SignColumn', vim.tbl_extend('force', sign_column, { bg = normal.bg }))
+  vim.api.nvim_set_hl(0, 'FoldColumn', vim.tbl_extend('force', fold_column, { bg = normal.bg }))
+  vim.api.nvim_set_hl(0, 'CursorLineSign', vim.tbl_extend('force', cursor_line_sign, { bg = normal.bg }))
+  vim.api.nvim_set_hl(0, 'CursorLineFold', vim.tbl_extend('force', cursor_line_fold, { bg = normal.bg }))
   -------------------------------------------------------------------------------
 end
 
