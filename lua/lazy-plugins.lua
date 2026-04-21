@@ -1,6 +1,6 @@
 local plugins = {
   require 'custom.plugins.flash',
-  require 'custom.plugins.diffview',
+  require 'custom.plugins.diffview.diffview',
   require 'custom.plugins.treesitter-textobjects',
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',
