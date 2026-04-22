@@ -48,6 +48,26 @@ local function is_ignored_filetype(win)
   return ignored_filetypes[vim.bo[buf].filetype] == true
 end
 
+local function has_single_window_column(windows)
+  if #windows == 0 then return false end
+
+  local columns = {}
+  local column_count = 0
+
+  for _, win in ipairs(windows) do
+    local info = vim.fn.getwininfo(win)[1]
+    local wincol = info and info.wincol or win
+
+    if not columns[wincol] then
+      columns[wincol] = true
+      column_count = column_count + 1
+      if column_count > 1 then return false end
+    end
+  end
+
+  return true
+end
+
 local function set_gutter_profile(win, profile)
   vim.api.nvim_set_option_value('foldcolumn', profile.foldcolumn, { scope = 'local', win = win })
   vim.api.nvim_set_option_value('number', profile.number, { scope = 'local', win = win })
@@ -65,7 +85,7 @@ function M.refresh(tabpage)
     if not is_floating(win) then windows[#windows + 1] = win end
   end
 
-  local profile = #windows == 1 and wide_profile or normal_profile
+  local profile = has_single_window_column(windows) and wide_profile or normal_profile
   for _, win in ipairs(windows) do
     set_gutter_profile(win, is_ignored_filetype(win) and panel_profile or profile)
   end
