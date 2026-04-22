@@ -32,6 +32,7 @@ function M.apply()
 
   vim.api.nvim_set_hl(0, 'Folded', vim.tbl_extend('force', folded, { bg = '#1b1b1b', fg = '#2f2f2f', italic = true })) -- folded line
   vim.api.nvim_set_hl(0, 'NormalNC', vim.tbl_extend('force', normal_nc, { bg = normal.bg })) -- unfocused buffer
+  vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#1b1b1b' }) -- window separators
 end
 
 function M.setup()
