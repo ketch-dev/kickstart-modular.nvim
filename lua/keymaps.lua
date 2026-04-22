@@ -100,10 +100,10 @@ vim.keymap.set('n', 'xx', 'dd', { noremap = true })
 -------------------------------------------------------------------------------
 
 -- ========== Split ==========
-vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = '[v]ertical' })
-vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[h]orizontal' })
-vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = '[e]qual' })
-vim.keymap.set('n', '<leader>sk', '<cmd>close<CR>', { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>dv', '<C-w>v', { desc = '[v]ertical' })
+vim.keymap.set('n', '<leader>dh', '<C-w>s', { desc = '[h]orizontal' })
+vim.keymap.set('n', '<leader>de', '<C-w>=', { desc = '[e]qual' })
+vim.keymap.set('n', '<leader>dk', '<cmd>close<CR>', { desc = '[k]ill' })
 -------------------------------------------------------------------------------
 
 -- ========== Tabs ==========
