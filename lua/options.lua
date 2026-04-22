@@ -69,13 +69,13 @@ vim.opt.undofile = true -- Save undo history
 vim.opt.fillchars = {
   eob = ' ', -- hide "~" on empty lines
   diff = '╱',
-  horiz = '█',
-  horizup = '█',
-  horizdown = '█',
-  vert = '█',
-  vertleft = '█',
-  vertright = '█',
-  verthoriz = '█',
+  horiz = '─',
+  horizup = '┴',
+  horizdown = '┬',
+  vert = '│',
+  vertleft = '┤',
+  vertright = '├',
+  verthoriz = '┼',
 
   -- Folding UI
   fold = ' ',
