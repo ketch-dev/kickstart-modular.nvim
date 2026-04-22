@@ -99,11 +99,11 @@ vim.keymap.set('n', 'xx', 'dd', { noremap = true })
 -- vim.keymap.set('n', '<leader>eg', '<cmd>Neotree git_status reveal right show<CR>', { desc = '[g]it' })
 -------------------------------------------------------------------------------
 
--- ========== Split ==========
-vim.keymap.set('n', '<leader>dv', '<C-w>v', { desc = '[v]ertical' })
-vim.keymap.set('n', '<leader>dh', '<C-w>s', { desc = '[h]orizontal' })
-vim.keymap.set('n', '<leader>de', '<C-w>=', { desc = '[e]qual' })
-vim.keymap.set('n', '<leader>dk', '<cmd>close<CR>', { desc = '[k]ill' })
+-- ========== Window ==========
+vim.keymap.set('n', '<leader>ws', '<C-w>v', { desc = '[s]plit' })
+vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = '[h]orizontal split' })
+vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[e]qual' })
+vim.keymap.set('n', '<leader>wk', '<cmd>close<CR>', { desc = '[k]ill' })
 -------------------------------------------------------------------------------
 
 -- ========== Tabs ==========

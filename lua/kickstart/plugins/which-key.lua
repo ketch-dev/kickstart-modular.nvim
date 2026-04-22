@@ -26,7 +26,7 @@ return {
       -- Document existing key chains
       spec = {
         { '<leader>p', group = '[p]age' },
-        { '<leader>d', group = '[d]ivide' },
+        { '<leader>w', group = '[w]indow' },
         { '<leader>t', group = '[t]oggle' },
         { '<leader>g', group = '[g]it' },
         { '<leader>h', group = '[h]unk', mode = { 'n', 'v' } },
