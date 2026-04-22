@@ -79,7 +79,8 @@ vim.opt.fillchars = {
 
   -- Folding UI
   fold = ' ',
-  foldopen = '',
+  -- foldopen = '',
+  foldopen = ' ',
   foldclose = ' ',
   foldsep = ' ',
 }
