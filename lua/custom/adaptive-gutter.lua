@@ -13,7 +13,7 @@ local normal_profile = {
   numberwidth = 4,
   relativenumber = true,
   signcolumn = 'yes',
-  statuscolumn = "%{%v:virtnum == 0 ? '%C%3{v:relnum?v:relnum:v:lnum} %s' : '' %}",
+  statuscolumn = "%{%v:virtnum == 0 ? '%C%s%3{v:relnum?v:relnum:v:lnum} ' : '' %}",
 }
 
 local panel_profile = {
@@ -31,7 +31,7 @@ local wide_profile = {
   numberwidth = 20,
   relativenumber = true,
   signcolumn = 'yes',
-  statuscolumn = "%{%v:virtnum == 0 ? '%C%19{v:relnum?v:relnum:v:lnum} %s' : '' %}",
+  statuscolumn = "%{%v:virtnum == 0 ? '%C%s %19{v:relnum?v:relnum:v:lnum} ' : '' %}",
 }
 
 local group = vim.api.nvim_create_augroup('custom-adaptive-gutter', { clear = true })
