@@ -42,6 +42,7 @@ return {
         end
       end,
       formatters_by_ft = {
+        go = { 'goimports', 'gofumpt' },
         lua = { 'stylua' },
         json = { 'prettier' },
         yaml = { 'prettier' },
