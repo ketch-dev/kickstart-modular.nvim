@@ -41,8 +41,23 @@ return {
           }
         end
       end,
+      formatters = {
+        ['golangci-lint'] = {
+          cwd = function(_, ctx)
+            return vim.fs.root(ctx.dirname, {
+              '.golangci.yml',
+              '.golangci.yaml',
+              '.golangci.toml',
+              '.golangci.json',
+              'go.work',
+              'go.mod',
+              '.git',
+            })
+          end,
+        },
+      },
       formatters_by_ft = {
-        go = { 'goimports', 'gofumpt' },
+        go = { 'golangci-lint' },
         lua = { 'stylua' },
         json = { 'prettier' },
         yaml = { 'prettier' },
