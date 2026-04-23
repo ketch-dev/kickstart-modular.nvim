@@ -89,7 +89,24 @@ return {
         angularls = {
           filetypes = { 'typescript', 'htmlangular' },
         },
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              staticcheck = true,
+              usePlaceholders = true,
+              analyses = {
+                shadow = true,
+                unusedparams = true,
+              },
+              vulncheck = 'Imports',
+              linksInHover = true,
+              hints = {
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {
