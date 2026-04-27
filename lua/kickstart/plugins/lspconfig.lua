@@ -101,7 +101,7 @@ return {
         gopls = {
           settings = {
             gopls = {
-              staticcheck = true,
+              staticcheck = false,
               usePlaceholders = true,
               analyses = {
                 shadow = true,
