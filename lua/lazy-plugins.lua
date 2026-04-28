@@ -22,6 +22,7 @@ if not vim.g.vscode then
     require 'custom.plugins.fidget',
     require 'custom.plugins.sleuth',
     require 'custom.plugins.noice',
+    require 'custom.plugins.neotest',
     -- require 'custom.plugins.rainbow-delimiters',
     require 'custom.plugins.highlight-colors',
     require 'custom.plugins.render-markdown',

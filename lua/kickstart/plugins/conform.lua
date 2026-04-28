@@ -18,7 +18,7 @@ return {
         desc = '[f]ormat buffer',
       },
       {
-        '<leader>tf',
+        '<leader>sf',
         function() vim.g.autoformat_on_save = not vim.g.autoformat_on_save end,
         mode = 'n',
         desc = '[f]ormat on save',

@@ -50,7 +50,7 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader>to', function()
+    vim.keymap.set('n', '<leader>so', function()
       overlay_enabled = not overlay_enabled
       sync_all_overlays()
     end, { desc = '[o]verlay' })
