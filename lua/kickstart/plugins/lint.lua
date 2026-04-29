@@ -8,6 +8,8 @@ return {
   config = function()
     local lint = require 'lint'
     lint.linters_by_ft = {
+      css = { 'stylelint' },
+      scss = { 'stylelint' },
       go = { 'golangcilint' },
       markdown = { 'markdownlint' }, -- Make sure to install `markdownlint` via mason / npm
     }
