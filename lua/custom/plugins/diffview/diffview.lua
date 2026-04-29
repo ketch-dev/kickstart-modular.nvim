@@ -1,7 +1,7 @@
 local highlights = require 'custom.plugins.diffview.highlights'
-local open_entry = require 'custom.plugins.diffview.open_entry'
-local open_view = require 'custom.plugins.diffview.open_view'
-local preview_entry = require 'custom.plugins.diffview.preview_entry'
+local open_entry = require 'custom.plugins.diffview.open-entry'
+local open_view = require 'custom.plugins.diffview.open-view'
+local preview_entry = require 'custom.plugins.diffview.preview-entry'
 
 local function fold_action(action)
   return function()
