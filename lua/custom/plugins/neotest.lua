@@ -23,9 +23,9 @@ return {
   },
   keys = {
     {
-      '<leader>tn',
+      '<leader>tt',
       function() require('neotest').run.run() end,
-      desc = 'run [n]earest test',
+      desc = 'run [t]est',
     },
     {
       '<leader>tf',
@@ -46,11 +46,6 @@ return {
       '<leader>tr',
       function() require('neotest').run.run_last() end,
       desc = '[r]erun',
-    },
-    {
-      '<leader>td',
-      function() require('neotest').run.run { strategy = 'dap' } end,
-      desc = '[d]ebug nearest test',
     },
     {
       '<leader>tu',

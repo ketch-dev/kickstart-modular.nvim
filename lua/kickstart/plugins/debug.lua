@@ -6,6 +6,19 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
+local function get_args(config)
+  local args = type(config.args) == 'function' and (config.args() or {}) or config.args or {}
+  local args_str = type(args) == 'table' and table.concat(args, ' ') or args
+
+  config = vim.deepcopy(config)
+  config.args = function()
+    local new_args = vim.fn.expand(vim.fn.input('Run with args: ', args_str))
+    return require('dap.utils').splitstr(new_args)
+  end
+
+  return config
+end
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -16,6 +29,11 @@ return {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
 
+    {
+      'theHamsta/nvim-dap-virtual-text',
+      config = function() require('nvim-dap-virtual-text').setup {} end,
+    },
+
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
 
@@ -23,15 +41,31 @@ return {
     'leoluz/nvim-dap-go',
   },
   keys = {
-    -- Basic debugging keymaps, feel free to change to your liking!
-    { '<F5>', function() require('dap').continue() end, desc = 'Debug: Start/Continue' },
-    { '<F1>', function() require('dap').step_into() end, desc = 'Debug: Step Into' },
-    { '<F2>', function() require('dap').step_over() end, desc = 'Debug: Step Over' },
-    { '<F3>', function() require('dap').step_out() end, desc = 'Debug: Step Out' },
-    { '<leader>b', function() require('dap').toggle_breakpoint() end, desc = 'Debug: Toggle Breakpoint' },
-    { '<leader>B', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'Debug: Set Breakpoint' },
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    { '<F7>', function() require('dapui').toggle() end, desc = 'Debug: See last session result.' },
+    { '<leader>da', function() require('dap').continue { before = get_args } end, desc = 'run with [a]rgs' },
+    { '<leader>dc', function() require('dap').continue() end, desc = '[c]ontinue' },
+    { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
+    { '<leader>de', function() require('dapui').eval() end, desc = '[e]val', mode = { 'n', 'x' } },
+    { '<leader>dE', function() require('dap').repl.toggle() end, desc = '[E]val (repl)' },
+    { '<leader>di', function() require('dap').step_into() end, desc = 'step [i]nto' },
+    { '<leader>d<Down>', function() require('dap').down() end, desc = 'frame []' },
+    { '<leader>d<Up>', function() require('dap').up() end, desc = 'frame []' },
+    { '<leader>do', function() require('dap').step_over() end, desc = 'step [o]ver' },
+    { '<leader>dO', function() require('dap').step_out() end, desc = 'step [O]ut' },
+    { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'toggle [b]reakpoint' },
+    { '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'conditional [B]reakpoint' },
+    { '<leader>dr', function() require('dap').run_last() end, desc = '[r]erun' },
+    { '<leader>dp', function() require('dap').pause() end, desc = '[p]ause' },
+    { '<leader>ds', function() require('dap').terminate() end, desc = '[s]top' },
+    {
+      '<leader>dt',
+      function()
+        require('lazy').load { plugins = { 'neotest' } }
+        require('neotest').run.run { strategy = 'dap' }
+      end,
+      desc = 'debug [t]est',
+    },
+    { '<leader>du', function() require('dapui').toggle() end, desc = 'toggle [u]i' },
+    { '<leader>dw', function() require('dap.ui.widgets').hover() end, desc = 'hover [w]idget' },
   },
   config = function()
     local dap = require 'dap'

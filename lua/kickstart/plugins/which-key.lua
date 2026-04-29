@@ -27,6 +27,7 @@ return {
       spec = {
         { '<leader>p', group = '[p]age' },
         { '<leader>w', group = '[w]indow' },
+        { '<leader>d', group = '[d]ebug' },
         { '<leader>s', group = '[s]witch' },
         { '<leader>t', group = '[t]est' },
         { '<leader>g', group = '[g]it' },
