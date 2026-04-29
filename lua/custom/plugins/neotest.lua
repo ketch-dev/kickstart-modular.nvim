@@ -53,9 +53,9 @@ return {
       desc = '[d]ebug nearest test',
     },
     {
-      '<leader>ts',
+      '<leader>tP',
       function() require('neotest').summary.toggle() end,
-      desc = '[s]ummary',
+      desc = '[P]anel',
     },
     {
       '<leader>to',
@@ -68,9 +68,9 @@ return {
       desc = '[O]utput panel',
     },
     {
-      '<leader>tS',
+      '<leader>ts',
       function() require('neotest').run.stop() end,
-      desc = '[S]top',
+      desc = '[s]top',
     },
     {
       '<leader>tw',
