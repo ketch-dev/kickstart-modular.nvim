@@ -53,9 +53,9 @@ return {
       desc = '[d]ebug nearest test',
     },
     {
-      '<leader>tP',
+      '<leader>tu',
       function() require('neotest').summary.toggle() end,
-      desc = '[P]anel',
+      desc = '[u]i',
     },
     {
       '<leader>to',
