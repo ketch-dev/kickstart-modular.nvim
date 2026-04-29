@@ -1,5 +1,4 @@
 require 'options'
-require 'notify-vscode'
 require 'keymaps'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
