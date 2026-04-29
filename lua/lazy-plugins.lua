@@ -9,10 +9,6 @@ local plugins = {
 if not vim.g.vscode then
   vim.list_extend(plugins, {
     require 'custom.plugins.themes.token',
-    -- require 'custom.plugins.themes.github-theme',
-    -- require 'custom.plugins.themes.vscode',
-    -- require 'custom.plugins.themes.vscode-syntax-blend',
-    -- require 'custom.plugins.themes.kanagawa',
 
     -- require 'custom.plugins.bufferline',
     require 'custom.plugins.neogit',
@@ -23,7 +19,6 @@ if not vim.g.vscode then
     require 'custom.plugins.sleuth',
     require 'custom.plugins.noice',
     require 'custom.plugins.neotest',
-    -- require 'custom.plugins.rainbow-delimiters',
     require 'custom.plugins.highlight-colors',
     require 'custom.plugins.render-markdown',
 
