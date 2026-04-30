@@ -101,6 +101,7 @@ return {
         },
         cssls = {},
         html = {},
+        jsonls = {},
         gopls = {
           settings = {
             gopls = {
