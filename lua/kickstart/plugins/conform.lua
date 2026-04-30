@@ -68,6 +68,7 @@ return {
         liquid = { 'prettier' },
         html = { 'prettier' },
         htmlangular = { 'prettier' },
+        vue = { 'prettier' },
         css = { 'prettier' },
         scss = { 'prettier' },
         javascript = { 'prettier' },

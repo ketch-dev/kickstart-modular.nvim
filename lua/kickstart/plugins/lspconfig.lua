@@ -9,7 +9,24 @@ return {
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
+      local vue_plugin_host = vim.fs.normalize(vim.fn.expand '~/.local/share/vue-language-server')
+      local vue_ts_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_plugin_host,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+        enableForWorkspaceTypeScriptVersions = true,
+      }
+
+      local function set_vue_component_highlight() vim.api.nvim_set_hl(0, '@lsp.type.component', { link = '@type' }) end
+
       vim.lsp.document_color.enable(false)
+      set_vue_component_highlight()
+
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = vim.api.nvim_create_augroup('kickstart-vue-highlight', { clear = true }),
+        callback = set_vue_component_highlight,
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -58,7 +75,7 @@ return {
             )
           end
 
-          if client and client.name == 'typescript-tools' then
+          if client and client.name == 'vtsls' then
             local bufname = vim.api.nvim_buf_get_name(event.buf)
             if bufname ~= '' then
               local angular_json = vim.fs.find('angular.json', { path = vim.fs.dirname(bufname), upward = true })[1]
@@ -95,7 +112,6 @@ return {
       -- ========== LSP servers config. LSPs install automatically (See :help lspconfig-all) ==========
       ---@type table<string, vim.lsp.Config>
       local servers = {
-        volar = {},
         angularls = {
           filetypes = { 'typescript', 'htmlangular' },
         },
@@ -103,6 +119,40 @@ return {
         eslint = {},
         html = {},
         jsonls = {},
+        vue_ls = {},
+        vtsls = {
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'javascript.jsx',
+            'typescript',
+            'typescriptreact',
+            'typescript.tsx',
+            'vue',
+          },
+          settings = {
+            vtsls = {
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+              tsserver = {
+                globalPlugins = {
+                  vue_ts_plugin,
+                },
+              },
+            },
+            typescript = {
+              tsserver = {
+                pluginPaths = {
+                  vue_plugin_host .. '/node_modules',
+                },
+              },
+            },
+          },
+        },
         gopls = {
           settings = {
             gopls = {
@@ -139,32 +189,6 @@ return {
         vim.lsp.config(name, server)
         vim.lsp.enable(name)
       end
-    end,
-  },
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = function()
-      return {
-        filetypes = {
-          'javascript',
-          'javascriptreact',
-          'javascript.jsx',
-          'typescript',
-          'typescriptreact',
-          'typescript.tsx',
-          'vue',
-        },
-        settings = {
-          separate_diagnostic_server = true,
-          publish_diagnostic_on = 'insert_leave',
-          tsserver_plugins = {
-            '@vue/typescript-plugin',
-          },
-          tsserver_max_memory = 'auto',
-          code_lens = 'off',
-        },
-      }
     end,
   },
 }
