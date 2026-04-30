@@ -36,6 +36,7 @@ return {
         'vim',
         'vimdoc',
         'vue',
+        'yaml',
       }
       local has_tree_sitter_cli = vim.fn.executable 'tree-sitter' == 1
       if has_tree_sitter_cli then require('nvim-treesitter').install(parsers) end
