@@ -20,5 +20,4 @@ require('custom.adaptive-gutter').setup()
 -- Install dashboard
 
 -- Install plugin to rename imports after file name change (hosean 0.11+ lsp setup video)
--- Install eslint
 -- Check if lazy plugin manager is still needed

@@ -100,6 +100,7 @@ return {
           filetypes = { 'typescript', 'htmlangular' },
         },
         cssls = {},
+        eslint = {},
         html = {},
         jsonls = {},
         gopls = {
