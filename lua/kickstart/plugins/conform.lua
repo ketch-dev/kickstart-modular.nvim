@@ -60,6 +60,7 @@ return {
         go = { 'golangci-lint' },
         lua = { 'stylua' },
         json = { 'prettier' },
+        jsonc = { 'prettier' },
         yaml = { 'prettier' },
         markdown = { 'prettier' },
         nix = { 'nixfmt' },
