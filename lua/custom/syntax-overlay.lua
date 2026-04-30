@@ -46,9 +46,9 @@ local function highlights()
   }
 
   local diff = {
-    change = c.preproc,
-    changeBg = hsl(40, 32, 20),
-    changeInline = hsl(40, 38, 28),
+    change = hsl(36, 35, 56),
+    changeBg = hsl(36, 26, 20),
+    changeInline = hsl(36, 30, 27),
   }
 
   return {
