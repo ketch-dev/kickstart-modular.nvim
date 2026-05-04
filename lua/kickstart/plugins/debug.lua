@@ -44,7 +44,7 @@ return {
     { '<leader>da', function() require('dap').continue { before = get_args } end, desc = 'run with [a]rgs' },
     { '<leader>dc', function() require('dap').continue() end, desc = '[c]ontinue' },
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
-    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over' },
+    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over', mode = { 'n', 'x' } },
     { '<leader>de', function() require('dapui').eval() end, desc = '[e]val', mode = { 'n', 'x' } },
     { '<leader>dE', function() require('dap').repl.toggle() end, desc = '[E]val (repl)' },
     { '<leader>di', function() require('dap').step_into() end, desc = 'step [i]nto' },
