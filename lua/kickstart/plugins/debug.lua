@@ -143,6 +143,7 @@ return {
     -- Change breakpoint icons
     vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#c85151' })
     vim.api.nvim_set_hl(0, 'DapStop', { fg = '#5f87af' })
+    vim.api.nvim_set_hl(0, 'DapActualStop', { fg = '#87af87' })
 
     local breakpoint_icons = vim.g.have_nerd_font
         and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
@@ -154,9 +155,69 @@ return {
       vim.fn.sign_define(tp, { text = icon, texthl = hl, linehl = linehl, numhl = hl })
     end
 
+    local actual_stop_sign_group = 'dap_actual_stop'
+    vim.fn.sign_define('DapActualStopped', {
+      text = breakpoint_icons.Stopped,
+      texthl = 'DapActualStop',
+      linehl = 'debugPC',
+      numhl = 'DapActualStop',
+    })
+
+    local function clear_actual_stop_sign() vim.fn.sign_unplace(actual_stop_sign_group) end
+
+    local function actual_stop_source_to_bufnr(session, source)
+      if not source then return end
+
+      local source_ref = source.sourceReference
+      if not source_ref or source_ref <= 0 then
+        if not source.path then return end
+
+        local scheme = source.path:match '^([a-z]+)://.*'
+        if scheme then return vim.uri_to_bufnr(source.path) end
+
+        return vim.uri_to_bufnr(vim.uri_from_fname(source.path))
+      end
+
+      local fname = string.format('dap-src://%d/%d/%s', session.id, source_ref, source.path or '')
+      return vim.uri_to_bufnr(fname)
+    end
+
+    local function get_actual_stop_frame(frames)
+      for _, frame in ipairs(frames or {}) do
+        if frame.source then return frame end
+      end
+
+      return frames and frames[1]
+    end
+
+    local function place_actual_stop_sign(session, err, response, request)
+      local thread_id = request and request.threadId
+      if not thread_id or thread_id ~= (session and session.stopped_thread_id) then return end
+
+      clear_actual_stop_sign()
+      if err then return end
+
+      local frame = get_actual_stop_frame(response and response.stackFrames)
+      if not frame or not frame.line or frame.line < 1 then return end
+
+      local bufnr = actual_stop_source_to_bufnr(session, frame.source)
+      if not bufnr or bufnr == 0 then return end
+
+      vim.fn.bufload(bufnr)
+      pcall(vim.fn.sign_place, 0, actual_stop_sign_group, 'DapActualStopped', bufnr, {
+        lnum = frame.line,
+        priority = 30,
+      })
+    end
+
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+    dap.listeners.after.stackTrace['dap_actual_stop'] = place_actual_stop_sign
+    dap.listeners.before.event_continued['dap_actual_stop'] = clear_actual_stop_sign
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    dap.listeners.before.event_terminated['dap_actual_stop'] = clear_actual_stop_sign
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    dap.listeners.before.event_exited['dap_actual_stop'] = clear_actual_stop_sign
+    dap.listeners.before.disconnect['dap_actual_stop'] = clear_actual_stop_sign
 
     -- Install golang specific config
     require('dap-go').setup {
