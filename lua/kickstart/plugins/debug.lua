@@ -6,19 +6,6 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
-local function get_args(config)
-  local args = type(config.args) == 'function' and (config.args() or {}) or config.args or {}
-  local args_str = type(args) == 'table' and table.concat(args, ' ') or args
-
-  config = vim.deepcopy(config)
-  config.args = function()
-    local new_args = vim.fn.expand(vim.fn.input('Run with args: ', args_str))
-    return require('dap.utils').splitstr(new_args)
-  end
-
-  return config
-end
-
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -41,7 +28,6 @@ return {
     'leoluz/nvim-dap-go',
   },
   keys = {
-    { '<leader>da', function() require('dap').continue { before = get_args } end, desc = 'run with [a]rgs' },
     { '<leader>dc', function() require('dap').continue() end, desc = '[c]ontinue' },
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
     { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over', mode = { 'n', 'x' } },
