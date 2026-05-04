@@ -44,6 +44,7 @@ return {
     { '<leader>da', function() require('dap').continue { before = get_args } end, desc = 'run with [a]rgs' },
     { '<leader>dc', function() require('dap').continue() end, desc = '[c]ontinue' },
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
+    { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over' },
     { '<leader>de', function() require('dapui').eval() end, desc = '[e]val', mode = { 'n', 'x' } },
     { '<leader>dE', function() require('dap').repl.toggle() end, desc = '[E]val (repl)' },
     { '<leader>di', function() require('dap').step_into() end, desc = 'step [i]nto' },
@@ -65,7 +66,6 @@ return {
       desc = 'debug [t]est',
     },
     { '<leader>du', function() require('dapui').toggle() end, desc = '[u]i' },
-    { '<leader>dw', function() require('dap.ui.widgets').hover() end, desc = 'hover [w]idget' },
   },
   config = function()
     local dap = require 'dap'
