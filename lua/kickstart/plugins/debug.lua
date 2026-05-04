@@ -44,6 +44,7 @@ return {
     'leoluz/nvim-dap-go',
   },
   keys = {
+    { '<leader>du', function() require('dapui').toggle() end, desc = '[u]i' },
     { '<leader>dm', function() require('dap').continue() end, desc = '[m]enu' },
     { '<leader>dc', continue_or_run_first_config, desc = '[c]ontinue' },
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
@@ -67,7 +68,6 @@ return {
       end,
       desc = 'debug [t]est',
     },
-    { '<leader>du', function() require('dapui').toggle() end, desc = '[u]i' },
   },
   config = function()
     local dap = require 'dap'
