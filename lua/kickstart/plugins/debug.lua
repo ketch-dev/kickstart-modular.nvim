@@ -6,6 +6,22 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
+local function continue_or_run_first_config()
+  local dap = require 'dap'
+
+  if dap.session() then
+    dap.continue()
+    return
+  end
+
+  local configs = dap.configurations[vim.bo.filetype]
+  if configs and configs[1] then
+    dap.run(configs[1])
+  else
+    dap.continue()
+  end
+end
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
@@ -28,7 +44,8 @@ return {
     'leoluz/nvim-dap-go',
   },
   keys = {
-    { '<leader>dc', function() require('dap').continue() end, desc = '[c]ontinue' },
+    { '<leader>dm', function() require('dap').continue() end, desc = '[m]enu' },
+    { '<leader>dc', continue_or_run_first_config, desc = '[c]ontinue' },
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
     { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over', mode = { 'n', 'x' } },
     { '<leader>de', function() require('dapui').eval() end, desc = '[e]val', mode = { 'n', 'x' } },
