@@ -46,7 +46,6 @@ return {
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
     { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over', mode = { 'n', 'x' } },
     { '<leader>de', function() require('dapui').eval() end, desc = '[e]val', mode = { 'n', 'x' } },
-    { '<leader>dE', function() require('dap').repl.toggle() end, desc = '[E]val (repl)' },
     { '<leader>di', function() require('dap').step_into() end, desc = 'step [i]nto' },
     { '<leader>d<Down>', function() require('dap').down() end, desc = '[] frame' },
     { '<leader>d<Up>', function() require('dap').up() end, desc = '[] frame' },
