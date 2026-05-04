@@ -45,7 +45,13 @@ return {
   },
   keys = {
     { '<leader>du', function() require('dapui').toggle() end, desc = '[u]i' },
-    { '<leader>dm', function() require('dap').continue() end, desc = '[m]enu' },
+    {
+      '<leader>dm',
+      function()
+        if not require('dap').session() then require('dap').continue() end
+      end,
+      desc = '[m]enu',
+    },
     { '<leader>dc', continue_or_run_first_config, desc = '[c]ontinue' },
     { '<leader>dC', function() require('dap').run_to_cursor() end, desc = 'run to [C]ursor' },
     { '<leader>dh', function() require('dap.ui.widgets').hover() end, desc = '[h]over', mode = { 'n', 'x' } },
