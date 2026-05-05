@@ -13,7 +13,7 @@ return {
     keys = {
       {
         '<C-f>',
-        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+        function() require('conform').format { async = true } end,
         mode = '',
         desc = '[f]ormat buffer',
       },
@@ -55,6 +55,9 @@ return {
             })
           end,
         },
+      },
+      default_format_opts = {
+        lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
       },
       formatters_by_ft = {
         go = { 'golangci-lint' },
