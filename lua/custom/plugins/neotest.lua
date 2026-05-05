@@ -10,7 +10,9 @@ local function current_package_path()
   return vim.fs.dirname(path)
 end
 
-local function current_root_path() return vim.fs.root(current_path(), { 'go.work', 'go.mod', '.git' }) or vim.fn.getcwd() end
+local function current_root_path() return vim.fs.root(current_path(), { 'go.work', 'go.mod', 'package.json', '.git' }) or vim.fn.getcwd() end
+
+local function filter_node_modules(name) return name ~= 'node_modules' end
 
 return {
   'nvim-neotest/neotest',
@@ -20,6 +22,9 @@ return {
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-neotest/neotest-go',
+    'nvim-neotest/neotest-jest',
+    'marilari88/neotest-vitest',
+    'thenbe/neotest-playwright',
   },
   keys = {
     {
@@ -81,6 +86,15 @@ return {
       adapters = {
         require 'neotest-go' {
           recursive_run = true,
+        },
+        require 'neotest-jest' {},
+        require 'neotest-vitest' {
+          filter_dir = filter_node_modules,
+        },
+        require('neotest-playwright').adapter {
+          options = {
+            filter_dir = filter_node_modules,
+          },
         },
       },
     }
