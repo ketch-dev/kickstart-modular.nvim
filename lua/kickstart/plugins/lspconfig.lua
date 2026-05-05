@@ -67,14 +67,6 @@ return {
             )
           end
 
-          if client and client.name == 'vtsls' then
-            local bufname = vim.api.nvim_buf_get_name(event.buf)
-            if bufname ~= '' then
-              local angular_json = vim.fs.find('angular.json', { path = vim.fs.dirname(bufname), upward = true })[1]
-              if angular_json then client.server_capabilities.referencesProvider = false end
-            end
-          end
-
           if client and client:supports_method('textDocument/documentHighlight', event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -105,7 +97,7 @@ return {
       ---@type table<string, vim.lsp.Config>
       local servers = {
         angularls = {
-          filetypes = { 'typescript', 'htmlangular' },
+          filetypes = { 'htmlangular' },
         },
         cssls = {},
         eslint = {},
