@@ -1,8 +1,6 @@
 return {
   setup = function()
-    if vim.g.vscode then
-      return
-    end
+    if vim.g.vscode then return end
 
     local mini_files = require 'mini.files'
 
@@ -11,14 +9,12 @@ return {
       mappings = {
         close = '<C-g>',
         go_in_plus = '<CR>',
-        go_out = '<left>',
+        go_out = 'h',
         synchronize = '<C-s>',
       },
       content = {
         prefix = function(fs_entry)
-          if fs_entry.fs_type == 'directory' then
-            return '', 'MiniFilesFile'
-          end
+          if fs_entry.fs_type == 'directory' then return '', 'MiniFilesFile' end
 
           return mini_files.default_prefix(fs_entry)
         end,
@@ -31,19 +27,13 @@ return {
 
       mini_files.open(buf_name)
 
-      if buf_name == '' or not vim.startswith(buf_name, cwd) then
-        return
-      end
+      if buf_name == '' or not vim.startswith(buf_name, cwd) then return end
 
       local current_dir = vim.fs.dirname(buf_name)
-      if current_dir == cwd then
-        return
-      end
+      if current_dir == cwd then return end
 
       local relative_path = vim.fs.relpath(cwd, current_dir)
-      if not relative_path or relative_path == '.' then
-        return
-      end
+      if not relative_path or relative_path == '.' then return end
 
       local depth = 0
       for _ in string.gmatch(relative_path, '[^/]+') do
@@ -66,11 +56,9 @@ return {
       callback = function(args)
         local bufnr = args.data.buf_id
 
-        vim.keymap.set('n', '<right>', function()
+        vim.keymap.set('n', 'l', function()
           local fs_entry = mini_files.get_fs_entry()
-          if fs_entry and fs_entry.fs_type == 'directory' then
-            mini_files.go_in()
-          end
+          if fs_entry and fs_entry.fs_type == 'directory' then mini_files.go_in() end
         end, { buffer = bufnr, desc = 'Go in dir' })
 
         vim.keymap.set('n', '<enter>', function()
@@ -83,19 +71,13 @@ return {
 
         vim.keymap.set('n', '<C-cr>', function()
           local entry = mini_files.get_fs_entry()
-          if not entry then
-            return
-          end
+          if not entry then return end
 
           local state = mini_files.get_explorer_state()
-          if not state then
-            return
-          end
+          if not state then return end
 
           local target_win = state.target_window
-          if not target_win or not vim.api.nvim_win_is_valid(target_win) then
-            target_win = vim.api.nvim_get_current_win()
-          end
+          if not target_win or not vim.api.nvim_win_is_valid(target_win) then target_win = vim.api.nvim_get_current_win() end
 
           if entry.fs_type == 'file' then
             local new_win

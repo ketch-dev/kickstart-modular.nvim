@@ -142,17 +142,13 @@ local function bind_terminal_navigation_keys(terminal)
 
   vim.keymap.set('n', '<C-g>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = 'Close terminal' }))
 
-  vim.keymap.set('n', '<C-Left>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'Previous terminal' }))
+  vim.keymap.set('n', '<C-h>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'Previous terminal' }))
 
-  vim.keymap.set('n', '<C-Right>', function() switch_terminal(kind, 1) end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
+  vim.keymap.set('n', '<C-l>', function() switch_terminal(kind, 1) end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
 
   vim.keymap.set('t', '<C-g>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], buffer_options)
-  vim.keymap.set('t', '<C-Left>', prev_term_cmd, buffer_options)
-  vim.keymap.set('t', '<C-Right>', next_term_cmd, buffer_options)
-
-  -- Fallback for terminals that send raw ctrl-arrow escape sequences.
-  vim.keymap.set('t', '<Esc>[1;5D', prev_term_cmd, buffer_options)
-  vim.keymap.set('t', '<Esc>[1;5C', next_term_cmd, buffer_options)
+  vim.keymap.set('t', '<C-h>', prev_term_cmd, buffer_options)
+  vim.keymap.set('t', '<C-l>', next_term_cmd, buffer_options)
 end
 
 local function persist_terminal_buffer(terminal)

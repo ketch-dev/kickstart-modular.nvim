@@ -28,9 +28,11 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'next [d]iagnostic'
 vim.keymap.set('n', '<leader>sd', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, { desc = '[d]iagnostic' })
 -------------------------------------------------------------------------------
 
--- ========== Disable hjkl ==========
-vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')
-vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
+-- ========== Disable arrow keys ==========
+vim.keymap.set({ 'n', 'v', 'i' }, '<Left>', '<Nop>', { desc = 'Use h instead' })
+vim.keymap.set({ 'n', 'v', 'i' }, '<Down>', '<Nop>', { desc = 'Use j instead' })
+vim.keymap.set({ 'n', 'v', 'i' }, '<Up>', '<Nop>', { desc = 'Use k instead' })
+vim.keymap.set({ 'n', 'v', 'i' }, '<Right>', '<Nop>', { desc = 'Use l instead' })
 -------------------------------------------------------------------------------
 
 -- ========== Mouse wheel scroll without EOF overscroll ==========
@@ -57,18 +59,18 @@ vim.keymap.set(
 )
 -------------------------------------------------------------------------------
 
--- ========== Focus windows with arrows ==========
-vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- ========== Focus windows with hjkl ==========
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 -------------------------------------------------------------------------------
 
--- ========== Move windows with arrows ==========
-vim.keymap.set('n', '<C-A-left>', '<C-w>H', { desc = 'Move window to the left' })
-vim.keymap.set('n', '<C-A-right>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<C-A-down>', '<C-w>J', { desc = 'Move window to the lower' })
-vim.keymap.set('n', '<C-A-up>', '<C-w>K', { desc = 'Move window to the upper' })
+-- ========== Move windows with hjkl ==========
+vim.keymap.set('n', '<C-A-h>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-A-l>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-A-j>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<C-A-k>', '<C-w>K', { desc = 'Move window to the upper' })
 -------------------------------------------------------------------------------
 
 -- ========== Save with ctrl-s ==========
