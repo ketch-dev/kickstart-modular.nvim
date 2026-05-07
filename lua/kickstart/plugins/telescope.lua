@@ -94,18 +94,18 @@ return {
 
       local builtin = require 'telescope.builtin' -- see `:help telescope.builtin`
 
-      vim.keymap.set('n', 'lh', builtin.help_tags, { desc = '[h]elp' })
-      vim.keymap.set('n', 'lk', builtin.keymaps, { desc = '[k]eymaps' })
-      vim.keymap.set('n', 'lf', builtin.find_files, { desc = '[f]iles' })
-      vim.keymap.set('n', 'ls', builtin.builtin, { desc = '[s]elect telescope' })
-      vim.keymap.set({ 'n', 'v' }, 'lw', builtin.grep_string, { desc = 'current [w]ord' })
-      vim.keymap.set('n', 'lg', builtin.live_grep, { desc = '[g]rep' })
-      vim.keymap.set('n', 'ld', builtin.diagnostics, { desc = '[d]iagnostics' })
-      vim.keymap.set('n', 'l.', builtin.resume, { desc = 'resume' })
-      vim.keymap.set('n', 'lr', builtin.oldfiles, { desc = '[r]ecent files' })
-      vim.keymap.set('n', 'lc', builtin.commands, { desc = '[c]ommands' })
-      vim.keymap.set('n', 'lt', '<cmd>TodoTelescope<cr>', { desc = '[t]odo' })
-      vim.keymap.set('n', 'll', builtin.buffers, { desc = 'buffers' })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[h]elp' })
+      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[k]eymaps' })
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[f]iles' })
+      vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[s]elect telescope' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>fw', builtin.grep_string, { desc = 'current [w]ord' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[g]rep' })
+      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[d]iagnostics' })
+      vim.keymap.set('n', '<leader>f.', builtin.resume, { desc = 'resume' })
+      vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = '[r]ecent files' })
+      vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[c]ommands' })
+      vim.keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<cr>', { desc = '[t]odo' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'buffers' })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
@@ -123,7 +123,7 @@ return {
 
       vim.keymap.set(
         'n',
-        'l/',
+        '<leader>f/',
         function()
           builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
             winblend = 10,
@@ -132,7 +132,7 @@ return {
         end,
         { desc = '[/] Find in buffer' }
       )
-      vim.keymap.set('n', 'ln', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = '[n]eovim files' })
+      vim.keymap.set('n', '<leader>fn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = '[n]eovim files' })
     end,
   },
 }

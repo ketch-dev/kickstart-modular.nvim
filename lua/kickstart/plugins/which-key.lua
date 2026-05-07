@@ -16,7 +16,6 @@ return {
       delay = 1000,
       triggers = {
         { '<auto>', mode = 'nixsotc' },
-        { 'l', mode = 'n' },
         { 's', mode = 'n' },
       },
       icons = {
@@ -32,7 +31,7 @@ return {
         { '<leader>t', group = '[t]est' },
         { '<leader>g', group = '[g]it' },
         { '<leader>h', group = '[h]unk', mode = { 'n', 'v' } },
-        { 'l', group = '[l]ookup:' },
+        { '<leader>f', group = '[f]ind' },
         { 's', group = '[s]urround', mode = { 'n', 'x' } },
         { 'sa', desc = '[a]dd', mode = { 'n', 'x' } },
         { 'sd', desc = '[d]elete', mode = { 'n' } },
