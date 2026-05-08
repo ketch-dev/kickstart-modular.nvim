@@ -59,10 +59,12 @@ return {
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
-        ['<C-n>'] = false,
-        ['<C-p>'] = false,
         ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
         ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+        ['<C-n>'] = false,
+        ['<C-p>'] = false,
+        ['<Left>'] = false,
+        ['<Right>'] = false,
         ['<Up>'] = false,
         ['<Down>'] = false,
 
@@ -75,6 +77,15 @@ return {
       },
 
       cmdline = {
+        keymap = {
+          preset = 'cmdline',
+          ['<C-n>'] = false,
+          ['<C-p>'] = false,
+          ['<Left>'] = false,
+          ['<Right>'] = false,
+          ['<Up>'] = false,
+          ['<Down>'] = false,
+        },
         completion = {
           menu = {
             auto_show = function() return vim.fn.getcmdtype() == ':' end,
