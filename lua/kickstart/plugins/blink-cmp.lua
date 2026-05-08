@@ -81,8 +81,8 @@ return {
         preset = 'default',
         ['<Up>'] = false,
         ['<Down>'] = false,
-        ['<Tab>'] = { 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ['<Tab>'] = false,
+        ['<S-Tab>'] = false,
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -92,9 +92,19 @@ return {
         nerd_font_variant = 'mono',
       },
 
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = function() return vim.fn.getcmdtype() == ':' end,
+          },
+        },
+      },
+
       completion = {
+        ghost_text = { enabled = true },
         menu = {
           draw = {
+            treesitter = { 'lsp' },
             columns = {
               { 'kind_icon' },
               { 'label', 'import_source', gap = 1 },
@@ -120,13 +130,6 @@ return {
       fuzzy = { implementation = 'prefer_rust_with_warning' },
       signature = { enabled = true }, -- Shows a signature help window while you type arguments for a function
     },
-    config = function(_, opts)
-      require('blink.cmp').setup(opts)
-
-      require('mini.keymap').map_multistep('i', '<CR>', { 'blink_accept', 'minipairs_cr' }, {
-        desc = 'Accept completion or pair-aware newline',
-        silent = true,
-      })
-    end,
+    config = function(_, opts) require('blink.cmp').setup(opts) end,
   },
 }
