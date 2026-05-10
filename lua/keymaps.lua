@@ -12,6 +12,15 @@ vim.keymap.set('c', '<C-g>', '<C-c>', { noremap = true, silent = true, desc = 'C
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
 -------------------------------------------------------------------------------
 
+-- ========== Prevent closing cmdline on backspace when empty ==========
+vim.keymap.set(
+  'c',
+  '<BS>',
+  function() return vim.fn.getcmdpos() <= 1 and '' or '<BS>' end,
+  { expr = true, noremap = true, desc = 'Prevent closing cmdline on backspace when empty' }
+)
+-------------------------------------------------------------------------------
+
 -- ========== Diagnostic ==========
 vim.diagnostic.config {
   update_in_insert = false,
