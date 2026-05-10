@@ -32,6 +32,7 @@ return {
         { '<leader>g', group = '[g]it' },
         { '<leader>h', group = '[h]unk', mode = { 'n', 'v' } },
         { '<leader>f', group = '[f]ind' },
+        { '<leader>a', group = '[a]i', mode = { 'n', 'x' } },
         { 's', group = '[s]urround', mode = { 'n', 'x' } },
         { 'sa', desc = '[a]dd', mode = { 'n', 'x' } },
         { 'sd', desc = '[d]elete', mode = { 'n' } },

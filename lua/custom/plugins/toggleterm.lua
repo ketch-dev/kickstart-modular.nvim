@@ -11,7 +11,7 @@ local kinds = {
   ai = {
     id_base = AI_ID_BASE,
     prefix = 'AI-',
-    command = 'opencode',
+    command = 'opencode --port',
   },
 }
 
@@ -133,6 +133,7 @@ end
 
 _G.__toggleterm_switch_terminal = switch_terminal
 _G.__toggleterm_close_current_terminal = close_current_terminal
+_G.__toggleterm_open_ai = function() open_last_terminal 'ai' end
 
 local function bind_terminal_navigation_keys(terminal)
   local kind = detect_kind(terminal) or 'numeric'
@@ -172,10 +173,10 @@ return {
         desc = 'Open last terminal',
       },
       {
-        '<C-a>',
+        '<leader>au',
         function() open_last_terminal 'ai' end,
-        mode = { 'n', 'i', 't' },
-        desc = 'Open AI terminal',
+        mode = { 'n' },
+        desc = '[u]i',
       },
     },
     opts = {

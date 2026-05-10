@@ -1,6 +1,5 @@
 local plugins = {
   require 'custom.plugins.flash',
-  require 'custom.plugins.diffview.diffview',
   require 'custom.plugins.treesitter-textobjects',
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',
@@ -11,6 +10,7 @@ if not vim.g.vscode then
     require 'custom.plugins.themes.token',
 
     -- require 'custom.plugins.bufferline',
+    require 'custom.plugins.diffview.diffview',
     require 'custom.plugins.neogit',
     require 'custom.plugins.neoscroll',
     require 'custom.plugins.toggleterm',
@@ -21,6 +21,7 @@ if not vim.g.vscode then
     require 'custom.plugins.neotest',
     require 'custom.plugins.highlight-colors',
     require 'custom.plugins.render-markdown',
+    require 'custom.plugins.opencode',
 
     require 'kickstart.plugins.gitsigns',
     require 'kickstart.plugins.which-key',
