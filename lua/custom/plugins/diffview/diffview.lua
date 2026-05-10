@@ -19,10 +19,6 @@ return {
         icons = { folder_closed = '', folder_open = '' },
         keymaps = {
           file_history_panel = {
-            ['<left>'] = false,
-            ['<down>'] = false,
-            ['<up>'] = false,
-            ['<right>'] = false,
             { 'n', 'j', function() end, { desc = 'No-op' } },
             { 'n', 'k', function() end, { desc = 'No-op' } },
             { 'n', 'h', function() end, { desc = 'No-op' } },
@@ -32,16 +28,10 @@ return {
           option_panel = { close },
           help_panel = { close },
           view = {
-            ['<cr>'] = false,
-            close,
             { 'n', '<cr>', open_entry.open_file_and_close_diffview, { desc = 'Open file and close Diffview' } },
+            close,
           },
           file_panel = {
-            ['<left>'] = false,
-            ['<down>'] = false,
-            ['<up>'] = false,
-            ['<right>'] = false,
-            ['<cr>'] = false,
             { 'n', 'j', function() end, { desc = 'No-op' } },
             { 'n', 'k', function() end, { desc = 'No-op' } },
             { 'n', 'h', function() end, { desc = 'No-op' } },

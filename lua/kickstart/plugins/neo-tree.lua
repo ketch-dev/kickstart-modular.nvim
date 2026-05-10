@@ -26,15 +26,15 @@ return {
       mappings = {
         ['<space>'] = 'none',
 
-        ['h'] = 'close_node',
-        ['j'] = 'move_down',
-        ['k'] = 'move_up',
-        ['l'] = 'open',
+        ['h'] = 'none',
+        ['j'] = 'none',
+        ['k'] = 'none',
+        ['l'] = 'none',
 
-        ['<left>'] = 'none',
-        ['<down>'] = 'none',
-        ['<up>'] = 'none',
-        ['<right>'] = 'none',
+        ['<left>'] = 'close_node',
+        ['<down>'] = 'move_down',
+        ['<up>'] = 'move_up',
+        ['<right>'] = 'open',
 
         ['n'] = 'rename',
         ['y'] = 'copy_to_clipboard',

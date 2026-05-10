@@ -9,7 +9,7 @@ return {
       mappings = {
         close = '<C-g>',
         go_in_plus = '<CR>',
-        go_out = 'h',
+        go_out = '<left>',
         synchronize = '<C-s>',
       },
       content = {
@@ -56,7 +56,7 @@ return {
       callback = function(args)
         local bufnr = args.data.buf_id
 
-        vim.keymap.set('n', 'l', function()
+        vim.keymap.set('n', '<right>', function()
           local fs_entry = mini_files.get_fs_entry()
           if fs_entry and fs_entry.fs_type == 'directory' then mini_files.go_in() end
         end, { buffer = bufnr, desc = 'Go in dir' })

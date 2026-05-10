@@ -32,7 +32,7 @@ return {
           map('ga', vim.lsp.buf.code_action, '[g]oto [a]ction', { 'n', 'x' })
           map('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
 
-          map('<C-x>', function()
+          map('<C-h>', function()
             local max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.8)
 
             local _, winid = vim.diagnostic.open_float {
@@ -54,7 +54,7 @@ return {
             if winid then return end
 
             vim.lsp.buf.hover()
-          end, 'e[x]amine (diagnostics / hover)')
+          end, '[h]over')
 
           -- ========== Highlight references of the word under your cursor when your cursor rests ==========
           local client = vim.lsp.get_client_by_id(event.data.client_id)
