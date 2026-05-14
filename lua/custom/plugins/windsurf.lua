@@ -27,7 +27,7 @@ return {
           return ''
         end
         return '<Tab>'
-      end, { expr = true, silent = true, desc = 'Cycle windsurf next or <Tab>' })
+      end, { expr = true, silent = true, desc = 'Cycle ghost text forward' })
 
       vim.keymap.set('i', '<S-Tab>', function()
         local ok, vt = pcall(require, 'codeium.virtual_text')
@@ -36,7 +36,7 @@ return {
           return ''
         end
         return '<S-Tab>'
-      end, { expr = true, silent = true, desc = 'Cycle windsurf prev or <S-Tab>' })
+      end, { expr = true, silent = true, desc = 'Cycle ghost text backward' })
     end,
   },
 }
