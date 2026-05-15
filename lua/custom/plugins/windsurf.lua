@@ -1,6 +1,7 @@
 return {
   {
     'Exafunction/windsurf.nvim',
+    build = "sed -i 's/2deb37376016b8eb5f2895a7b7a5f46aa57fb6d6/b58db8747a7dc1c042e3131f1e2246141d466923/' lua/codeium/versions.json",
     config = function()
       require('codeium').setup {
         quiet = true,
