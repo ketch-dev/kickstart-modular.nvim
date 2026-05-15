@@ -1,5 +1,4 @@
-vim.pack.add { 'https://github.com/neovim/nvim-lspconfig', 'https://github.com/j-hui/fidget.nvim' }
-require('fidget').setup {}
+vim.pack.add { 'https://github.com/neovim/nvim-lspconfig' }
 
 local vue_plugin_host = vim.fs.normalize(vim.fn.expand '~/.local/share/vue-language-server')
 local vue_ts_plugin = {
