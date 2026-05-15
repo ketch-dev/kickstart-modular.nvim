@@ -1,0 +1,34 @@
+-- ========== Always-loaded plugins ==========
+require 'custom.plugins.flash'
+require 'custom.plugins.treesitter-textobjects'
+require 'kickstart.plugins.mini'
+require 'kickstart.plugins.treesitter'
+
+-- ========== Plugins not loaded in VSCode ==========
+if not vim.g.vscode then
+  require 'custom.plugins.themes.token'
+
+  require 'custom.plugins.diffview.diffview'
+  require 'custom.plugins.neogit'
+  require 'custom.plugins.neoscroll'
+  require 'custom.plugins.toggleterm'
+  require 'custom.plugins.scrollbar'
+  require 'custom.plugins.fidget'
+  require 'custom.plugins.sleuth'
+  require 'custom.plugins.noice'
+  require 'custom.plugins.neotest'
+  require 'custom.plugins.highlight-colors'
+  require 'custom.plugins.render-markdown'
+  require 'custom.plugins.opencode'
+  require 'custom.plugins.windsurf'
+
+  require 'kickstart.plugins.gitsigns'
+  require 'kickstart.plugins.which-key'
+  require 'kickstart.plugins.telescope'
+  require 'kickstart.plugins.lspconfig'
+  require 'kickstart.plugins.conform'
+  require 'kickstart.plugins.blink-cmp'
+  require 'kickstart.plugins.debug'
+  require 'kickstart.plugins.indent_line'
+  require 'kickstart.plugins.lint'
+end

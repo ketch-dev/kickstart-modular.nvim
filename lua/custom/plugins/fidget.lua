@@ -1,4 +1,1 @@
--- ========== See if LSP and Formatter are ready in a buffer ==========
-return {
-  'j-hui/fidget.nvim',
-}
+vim.pack.add { 'https://github.com/j-hui/fidget.nvim' }

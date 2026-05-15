@@ -1,126 +1,59 @@
 -- ========== Autocompletion ==========
 
----@module 'lazy'
----@type LazySpec
-return {
-  {
-    'saghen/blink.cmp',
-    event = 'VimEnter',
-    version = '1.*',
-    dependencies = {
-      {
-        'xzbdmw/colorful-menu.nvim',
-        config = true,
-      },
-      -- ========== Snippet Engine ==========
-      {
-        'L3MON4D3/LuaSnip',
-        version = '2.*',
-        build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then return end
-          return 'make install_jsregexp'
-        end)(),
-        dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
-          {
-            'rafamadriz/friendly-snippets',
-            config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
-          },
-        },
-        opts = {},
-      },
-    },
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
-    opts = {
-      keymap = {
-        -- 'default' (recommended) for mappings similar to built-in completions
-        --   <c-y> to accept ([y]es) the completion.
-        --    This will auto-import if your LSP supports it.
-        --    This will expand snippets if the LSP sent a snippet.
-        -- 'super-tab' for tab to accept
-        -- 'enter' for enter to accept
-        -- 'none' for no mappings
-        --
-        -- For an understanding of why the 'default' preset is recommended,
-        -- you will need to read `:help ins-completion`
-        --
-        -- No, but seriously. Please read `:help ins-completion`, it is really good!
-        --
-        -- All presets have the following mappings:
-        -- <tab>/<s-tab>: move to right/left of your snippet expansion
-        -- <c-space>: Open menu or open docs if already open
-        -- <c-n>/<c-p>: Select next/previous item
-        -- <c-e>: Hide menu
-        -- <c-k>: Toggle signature help
-        --
-        -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
-        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-        ['<C-n>'] = false,
-        ['<C-p>'] = false,
-        ['<Left>'] = false,
-        ['<Right>'] = false,
-        ['<Up>'] = false,
-        ['<Down>'] = false,
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name ~= 'LuaSnip' then return end
+    if ev.data.kind ~= 'install' and ev.data.kind ~= 'update' then return end
+    if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' ~= 1 then return end
+    local result = vim.system({ 'make', 'install_jsregexp' }, { cwd = ev.data.path }):wait()
+    if result.code ~= 0 then vim.notify(('Build failed for LuaSnip:\n%s'):format(result.stderr or result.stdout), vim.log.levels.ERROR) end
+  end,
+})
 
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-      },
+vim.pack.add { 'https://github.com/xzbdmw/colorful-menu.nvim' }
+require('colorful-menu').setup()
 
-      appearance = {
-        nerd_font_variant = 'mono',
-      },
+vim.pack.add { { src = 'https://github.com/L3MON4D3/LuaSnip', version = vim.version.range '2.*' } }
+require('luasnip').setup {}
 
-      cmdline = {
-        keymap = {
-          preset = 'cmdline',
-          ['<C-n>'] = false,
-          ['<C-p>'] = false,
-          ['<Left>'] = false,
-          ['<Right>'] = false,
-          ['<Up>'] = false,
-          ['<Down>'] = false,
-        },
-        completion = {
-          menu = {
-            auto_show = function() return vim.fn.getcmdtype() == ':' end,
-          },
-        },
-      },
+vim.pack.add { 'https://github.com/rafamadriz/friendly-snippets' }
+require('luasnip.loaders.from_vscode').lazy_load()
 
-      completion = {
-        ghost_text = { enabled = true },
-        menu = {
-          draw = {
-            columns = {
-              { 'kind_icon' },
-              { 'label', gap = 1 },
-            },
-            components = {
-              label = {
-                text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
-                highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
-              },
-            },
-          },
-        },
-        -- By default, you may press `<c-space>` to show the documentation.
-        -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
-      },
-
-      sources = {
-        default = { 'lsp', 'path', 'snippets' },
-      },
-      snippets = { preset = 'luasnip' },
-      fuzzy = { implementation = 'prefer_rust_with_warning' },
-      signature = { enabled = true }, -- Shows a signature help window while you type arguments for a function
-    },
-    config = function(_, opts) require('blink.cmp').setup(opts) end,
+vim.pack.add { { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range '1.*' } }
+require('blink.cmp').setup {
+  keymap = {
+    preset = 'default',
+    ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+    ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+    ['<C-n>'] = false,
+    ['<C-p>'] = false,
+    ['<Left>'] = false,
+    ['<Right>'] = false,
+    ['<Up>'] = false,
+    ['<Down>'] = false,
   },
+  appearance = { nerd_font_variant = 'mono' },
+  cmdline = {
+    keymap = { preset = 'cmdline', ['<C-n>'] = false, ['<C-p>'] = false, ['<Left>'] = false, ['<Right>'] = false, ['<Up>'] = false, ['<Down>'] = false },
+    completion = { menu = { auto_show = function() return vim.fn.getcmdtype() == ':' end } },
+  },
+  completion = {
+    ghost_text = { enabled = true },
+    menu = {
+      draw = {
+        columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+        components = {
+          label = {
+            text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
+            highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
+          },
+        },
+      },
+    },
+    documentation = { auto_show = false, auto_show_delay_ms = 500 },
+  },
+  sources = { default = { 'lsp', 'path', 'snippets' } },
+  snippets = { preset = 'luasnip' },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
+  signature = { enabled = true },
 }

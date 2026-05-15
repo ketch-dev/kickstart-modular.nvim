@@ -1,5 +1,3 @@
 -- ========== Override default tabs/spaces in current buffer ==========
 
-return {
-  'tpope/vim-sleuth',
-}
+vim.pack.add { 'https://github.com/tpope/vim-sleuth' }

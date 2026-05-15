@@ -1,7 +1,6 @@
 require 'options'
 require 'keymaps'
-require 'lazy-bootstrap'
-require 'lazy-plugins'
+require 'plugins'
 require('custom.syntax-overlay').setup()
 require('custom.ui-overlay').setup()
 require('custom.adaptive-gutter').setup()

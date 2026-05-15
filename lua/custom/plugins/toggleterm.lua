@@ -160,51 +160,31 @@ local function persist_terminal_buffer(terminal)
   if terminal and terminal.bufnr and vim.api.nvim_buf_is_valid(terminal.bufnr) then vim.bo[terminal.bufnr].bufhidden = 'hide' end
 end
 
-return {
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    cmd = { 'ToggleTerm', 'TermExec' },
-    keys = {
-      {
-        '<C-t>',
-        function() open_last_terminal 'numeric' end,
-        mode = { 'n', 'i', 't' },
-        desc = 'Open last terminal',
-      },
-      {
-        '<leader>au',
-        function() open_last_terminal 'ai' end,
-        mode = { 'n' },
-        desc = '[u]i',
-      },
-    },
-    opts = {
-      open_mapping = false,
-      direction = 'float',
-      start_in_insert = true,
-      persist_mode = false,
-      on_create = function(terminal) persist_terminal_buffer(terminal) end,
-      on_open = function(terminal)
-        persist_terminal_buffer(terminal)
-        local kind = detect_kind(terminal)
-        local index = kind and get_terminal_index(kind, terminal.id)
-        if kind and index then state.last_index[kind] = index end
-        bind_terminal_navigation_keys(terminal)
-      end,
-      highlights = {
-        NormalFloat = { link = 'NormalFloat' },
-        FloatBorder = { link = 'FloatBorder' },
-      },
-      float_opts = {
-        border = 'rounded',
-        width = function()
-          return math.floor(vim.o.columns * 0.9) -- align with picker
-        end,
-        height = function()
-          return math.floor(vim.o.lines * 0.84) -- keep 2 code lines below and above
-        end,
-      },
-    },
+vim.pack.add { { src = 'https://github.com/akinsho/toggleterm.nvim', version = vim.version.range '*' } }
+
+vim.keymap.set({ 'n', 'i', 't' }, '<C-t>', function() open_last_terminal 'numeric' end, { desc = 'Open last terminal' })
+vim.keymap.set('n', '<leader>au', function() open_last_terminal 'ai' end, { desc = '[u]i' })
+
+require('toggleterm').setup {
+  open_mapping = false,
+  direction = 'float',
+  start_in_insert = true,
+  persist_mode = false,
+  on_create = function(terminal) persist_terminal_buffer(terminal) end,
+  on_open = function(terminal)
+    persist_terminal_buffer(terminal)
+    local kind = detect_kind(terminal)
+    local index = kind and get_terminal_index(kind, terminal.id)
+    if kind and index then state.last_index[kind] = index end
+    bind_terminal_navigation_keys(terminal)
+  end,
+  highlights = {
+    NormalFloat = { link = 'NormalFloat' },
+    FloatBorder = { link = 'FloatBorder' },
+  },
+  float_opts = {
+    border = 'rounded',
+    width = function() return math.floor(vim.o.columns * 0.9) end,
+    height = function() return math.floor(vim.o.lines * 0.84) end,
   },
 }

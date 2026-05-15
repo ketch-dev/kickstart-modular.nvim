@@ -1,17 +1,4 @@
--- ========== Add indentation guides even on blank lines ==========
+-- ========== Indentation guides ==========
 
----@module 'lazy'
----@type LazySpec
-return {
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    ---@module 'ibl'
-    ---@type ibl.config
-    opts = {
-      indent = { char = '│' },
-    },
-  },
-}
+vim.pack.add { 'https://github.com/lukas-reineke/indent-blankline.nvim' }
+require('ibl').setup { indent = { char = '│' } }

@@ -1,6 +1,1 @@
--- ========== Add new binds based on treesitter parsing ==========
-return {
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  branch = 'main',
-  dependencies = { 'nvim-treesitter' },
-}
+vim.pack.add { { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' } }

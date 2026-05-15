@@ -1,13 +1,4 @@
 -- ========== Render Markdown in buffer ==========
 
-return {
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    ft = { 'markdown' },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'echasnovski/mini.nvim',
-    },
-    opts = {},
-  },
-}
+vim.pack.add { 'https://github.com/MeanderingProgrammer/render-markdown.nvim' }
+require('render-markdown').setup {}

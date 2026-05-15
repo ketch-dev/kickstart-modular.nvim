@@ -1,22 +1,9 @@
--- ========== Collection of various small independent plugins/modules ==========
+vim.pack.add { 'https://github.com/echasnovski/mini.nvim' }
+if vim.g.have_nerd_font then vim.pack.add { 'https://github.com/nvim-tree/nvim-web-devicons' } end
 
----@module 'lazy'
----@type LazySpec
-return {
-  {
-    'echasnovski/mini.nvim',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-    },
-    config = function()
-      require('kickstart.plugins.mini.ai').setup()
-      require('kickstart.plugins.mini.surround').setup()
-      require('kickstart.plugins.mini.pairs').setup()
-      require('kickstart.plugins.mini.diff').setup()
-      require('kickstart.plugins.mini.statusline').setup()
-      require('kickstart.plugins.mini.files').setup()
-    end,
-  },
-}
+require 'kickstart.plugins.mini.ai'
+require 'kickstart.plugins.mini.surround'
+require 'kickstart.plugins.mini.pairs'
+require 'kickstart.plugins.mini.diff'
+require 'kickstart.plugins.mini.statusline'
+require 'kickstart.plugins.mini.files'

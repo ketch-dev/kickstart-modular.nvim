@@ -1,15 +1,8 @@
-return {
-  'NeogitOrg/neogit',
-  lazy = true,
-  dependencies = {
-    'nvim-lua/plenary.nvim', -- required
-    'sindrets/diffview.nvim', -- optional - Diff integration
-
-    -- Only one of these is needed.
-    'nvim-telescope/telescope.nvim', -- optional
-  },
-  cmd = 'Neogit',
-  keys = {
-    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'neogit' },
-  },
+vim.pack.add {
+  'https://github.com/NeogitOrg/neogit',
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/sindrets/diffview.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
 }
+
+vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'neogit' })

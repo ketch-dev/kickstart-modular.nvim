@@ -1,9 +1,2 @@
-return {
-  {
-    'ThorstenRhau/token',
-    name = 'token',
-    lazy = false,
-    priority = 1000,
-    config = function() vim.cmd.colorscheme 'token' end,
-  },
-}
+vim.pack.add { 'https://github.com/ThorstenRhau/token' }
+vim.cmd.colorscheme 'token'
