@@ -1,5 +1,3 @@
-if vim.g.vscode then return end
-
 local diff = require 'mini.diff'
 local overlay_enabled = false
 

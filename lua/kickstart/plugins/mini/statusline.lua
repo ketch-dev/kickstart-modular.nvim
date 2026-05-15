@@ -1,5 +1,3 @@
-if vim.g.vscode then return end
-
 local line = require 'mini.statusline'
 local icon_hl_cache = {}
 local icon_hl_group = vim.api.nvim_create_augroup('custom-mini-statusline-icon-hl', { clear = true })

@@ -1,10 +1,8 @@
--- ========== Always-loaded plugins ==========
 require 'custom.plugins.flash'
 require 'custom.plugins.treesitter-textobjects'
 require 'kickstart.plugins.mini'
 require 'kickstart.plugins.treesitter'
 
--- ========== Plugins not loaded in VSCode ==========
 if not vim.g.vscode then
   require 'custom.plugins.themes.token'
 

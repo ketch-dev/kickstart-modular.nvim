@@ -1,5 +1,3 @@
-if vim.g.vscode then return end
-
 require('mini.pairs').setup()
 
 local bracket_pairs = { ['('] = ')', ['['] = ']', ['{'] = '}' }

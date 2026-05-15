@@ -1,5 +1,3 @@
-if vim.g.vscode then return end
-
 local mini_files = require 'mini.files'
 mini_files.setup {
   cond = not vim.g.vscode,
