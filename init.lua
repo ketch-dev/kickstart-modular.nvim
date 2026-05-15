@@ -4,19 +4,3 @@ require 'plugins'
 require('custom.syntax-overlay').setup()
 require('custom.ui-overlay').setup()
 require('custom.adaptive-gutter').setup()
-
--- ========== IDEAS ==========
--- Also search (find) keys
--- Also go keys
--- Also shift and frst keys
--- Also maybe trouble keys
--- Also maybe git keys
--- Consider other plugin for surround
--- Install bufferline
--- Install tmux navigator
--- Install maximizer
--- Install workspace reset
--- Install dashboard
-
--- Install plugin to rename imports after file name change (hosean 0.11+ lsp setup video)
--- Check if lazy plugin manager is still needed
