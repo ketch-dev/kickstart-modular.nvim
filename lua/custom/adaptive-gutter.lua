@@ -1,5 +1,3 @@
-if vim.g.vscode then return end
-
 local M = {}
 
 local ignored_filetypes = {

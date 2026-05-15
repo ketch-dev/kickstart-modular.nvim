@@ -1,6 +1,5 @@
 local mini_files = require 'mini.files'
 mini_files.setup {
-  cond = not vim.g.vscode,
   mappings = { close = '<C-g>', go_in_plus = '<CR>', go_out = '<left>', synchronize = '<C-s>' },
   content = {
     prefix = function(fs_entry)
