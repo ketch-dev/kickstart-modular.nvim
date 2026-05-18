@@ -90,7 +90,6 @@ vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[d]iagnostics' 
 vim.keymap.set('n', '<leader>f.', builtin.resume, { desc = 'resume' })
 vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = '[r]ecent files' })
 vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[c]ommands' })
-vim.keymap.set('n', '<leader>ft', '<cmd>TodoTelescope<cr>', { desc = '[t]odo' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[b]uffers' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
