@@ -141,13 +141,13 @@ local function bind_terminal_navigation_keys(terminal)
   local next_term_cmd = string.format([[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal('%s', 1)<CR>]], kind)
   local buffer_options = { buffer = terminal.bufnr, silent = true, noremap = true }
 
-  vim.keymap.set('n', '<C-g>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = 'Close terminal' }))
+  vim.keymap.set('n', '<C-k>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = '[k]ill terminal' }))
 
-  vim.keymap.set('n', '<C-left>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'Previous terminal' }))
+  vim.keymap.set('n', '<C-left>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'prev terminal' }))
 
-  vim.keymap.set('n', '<C-right>', function() switch_terminal(kind, 1) end, vim.tbl_extend('force', buffer_options, { desc = 'Next terminal' }))
+  vim.keymap.set('n', '<C-right>', function() switch_terminal(kind, 1) end, vim.tbl_extend('force', buffer_options, { desc = 'next terminal' }))
 
-  vim.keymap.set('t', '<C-g>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], buffer_options)
+  vim.keymap.set('t', '<C-k>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], buffer_options)
   vim.keymap.set('t', '<C-left>', prev_term_cmd, buffer_options)
   vim.keymap.set('t', '<C-right>', next_term_cmd, buffer_options)
 
@@ -162,7 +162,7 @@ end
 
 vim.pack.add { { src = 'https://github.com/akinsho/toggleterm.nvim', version = vim.version.range '*' } }
 
-vim.keymap.set({ 'n', 'i', 't' }, '<C-t>', function() open_last_terminal 'numeric' end, { desc = 'Open last terminal' })
+vim.keymap.set({ 'n', 'i', 't' }, '<C-t>', function() open_last_terminal 'numeric' end, { desc = 'open last [t]erminal' })
 vim.keymap.set('n', '<leader>au', function() open_last_terminal 'ai' end, { desc = '[u]i' })
 
 require('toggleterm').setup {

@@ -1,6 +1,6 @@
 local mini_files = require 'mini.files'
 mini_files.setup {
-  mappings = { close = '<C-g>', go_in_plus = '<CR>', go_out = '<left>', synchronize = '<C-s>' },
+  mappings = { close = '<C-k>', go_in_plus = '<CR>', go_out = '<left>', synchronize = '<C-s>' },
   content = {
     prefix = function(fs_entry)
       if fs_entry.fs_type == 'directory' then return '', 'MiniFilesFile' end

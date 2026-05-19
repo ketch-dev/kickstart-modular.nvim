@@ -10,7 +10,7 @@ vim.pack.add {
 vim.keymap.set('n', '<leader>gd', open_view.open_or_refresh_diffview, { desc = '[d]iff' })
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'file [h]istory' })
 
-local close = { 'n', '<C-g>', function() require('diffview').close() end, { desc = 'Close Diffview' } }
+local close = { 'n', '<C-k>', function() require('diffview').close() end, { desc = '[k]ill diffview' } }
 
 require('diffview').setup {
   enhanced_diff_hl = true,

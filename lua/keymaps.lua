@@ -5,10 +5,10 @@ vim.keymap.set('n', '<Del>', '"_x') -- 'Del' to delete 1 char forward
 vim.keymap.set('n', '<BS>', '"_dh') -- 'Backspace' to delete 1 char backward
 vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
-vim.keymap.set('n', '<C-g>', '<cmd>bdelete<cr>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<C-k>', '<cmd>bdelete<cr>', { desc = '[k]ill buffer' })
 
 -- ========== Exit command mode ==========
-vim.keymap.set('c', '<C-g>', '<C-c>', { noremap = true, silent = true, desc = 'Cancel cmdline' })
+vim.keymap.set('c', '<C-k>', '<C-c>', { noremap = true, silent = true, desc = '[k]ill cmdline' })
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
 -------------------------------------------------------------------------------
 
