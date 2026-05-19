@@ -21,7 +21,7 @@ require('which-key').setup {
     { 'sd', desc = '[d]elete', mode = { 'n' } },
     { 'sr', desc = '[r]eplace', mode = { 'n' } },
     { 'sh', desc = '[h]ighlight', mode = { 'n' } },
-    { 'sf', desc = 'find right', mode = { 'n' } },
-    { 'st', desc = 'find left', mode = { 'n' } },
+    { 'sp', desc = 'find prev', mode = { 'n' } },
+    { 'sn', desc = 'find next', mode = { 'n' } },
   },
 }

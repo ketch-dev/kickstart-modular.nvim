@@ -82,7 +82,7 @@ require('gitsigns').setup {
     map('n', '<leader>hq', gitsigns.setqflist, { desc = '[q]uickfix hunks' })
     map('n', '<leader>sb', gitsigns.toggle_current_line_blame, { desc = '[b]lame line' })
     map('n', '<leader>sw', gitsigns.toggle_word_diff, { desc = '[w]ord diff' })
-    map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
-    map({ 'o', 'x' }, 'ah', gitsigns.select_hunk)
+    map({ 'o', 'x' }, 'ih', gitsigns.select_hunk, { desc = 'inside [h]unk' })
+    map({ 'o', 'x' }, 'ah', gitsigns.select_hunk, { desc = 'around [h]unk' })
   end,
 }

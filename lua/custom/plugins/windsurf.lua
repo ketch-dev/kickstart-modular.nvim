@@ -30,7 +30,7 @@ vim.keymap.set('i', '<C-y>', function()
   local ok, vt = pcall(require, 'codeium.virtual_text')
   if ok and vt.get_current_completion_item() then return vt.accept() end
   return '<C-y>'
-end, { expr = true, silent = true, desc = 'Accept ghost text' })
+end, { expr = true, silent = true, desc = 'accept ghost text' })
 
 vim.keymap.set('i', '<Tab>', function()
   local ok, vt = pcall(require, 'codeium.virtual_text')
@@ -39,7 +39,7 @@ vim.keymap.set('i', '<Tab>', function()
     return ''
   end
   return '<Tab>'
-end, { expr = true, silent = true, desc = 'Cycle ghost text forward' })
+end, { expr = true, silent = true, desc = 'next ghost text' })
 
 vim.keymap.set('i', '<S-Tab>', function()
   local ok, vt = pcall(require, 'codeium.virtual_text')
@@ -48,4 +48,4 @@ vim.keymap.set('i', '<S-Tab>', function()
     return ''
   end
   return '<S-Tab>'
-end, { expr = true, silent = true, desc = 'Cycle ghost text backward' })
+end, { expr = true, silent = true, desc = 'prev ghost text' })

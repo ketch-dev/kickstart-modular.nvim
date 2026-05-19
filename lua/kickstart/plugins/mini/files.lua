@@ -30,7 +30,7 @@ vim.keymap.set('n', '<C-e>', function()
       mini_files.go_in()
     end
   end)
-end, { desc = 'Mini Files (Tree View)' })
+end, { desc = '[e]xplorer' })
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'MiniFilesBufferCreate',
@@ -39,15 +39,15 @@ vim.api.nvim_create_autocmd('User', {
     vim.keymap.set('n', '<right>', function()
       local fs_entry = mini_files.get_fs_entry()
       if fs_entry and fs_entry.fs_type == 'directory' then mini_files.go_in() end
-    end, { buffer = bufnr, desc = 'Go in dir' })
-    vim.keymap.set('n', '<enter>', function()
+    end, { buffer = bufnr, desc = 'go in dir' })
+    vim.keymap.set('n', '<CR>', function()
       local fs_entry = mini_files.get_fs_entry()
       if fs_entry and fs_entry.fs_type == 'file' then
         mini_files.go_in()
         mini_files.close()
       end
-    end, { buffer = bufnr, desc = 'Open file' })
-    vim.keymap.set('n', '<C-cr>', function()
+    end, { buffer = bufnr, desc = 'open file' })
+    vim.keymap.set('n', '<C-CR>', function()
       local entry = mini_files.get_fs_entry()
       if not entry then return end
       local state = mini_files.get_explorer_state()
@@ -63,6 +63,6 @@ vim.api.nvim_create_autocmd('User', {
         mini_files.set_target_window(new_win)
         mini_files.go_in { close_on_file = true }
       end
-    end, { buffer = bufnr, desc = 'Open in vertical split' })
+    end, { buffer = bufnr, desc = 'open in vertical split' })
   end,
 })

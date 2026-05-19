@@ -1,16 +1,15 @@
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Clear highlights on search when pressing <Esc> in normal mode
-
-vim.keymap.set('v', 'p', 'P') -- Make 'p' to not copy
-vim.keymap.set('n', '<Del>', '"_x') -- 'Del' to delete 1 char forward
-vim.keymap.set('n', '<BS>', '"_dh') -- 'Backspace' to delete 1 char backward
-vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
-vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlights' })
+vim.keymap.set('v', 'p', 'P', { desc = 'paste' })
+vim.keymap.set('n', '<Del>', '"_x', { desc = 'delete forward' })
+vim.keymap.set('n', '<BS>', '"_dh', { desc = 'delete backward' })
+vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'delete word forward' })
+vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'delete word backward' })
 vim.keymap.set('n', '<C-k>', '<cmd>bdelete<cr>', { desc = '[k]ill buffer' })
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'redo' })
 
 -- ========== Exit command mode ==========
 vim.keymap.set('c', '<C-k>', '<C-c>', { noremap = true, silent = true, desc = '[k]ill cmdline' })
-vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'Disable cmdline Esc' })
+vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'disable cmdline ESC' })
 -------------------------------------------------------------------------------
 
 -- ========== Prevent closing cmdline on backspace when empty ==========
@@ -18,7 +17,7 @@ vim.keymap.set(
   'c',
   '<BS>',
   function() return vim.fn.getcmdpos() <= 1 and '' or '<BS>' end,
-  { expr = true, noremap = true, desc = 'Prevent closing cmdline on backspace when empty' }
+  { expr = true, noremap = true, desc = 'prevent closing cmdline on backspace when empty' }
 )
 -------------------------------------------------------------------------------
 
@@ -39,10 +38,10 @@ vim.keymap.set('n', '<leader>sd', function() vim.diagnostic.enable(not vim.diagn
 -------------------------------------------------------------------------------
 
 -- ========== Disable hjkl ==========
-vim.keymap.set({ 'n', 'v' }, 'h', '<Nop>')
-vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>')
-vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>')
-vim.keymap.set({ 'n', 'v' }, 'l', '<Nop>')
+vim.keymap.set({ 'n', 'v' }, 'h', '<Nop>', { desc = 'disable h' })
+vim.keymap.set({ 'n', 'v' }, 'j', '<Nop>', { desc = 'disable j' })
+vim.keymap.set({ 'n', 'v' }, 'k', '<Nop>', { desc = 'disable k' })
+vim.keymap.set({ 'n', 'v' }, 'l', '<Nop>', { desc = 'disable l' })
 -------------------------------------------------------------------------------
 
 -- ========== Mouse wheel scroll without EOF overscroll ==========
@@ -59,13 +58,13 @@ vim.keymap.set(
   { 'n', 'i', 'v' },
   '<ScrollWheelDown>',
   function() return wheel_scroll(1) end,
-  { expr = true, silent = true, desc = 'Scroll down without EOF overscroll' }
+  { expr = true, silent = true, desc = 'scroll down without overscroll' }
 )
 vim.keymap.set(
   { 'n', 'i', 'v' },
   '<ScrollWheelUp>',
   function() return wheel_scroll(-1) end,
-  { expr = true, silent = true, desc = 'Scroll up without top overscroll' }
+  { expr = true, silent = true, desc = 'scroll up without overscroll' }
 )
 
 -- ========== Horizontal scroll with Shift+MouseWheel ==========
@@ -89,36 +88,36 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<C-r>', function() return horizontal_wheel_sc
 -------------------------------------------------------------------------------
 
 -- ========== Focus windows with arrows ==========
-vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'move focus to the left window' })
+vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'move focus to the right window' })
+vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'move focus to the lower window' })
+vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'move focus to the upper window' })
 -------------------------------------------------------------------------------
 
 -- ========== Move windows with arrows ==========
-vim.keymap.set('n', '<C-A-left>', '<C-w>H', { desc = 'Move window to the left' })
-vim.keymap.set('n', '<C-A-right>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<C-A-down>', '<C-w>J', { desc = 'Move window to the lower' })
-vim.keymap.set('n', '<C-A-up>', '<C-w>K', { desc = 'Move window to the upper' })
+vim.keymap.set('n', '<C-A-left>', '<C-w>H', { desc = 'move window to the left' })
+vim.keymap.set('n', '<C-A-right>', '<C-w>L', { desc = 'move window to the right' })
+vim.keymap.set('n', '<C-A-down>', '<C-w>J', { desc = 'move window to the lower' })
+vim.keymap.set('n', '<C-A-up>', '<C-w>K', { desc = 'move window to the upper' })
 -------------------------------------------------------------------------------
 
 -- ========== Save with ctrl-s ==========
-vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
-vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = '[s]ave' })
+vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true, desc = '[s]ave' })
+vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = '[s]ave' })
 -------------------------------------------------------------------------------
 
 -- ========== Make 'd' and 'c' to not copy ==========
-vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { noremap = true })
-vim.keymap.set('n', 'D', '"_D', { noremap = true })
-vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { noremap = true })
-vim.keymap.set('n', 'C', '"_C', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, 'd', '"_d', { noremap = true, desc = 'delete' })
+vim.keymap.set('n', 'D', '"_D', { noremap = true, desc = 'delete to line end' })
+vim.keymap.set({ 'n', 'v' }, 'c', '"_c', { noremap = true, desc = 'change' })
+vim.keymap.set('n', 'C', '"_C', { noremap = true, desc = 'change line' })
 -------------------------------------------------------------------------------
 
 -- ========== Map 'x' to cut ==========
-vim.keymap.set({ 'n', 'v' }, 'x', 'd', { noremap = true })
-vim.keymap.set('n', 'X', 'D', { noremap = true })
-vim.keymap.set('n', 'xx', 'dd', { noremap = true })
+vim.keymap.set({ 'n', 'v' }, 'x', 'd', { noremap = true, desc = 'cut' })
+vim.keymap.set('n', 'X', 'D', { noremap = true, desc = 'cut to line end' })
+vim.keymap.set('n', 'xx', 'dd', { noremap = true, desc = 'cut line' })
 -------------------------------------------------------------------------------
 
 -- ========== Neotree ==========

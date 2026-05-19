@@ -11,7 +11,7 @@ if vim.g.have_nerd_font then table.insert(plugins, 'https://github.com/nvim-tree
 
 vim.pack.add(plugins)
 
-vim.keymap.set('n', '\\', '<Cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
+vim.keymap.set('n', '\\', '<Cmd>Neotree reveal<CR>', { desc = 'neotree', silent = true })
 
 require('neo-tree').setup {
   hide_root_node = true,

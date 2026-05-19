@@ -11,14 +11,14 @@ local function char_at(line, idx)
 end
 local function is_bracket_pair(open_char, close_char) return bracket_pairs[open_char] == close_char end
 
-vim.keymap.set('i', '<Space>', function()
+vim.keymap.set('i', '<SPACE>', function()
   local col = vim.fn.col '.'
   local line = vim.api.nvim_get_current_line()
   local left = char_at(line, col - 1)
   local right = char_at(line, col)
   if is_bracket_pair(left, right) then return '  ' .. key_left end
   return ' '
-end, { expr = true, replace_keycodes = false, desc = 'Expand spaces inside brackets' })
+end, { expr = true, replace_keycodes = false, desc = 'expand spaces inside brackets' })
 
 vim.keymap.set('i', '<BS>', function()
   local col = vim.fn.col '.'
@@ -29,4 +29,4 @@ vim.keymap.set('i', '<BS>', function()
   local right_outer = char_at(line, col + 1)
   if left == ' ' and right == ' ' and is_bracket_pair(left_outer, right_outer) then return key_bs .. key_del end
   return MiniPairs.bs()
-end, { expr = true, replace_keycodes = false, desc = 'Contract spaces inside brackets' })
+end, { expr = true, replace_keycodes = false, desc = 'contract spaces inside brackets' })
