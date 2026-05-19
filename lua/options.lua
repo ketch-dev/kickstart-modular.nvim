@@ -122,5 +122,6 @@ vim.opt.hidden = false
 vim.opt.updatetime = 250 -- Displays symbol under cursor highlight sooner
 vim.opt.timeoutlen = 300 -- Displays which-key popup sooner
 vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
+vim.opt.sidescroll = 1 -- Minimal number of columns to scroll horizontally (smooth is 1)
 vim.opt.sidescrolloff = 10 -- Minimal number of screen columns to keep left and right the cursor
 vim.loader.enable() -- Enable faster startup by caching compiled Lua modules

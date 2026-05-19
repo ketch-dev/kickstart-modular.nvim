@@ -6,6 +6,7 @@ vim.keymap.set('n', '<BS>', '"_dh') -- 'Backspace' to delete 1 char backward
 vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'Delete forward word' })
 vim.keymap.set('n', '<C-k>', '<cmd>bdelete<cr>', { desc = '[k]ill buffer' })
+vim.keymap.set('n', 'U', '<C-r>', { desc = 'redo' })
 
 -- ========== Exit command mode ==========
 vim.keymap.set('c', '<C-k>', '<C-c>', { noremap = true, silent = true, desc = '[k]ill cmdline' })
@@ -83,6 +84,8 @@ vim.keymap.set(
 vim.keymap.set({ 'n', 'i', 'v' }, '<S-ScrollWheelUp>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
 vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelRight>', function() return horizontal_wheel_scroll(1) end, { expr = true, silent = true, desc = 'scroll right' })
 vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelLeft>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-r>', function() return horizontal_wheel_scroll(1) end, { expr = true, silent = true, desc = 'scroll right' })
 -------------------------------------------------------------------------------
 
 -- ========== Focus windows with arrows ==========
