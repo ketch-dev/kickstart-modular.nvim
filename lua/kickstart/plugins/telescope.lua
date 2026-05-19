@@ -45,7 +45,7 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<C-k>'] = actions.close,
-        ['<C-cr>'] = actions.select_vertical,
+        ['<C-CR>'] = actions.select_vertical,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,
         ['<C-n>'] = false,
@@ -56,9 +56,9 @@ require('telescope').setup {
         ['<Down>'] = false,
       },
       n = {
-        ['<esc>'] = false,
+        ['<Esc>'] = false,
         ['<C-k>'] = actions.close,
-        ['<C-cr>'] = actions.select_vertical,
+        ['<C-CR>'] = actions.select_vertical,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,
         ['<C-n>'] = false,
@@ -93,7 +93,7 @@ vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[c]ommands' })
 vim.keymap.set('n', '<leader>fb', function()
   builtin.buffers {
     attach_mappings = function(prompt_bufnr, map)
-      map('i', '<C-Delete>', actions.delete_buffer)
+      map('i', '<C-Del>', actions.delete_buffer)
       return true
     end,
   }

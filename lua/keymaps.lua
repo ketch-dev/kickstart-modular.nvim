@@ -4,7 +4,7 @@ vim.keymap.set('n', '<Del>', '"_x', { desc = 'delete forward' })
 vim.keymap.set('n', '<BS>', '"_dh', { desc = 'delete backward' })
 vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'delete word forward' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'delete word backward' })
-vim.keymap.set('n', '<C-k>', '<cmd>bdelete<cr>', { desc = '[k]ill buffer' })
+vim.keymap.set('n', '<C-k>', '<cmd>bdelete<CR>', { desc = '[k]ill buffer' })
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'redo' })
 
 -- ========== Exit command mode ==========
@@ -88,17 +88,17 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<C-r>', function() return horizontal_wheel_sc
 -------------------------------------------------------------------------------
 
 -- ========== Focus windows with arrows ==========
-vim.keymap.set('n', '<C-left>', '<C-w><C-h>', { desc = 'move focus to the left window' })
-vim.keymap.set('n', '<C-right>', '<C-w><C-l>', { desc = 'move focus to the right window' })
-vim.keymap.set('n', '<C-down>', '<C-w><C-j>', { desc = 'move focus to the lower window' })
-vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'move focus to the upper window' })
+vim.keymap.set('n', '<C-Left>', '<C-w><C-h>', { desc = 'move focus to the left window' })
+vim.keymap.set('n', '<C-Right>', '<C-w><C-l>', { desc = 'move focus to the right window' })
+vim.keymap.set('n', '<C-Down>', '<C-w><C-j>', { desc = 'move focus to the lower window' })
+vim.keymap.set('n', '<C-Up>', '<C-w><C-k>', { desc = 'move focus to the upper window' })
 -------------------------------------------------------------------------------
 
 -- ========== Move windows with arrows ==========
-vim.keymap.set('n', '<C-A-left>', '<C-w>H', { desc = 'move window to the left' })
-vim.keymap.set('n', '<C-A-right>', '<C-w>L', { desc = 'move window to the right' })
-vim.keymap.set('n', '<C-A-down>', '<C-w>J', { desc = 'move window to the lower' })
-vim.keymap.set('n', '<C-A-up>', '<C-w>K', { desc = 'move window to the upper' })
+vim.keymap.set('n', '<C-A-Left>', '<C-w>H', { desc = 'move window to the left' })
+vim.keymap.set('n', '<C-A-Right>', '<C-w>L', { desc = 'move window to the right' })
+vim.keymap.set('n', '<C-A-Down>', '<C-w>J', { desc = 'move window to the lower' })
+vim.keymap.set('n', '<C-A-Up>', '<C-w>K', { desc = 'move window to the upper' })
 -------------------------------------------------------------------------------
 
 -- ========== Save with ctrl-s ==========

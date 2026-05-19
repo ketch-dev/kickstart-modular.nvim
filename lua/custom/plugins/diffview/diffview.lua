@@ -27,7 +27,7 @@ require('diffview').setup {
     option_panel = { close },
     help_panel = { close },
     view = {
-      { 'n', '<cr>', open_entry.open_file_and_close_diffview, { desc = 'open file' } },
+      { 'n', '<CR>', open_entry.open_file_and_close_diffview, { desc = 'open file' } },
       close,
     },
     file_panel = {
@@ -35,7 +35,7 @@ require('diffview').setup {
       { 'n', 'k', function() end, { desc = 'no-op' } },
       { 'n', 'h', function() end, { desc = 'no-op' } },
       { 'n', 'l', function() end, { desc = 'no-op' } },
-      { 'n', '<cr>', open_entry.open_file_and_close_diffview, { desc = 'open file' } },
+      { 'n', '<CR>', open_entry.open_file_and_close_diffview, { desc = 'open file' } },
       close,
     },
   },

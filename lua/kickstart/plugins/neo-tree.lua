@@ -20,17 +20,17 @@ require('neo-tree').setup {
   sources = { 'filesystem', 'buffers', 'git_status' },
   window = {
     mappings = {
-      ['<space>'] = 'none',
+      ['<Space>'] = 'none',
 
       ['h'] = 'none',
       ['j'] = 'none',
       ['k'] = 'none',
       ['l'] = 'none',
 
-      ['<left>'] = 'close_node',
-      ['<down>'] = 'move_down',
-      ['<up>'] = 'move_up',
-      ['<right>'] = 'open',
+      ['<Left>'] = 'close_node',
+      ['<Down>'] = 'move_down',
+      ['<Up>'] = 'move_up',
+      ['<Right>'] = 'open',
 
       ['n'] = 'rename',
       ['y'] = 'copy_to_clipboard',

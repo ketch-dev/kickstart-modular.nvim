@@ -5,4 +5,4 @@ vim.pack.add {
   'https://github.com/nvim-telescope/telescope.nvim',
 }
 
-vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'neogit' })
+vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<CR>', { desc = 'neogit' })

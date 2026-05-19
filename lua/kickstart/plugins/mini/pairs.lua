@@ -11,7 +11,7 @@ local function char_at(line, idx)
 end
 local function is_bracket_pair(open_char, close_char) return bracket_pairs[open_char] == close_char end
 
-vim.keymap.set('i', '<SPACE>', function()
+vim.keymap.set('i', '<Space>', function()
   local col = vim.fn.col '.'
   local line = vim.api.nvim_get_current_line()
   local left = char_at(line, col - 1)
