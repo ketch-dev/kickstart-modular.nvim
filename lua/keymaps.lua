@@ -66,6 +66,23 @@ vim.keymap.set(
   function() return wheel_scroll(-1) end,
   { expr = true, silent = true, desc = 'Scroll up without top overscroll' }
 )
+
+-- ========== Horizontal scroll with Shift+MouseWheel ==========
+local function horizontal_wheel_scroll(direction)
+  local keys = direction > 0 and '5zl' or '5zh'
+  if vim.api.nvim_get_mode().mode:sub(1, 1) == 'i' then return '<C-o>' .. keys end
+  return keys
+end
+
+vim.keymap.set(
+  { 'n', 'i', 'v' },
+  '<S-ScrollWheelDown>',
+  function() return horizontal_wheel_scroll(1) end,
+  { expr = true, silent = true, desc = 'scroll right' }
+)
+vim.keymap.set({ 'n', 'i', 'v' }, '<S-ScrollWheelUp>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelRight>', function() return horizontal_wheel_scroll(1) end, { expr = true, silent = true, desc = 'scroll right' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelLeft>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
 -------------------------------------------------------------------------------
 
 -- ========== Focus windows with arrows ==========
