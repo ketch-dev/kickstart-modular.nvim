@@ -35,7 +35,7 @@ require('diffview').setup {
       { 'n', 'k', function() end, { desc = 'no-op' } },
       { 'n', 'h', function() end, { desc = 'no-op' } },
       { 'n', 'l', function() end, { desc = 'no-op' } },
-      { 'n', '<CR>', open_entry.open_file_and_close_diffview, { desc = 'open file' } },
+      { 'n', '<cr>', open_entry.open_file_at_first_change, { desc = 'open file at first change' } },
       close,
     },
   },

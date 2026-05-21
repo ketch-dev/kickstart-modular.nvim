@@ -55,6 +55,30 @@ local function create_snapshot_buf(file, source_bufnr)
   return snapshot_bufnr
 end
 
+function M.open_file_at_first_change()
+  local actions = require 'diffview.actions'
+  local lib = require 'diffview.lib'
+  local view = lib.get_current_view()
+  local entry = view and view:infer_cur_file() or nil
+  if not view or not entry then return end
+
+  actions.goto_file_edit()
+
+  local args = { 'git', '-C', entry.adapter.ctx.toplevel, 'diff', '--no-color', '--no-ext-diff', '-U0' }
+  if entry.kind == 'staged' then table.insert(args, '--cached') end
+  table.insert(args, '--')
+  table.insert(args, entry.path)
+  for _, line in ipairs(vim.fn.systemlist(args)) do
+    local n = line:match '^@@+ %-?%d+,?%d* %+(%d+)'
+    if n then
+      pcall(api.nvim_win_set_cursor, 0, { tonumber(n), 0 })
+      break
+    end
+  end
+
+  close_and_dispose_view(view)
+end
+
 function M.open_file_and_close_diffview()
   local actions = require 'diffview.actions'
   local lib = require 'diffview.lib'
