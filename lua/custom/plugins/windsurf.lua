@@ -1,28 +1,44 @@
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    if ev.data.spec.name ~= 'windsurf.nvim' then return end
-    if ev.data.kind ~= 'install' and ev.data.kind ~= 'update' then return end
-    local result = vim
-      .system(
-        { 'sed', '-i', 's/2deb37376016b8eb5f2895a7b7a5f46aa57fb6d6/b58db8747a7dc1c042e3131f1e2246141d466923/', 'lua/codeium/versions.json' },
-        { cwd = ev.data.path }
-      )
-      :wait()
-    if result.code ~= 0 then vim.notify(('Build failed for windsurf.nvim:\n%s'):format(result.stderr or result.stdout), vim.log.levels.ERROR) end
-  end,
-})
-
 vim.pack.add { 'https://github.com/Exafunction/windsurf.nvim' }
+
+local language_server = vim.fn.exepath 'codeium_language_server'
+
+do
+  local ok, versions = pcall(require, 'codeium.versions')
+  if ok and language_server ~= '' then
+    local version = vim.system({ language_server, '--version' }, { text = true }):wait()
+    local stamp = vim.system({ language_server, '--stamp' }, { text = true }):wait()
+    local version_output = (version.stdout or '') .. (version.stderr or '')
+    local stamp_output = (stamp.stdout or '') .. (stamp.stderr or '')
+
+    versions.extension = version_output:match '%f[%d](%d+%.%d+%.%d+)%f[%D]' or versions.extension
+    versions.extension_stamp = stamp_output:match 'STABLE_BUILD_SCM_REVISION:%s*(%S+)' or versions.extension_stamp
+  end
+end
+
+do
+  local ok, Server = pcall(require, 'codeium.api')
+  if ok then
+    local request = Server.request
+    function Server:request(fn, payload, callback)
+      if fn == 'CancelRequest' then
+        if callback then callback(nil, nil) end
+        return
+      end
+      return request(self, fn, payload, callback)
+    end
+  end
+end
 
 require('codeium').setup {
   quiet = true,
+  enable_chat = false,
   enable_cmp_source = false,
   virtual_text = {
     enabled = true,
     map_keys = false,
   },
   tools = {
-    language_server = vim.fn.exepath 'codeium_language_server',
+    language_server = language_server,
   },
 }
 
