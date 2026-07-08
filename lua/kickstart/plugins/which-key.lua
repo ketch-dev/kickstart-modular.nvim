@@ -3,7 +3,7 @@ require('which-key').setup {
   preset = 'helix',
   sort = { 'local', 'manual', 'order', 'group', 'alphanum', 'mod' },
   show_help = false,
-  delay = 1000,
+  delay = 500,
   triggers = { { '<auto>', mode = 'nixsotc' }, { 's', mode = 'n' } },
   icons = { mappings = vim.g.have_nerd_font },
   spec = {
