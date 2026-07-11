@@ -83,6 +83,7 @@ vim.opt.fillchars = {
   foldopen = ' ',
   foldclose = ' ',
   foldsep = ' ',
+  foldinner = ' ',
 }
 
 vim.opt.diffopt = {
