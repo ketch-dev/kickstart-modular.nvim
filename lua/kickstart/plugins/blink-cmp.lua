@@ -23,6 +23,7 @@ vim.pack.add { { src = 'https://github.com/saghen/blink.cmp', version = vim.vers
 require('blink.cmp').setup {
   keymap = {
     preset = 'default',
+    ['<C-space>'] = { 'hide', 'show' },
     ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
     ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
     ['<C-n>'] = false,
