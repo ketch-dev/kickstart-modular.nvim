@@ -83,8 +83,8 @@ vim.keymap.set(
 vim.keymap.set({ 'n', 'i', 'v' }, '<S-ScrollWheelUp>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
 vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelRight>', function() return horizontal_wheel_scroll(1) end, { expr = true, silent = true, desc = 'scroll right' })
 vim.keymap.set({ 'n', 'i', 'v' }, '<ScrollWheelLeft>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-l>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-r>', function() return horizontal_wheel_scroll(1) end, { expr = true, silent = true, desc = 'scroll right' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<S-Left>', function() return horizontal_wheel_scroll(-1) end, { expr = true, silent = true, desc = 'scroll left' })
+vim.keymap.set({ 'n', 'i', 'v' }, '<S-Right>', function() return horizontal_wheel_scroll(1) end, { expr = true, silent = true, desc = 'scroll right' })
 -------------------------------------------------------------------------------
 
 -- ========== Focus windows with arrows ==========
