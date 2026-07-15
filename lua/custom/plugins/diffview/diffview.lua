@@ -10,7 +10,8 @@ vim.pack.add {
 vim.keymap.set('n', '<leader>gd', open_view.open_or_refresh_diffview, { desc = '[d]iff' })
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'file [h]istory' })
 
-local close = { 'n', '<C-k>', function() require('diffview').close() end, { desc = '[k]ill diffview' } }
+local close = { 'n', '<C-l>', function() require('diffview').close() end, { desc = '[l]eave diffview' } }
+local disable_kill = { 'n', '<C-k>', '<Nop>', { desc = 'disable kill buffer' } }
 
 require('diffview').setup {
   enhanced_diff_hl = true,
@@ -23,12 +24,14 @@ require('diffview').setup {
       { 'n', 'h', function() end, { desc = 'no-op' } },
       { 'n', 'l', function() end, { desc = 'no-op' } },
       close,
+      disable_kill,
     },
-    option_panel = { close },
-    help_panel = { close },
+    option_panel = { close, disable_kill },
+    help_panel = { close, disable_kill },
     view = {
       { 'n', '<CR>', open_entry.open_file_and_close_diffview, { desc = 'open file' } },
       close,
+      disable_kill,
     },
     file_panel = {
       { 'n', 'j', function() end, { desc = 'no-op' } },
@@ -37,6 +40,7 @@ require('diffview').setup {
       { 'n', 'l', function() end, { desc = 'no-op' } },
       { 'n', '<cr>', open_entry.open_file_at_first_change, { desc = 'open file at first change' } },
       close,
+      disable_kill,
     },
   },
 }

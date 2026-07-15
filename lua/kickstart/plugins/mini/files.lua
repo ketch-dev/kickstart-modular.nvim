@@ -1,6 +1,6 @@
 local mini_files = require 'mini.files'
 mini_files.setup {
-  mappings = { close = '<C-k>', go_in_plus = '<CR>', go_out = '<Left>', synchronize = '<C-s>' },
+  mappings = { close = '<C-l>', go_in_plus = '<CR>', go_out = '<Left>', synchronize = '<C-s>' },
   content = {
     prefix = function(fs_entry)
       if fs_entry.fs_type == 'directory' then return '', 'MiniFilesFile' end
@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd('User', {
   pattern = 'MiniFilesBufferCreate',
   callback = function(args)
     local bufnr = args.data.buf_id
+    vim.keymap.set('n', '<C-k>', '<Nop>', { buffer = bufnr, desc = 'disable kill buffer' })
     vim.keymap.set('n', '<Right>', function()
       local fs_entry = mini_files.get_fs_entry()
       if fs_entry and fs_entry.fs_type == 'directory' then mini_files.go_in() end

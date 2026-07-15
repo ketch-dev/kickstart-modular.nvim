@@ -44,7 +44,8 @@ require('telescope').setup {
     layout_config = { width = 0.91, height = 0.92, horizontal = { prompt_position = 'top', preview_width = 0.5 } },
     mappings = {
       i = {
-        ['<C-k>'] = actions.close,
+        ['<C-l>'] = actions.close,
+        ['<C-k>'] = actions.nop,
         ['<C-CR>'] = actions.select_vertical,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,
@@ -57,7 +58,8 @@ require('telescope').setup {
       },
       n = {
         ['<Esc>'] = false,
-        ['<C-k>'] = actions.close,
+        ['<C-l>'] = actions.close,
+        ['<C-k>'] = actions.nop,
         ['<C-CR>'] = actions.select_vertical,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,

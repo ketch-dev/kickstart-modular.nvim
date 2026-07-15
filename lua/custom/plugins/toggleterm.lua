@@ -141,13 +141,18 @@ local function bind_terminal_navigation_keys(terminal)
   local next_term_cmd = string.format([[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal('%s', 1)<CR>]], kind)
   local buffer_options = { buffer = terminal.bufnr, silent = true, noremap = true }
 
-  vim.keymap.set('n', '<C-k>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = '[k]ill terminal' }))
+  vim.keymap.set('n', '<C-l>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = '[l]eave terminal' }))
 
   vim.keymap.set('n', '<C-Left>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'prev terminal' }))
 
   vim.keymap.set('n', '<C-Right>', function() switch_terminal(kind, 1) end, vim.tbl_extend('force', buffer_options, { desc = 'next terminal' }))
 
-  vim.keymap.set('t', '<C-k>', [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]], vim.tbl_extend('force', buffer_options, { desc = '[k]ill terminal' }))
+  vim.keymap.set(
+    't',
+    '<C-l>',
+    [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]],
+    vim.tbl_extend('force', buffer_options, { desc = '[l]eave terminal' })
+  )
   vim.keymap.set('t', '<C-Left>', prev_term_cmd, vim.tbl_extend('force', buffer_options, { desc = 'prev terminal' }))
   vim.keymap.set('t', '<C-Right>', next_term_cmd, vim.tbl_extend('force', buffer_options, { desc = 'next terminal' }))
 

@@ -8,7 +8,7 @@ vim.keymap.set('n', '<C-k>', '<cmd>bdelete<CR>', { desc = '[k]ill buffer' })
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'redo' })
 
 -- ========== Exit command mode ==========
-vim.keymap.set('c', '<C-k>', '<C-c>', { noremap = true, silent = true, desc = '[k]ill cmdline' })
+vim.keymap.set('c', '<C-l>', '<C-c>', { noremap = true, silent = true, desc = '[l]eave cmdline' })
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'disable cmdline ESC' })
 -------------------------------------------------------------------------------
 

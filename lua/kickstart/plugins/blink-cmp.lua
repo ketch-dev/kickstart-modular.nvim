@@ -24,7 +24,8 @@ require('blink.cmp').setup {
   keymap = {
     preset = 'default',
     ['<C-space>'] = { 'hide', 'show' },
-    ['<C-k>'] = { 'hide', 'fallback' },
+    ['<C-l>'] = { 'hide', 'fallback' },
+    ['<C-k>'] = { function() return true end },
     ['<Tab>'] = { 'snippet_forward', 'fallback' },
     ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
     ['<C-n>'] = false,
