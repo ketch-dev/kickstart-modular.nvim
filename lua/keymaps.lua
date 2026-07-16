@@ -122,12 +122,6 @@ vim.keymap.set('n', 'X', 'D', { noremap = true, desc = 'cut to line end' })
 vim.keymap.set('n', 'xx', 'dd', { noremap = true, desc = 'cut line' })
 -------------------------------------------------------------------------------
 
--- ========== Neotree ==========
--- vim.keymap.set('n', '<leader>ef', '<cmd>Neotree filesystem reveal left show<CR>', { desc = '[f]iles' })
--- vim.keymap.set('n', '<leader>eb', '<cmd>Neotree buffers reveal left show<CR>', { desc = '[b]uffers' })
--- vim.keymap.set('n', '<leader>eg', '<cmd>Neotree git_status reveal right show<CR>', { desc = '[g]it' })
--------------------------------------------------------------------------------
-
 -- ========== Window ==========
 vim.keymap.set('n', '<leader>ws', '<C-w>v', { desc = '[s]plit' })
 vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = '[h]orizontal split' })
