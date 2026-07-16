@@ -45,7 +45,7 @@ require('blink.cmp').setup {
       [shortcuts.navigate_up] = { 'select_prev', 'fallback' },
       [shortcuts.navigate_down] = { 'select_next', 'fallback' },
     },
-    completion = { menu = { auto_show = function() return vim.fn.getcmdtype() == ':' end } },
+    completion = { menu = { auto_show = true } },
   },
   completion = {
     ghost_text = { enabled = true },
