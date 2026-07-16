@@ -27,20 +27,8 @@ require('blink.cmp').setup {
     [shortcuts.trigger_completion] = { 'show' },
     [shortcuts.dismiss_suggestion] = { 'hide', 'fallback' },
     [shortcuts.accept_suggestion] = { 'select_and_accept', 'fallback' },
-    [shortcuts.cycle_suggestion] = {
-      function(cmp)
-        if cmp.is_ghost_text_visible() then return cmp.select_next { on_ghost_text = true } end
-      end,
-      'snippet_forward',
-      'fallback',
-    },
-    [shortcuts.cycle_suggestion_backward] = {
-      function(cmp)
-        if cmp.is_ghost_text_visible() then return cmp.select_prev { on_ghost_text = true } end
-      end,
-      'snippet_backward',
-      'fallback',
-    },
+    [shortcuts.cycle_suggestion] = { 'snippet_forward', 'fallback' },
+    [shortcuts.cycle_suggestion_backward] = { 'snippet_backward', 'fallback' },
     [shortcuts.previous_suggestion] = { 'select_prev', 'fallback' },
     [shortcuts.next_suggestion] = { 'select_next', 'fallback' },
   },
