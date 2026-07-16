@@ -40,6 +40,7 @@ vim.api.nvim_create_autocmd(
 require('telescope').setup {
   defaults = {
     path_display = dim_directory_prefix,
+    scroll_strategy = 'limit',
     layout_strategy = 'horizontal',
     sorting_strategy = 'ascending',
     layout_config = { width = 0.91, height = 0.92, horizontal = { prompt_position = 'top', preview_width = 0.5 } },
