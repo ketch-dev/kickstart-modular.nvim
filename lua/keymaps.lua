@@ -6,7 +6,7 @@ vim.keymap.set('n', '<Del>', '"_x', { desc = 'delete forward' })
 vim.keymap.set('n', '<BS>', '"_dh', { desc = 'delete backward' })
 vim.keymap.set({ 'i', 'c' }, '<C-BS>', '<C-w>', { desc = 'delete word forward' })
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = 'delete word backward' })
-vim.keymap.set('n', '<C-k>', '<cmd>bdelete<CR>', { desc = '[k]ill buffer' })
+vim.keymap.set('n', shortcuts.kill_buffer, '<cmd>bdelete<CR>', { desc = '[k]ill buffer' })
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'redo' })
 
 -- ========== Exit command mode ==========

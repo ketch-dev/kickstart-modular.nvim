@@ -19,6 +19,7 @@ if vim.g.have_nerd_font then table.insert(telescope_plugins, 'https://github.com
 vim.pack.add(telescope_plugins)
 
 local actions = require 'telescope.actions'
+local shortcuts = require 'shortcuts'
 local telescope_utils = require 'telescope.utils'
 
 local function dim_directory_prefix(opts, path)
@@ -45,7 +46,7 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<C-l>'] = actions.close,
-        ['<C-k>'] = actions.nop,
+        [shortcuts.kill_buffer] = actions.nop,
         ['<C-CR>'] = actions.select_vertical,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,
@@ -59,7 +60,7 @@ require('telescope').setup {
       n = {
         ['<Esc>'] = false,
         ['<C-l>'] = actions.close,
-        ['<C-k>'] = actions.nop,
+        [shortcuts.kill_buffer] = actions.nop,
         ['<C-CR>'] = actions.select_vertical,
         ['<Tab>'] = actions.move_selection_next,
         ['<S-Tab>'] = actions.move_selection_previous,

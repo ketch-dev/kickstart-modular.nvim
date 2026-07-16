@@ -1,4 +1,5 @@
 return {
+  kill_buffer = '<C-k>',
   trigger_completion = '<C-space>',
   dismiss_suggestion = '<C-l>',
   accept_suggestion = '<C-y>',

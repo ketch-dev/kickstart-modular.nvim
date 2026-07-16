@@ -1,6 +1,7 @@
 local highlights = require 'custom.plugins.diffview.highlights'
 local open_entry = require 'custom.plugins.diffview.open-entry'
 local open_view = require 'custom.plugins.diffview.open-view'
+local shortcuts = require 'shortcuts'
 
 vim.pack.add {
   'https://github.com/sindrets/diffview.nvim',
@@ -11,7 +12,7 @@ vim.keymap.set('n', '<leader>gd', open_view.open_or_refresh_diffview, { desc = '
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'file [h]istory' })
 
 local close = { 'n', '<C-l>', function() require('diffview').close() end, { desc = '[l]eave diffview' } }
-local disable_kill = { 'n', '<C-k>', '<Nop>', { desc = 'disable kill buffer' } }
+local disable_kill = { 'n', shortcuts.kill_buffer, '<Nop>', { desc = 'disable kill buffer' } }
 
 require('diffview').setup {
   enhanced_diff_hl = true,
