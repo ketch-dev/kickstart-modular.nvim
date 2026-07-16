@@ -18,6 +18,7 @@ if not vim.g.vscode then
   require 'custom.plugins.highlight-colors'
   require 'custom.plugins.render-markdown'
   require 'custom.plugins.opencode'
+  require 'custom.plugins.copilot'
 
   require 'kickstart.plugins.gitsigns'
   require 'kickstart.plugins.which-key'

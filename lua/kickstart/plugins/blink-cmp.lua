@@ -1,5 +1,6 @@
 -- ========== Autocompletion ==========
 local shortcuts = require 'shortcuts'
+local completion = require 'custom.completion'
 
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
@@ -27,8 +28,8 @@ require('blink.cmp').setup {
     [shortcuts.trigger_completion] = { 'show' },
     [shortcuts.dismiss_suggestion] = { 'hide', 'fallback' },
     [shortcuts.accept_suggestion] = { 'select_and_accept', 'fallback' },
-    [shortcuts.cycle_suggestion] = { 'snippet_forward', 'fallback' },
-    [shortcuts.cycle_suggestion_backward] = { 'snippet_backward', 'fallback' },
+    [shortcuts.cycle_suggestion] = { completion.cycle_copilot_next, 'snippet_forward', 'fallback' },
+    [shortcuts.cycle_suggestion_backward] = { completion.cycle_copilot_prev, 'snippet_backward', 'fallback' },
     [shortcuts.previous_suggestion] = { 'select_prev', 'fallback' },
     [shortcuts.next_suggestion] = { 'select_next', 'fallback' },
   },
