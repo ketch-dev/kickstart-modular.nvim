@@ -1,6 +1,7 @@
 -- ========== Floating Terminal ==========
 
 local shortcuts = require 'shortcuts'
+local suffixes = require 'shortcut_suffixes'
 
 local AI_ID_BASE = 10000
 
@@ -170,7 +171,7 @@ end
 vim.pack.add { { src = 'https://github.com/akinsho/toggleterm.nvim', version = vim.version.range '*' } }
 
 vim.keymap.set({ 'n', 'i', 't' }, '<C-t>', function() open_last_terminal 'numeric' end, { desc = 'open last [t]erminal' })
-vim.keymap.set('n', '<leader>au', function() open_last_terminal 'ai' end, { desc = '[u]i' })
+vim.keymap.set('n', '<leader>a' .. suffixes.ui, function() open_last_terminal 'ai' end, { desc = '[u]i' })
 
 require('toggleterm').setup {
   open_mapping = false,

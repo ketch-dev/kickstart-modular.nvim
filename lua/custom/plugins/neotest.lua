@@ -1,3 +1,5 @@
+local suffixes = require 'shortcut_suffixes'
+
 local function current_path()
   local path = vim.api.nvim_buf_get_name(0)
   if path == '' then return vim.fn.getcwd() end
@@ -30,11 +32,11 @@ vim.keymap.set('n', '<leader>tt', function() require('neotest').run.run() end, {
 vim.keymap.set('n', '<leader>tf', function() require('neotest').run.run(current_path()) end, { desc = 'run [f]ile' })
 vim.keymap.set('n', '<leader>tp', function() require('neotest').run.run(current_package_path()) end, { desc = 'run [p]ackage' })
 vim.keymap.set('n', '<leader>ta', function() require('neotest').run.run(current_root_path()) end, { desc = 'run [a]ll' })
-vim.keymap.set('n', '<leader>tr', function() require('neotest').run.run_last() end, { desc = '[r]erun' })
-vim.keymap.set('n', '<leader>tu', function() require('neotest').summary.toggle() end, { desc = '[u]i' })
+vim.keymap.set('n', '<leader>t' .. suffixes.rerun, function() require('neotest').run.run_last() end, { desc = '[r]erun' })
+vim.keymap.set('n', '<leader>t' .. suffixes.ui, function() require('neotest').summary.toggle() end, { desc = '[u]i' })
 vim.keymap.set('n', '<leader>to', function() require('neotest').output.open { enter = false, auto_close = true } end, { desc = '[o]utput' })
 vim.keymap.set('n', '<leader>tO', function() require('neotest').output_panel.toggle() end, { desc = '[O]utput panel' })
-vim.keymap.set('n', '<leader>tk', function() require('neotest').run.stop() end, { desc = '[k]ill' }) -- [shortcuts.kill]
+vim.keymap.set('n', '<leader>t' .. suffixes.kill, function() require('neotest').run.stop() end, { desc = '[k]ill' })
 vim.keymap.set('n', '<leader>tw', function() require('neotest').watch.toggle(current_path()) end, { desc = '[w]atch file' })
 
 require('neotest').setup {

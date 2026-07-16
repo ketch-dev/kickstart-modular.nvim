@@ -1,4 +1,5 @@
 local shortcuts = require 'shortcuts'
+local suffixes = require 'shortcut_suffixes'
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlights' })
 vim.keymap.set('v', 'p', 'P', { desc = 'paste' })
@@ -104,9 +105,9 @@ vim.keymap.set('n', '<C-A-Up>', '<C-w>K', { desc = 'move window to the upper' })
 -------------------------------------------------------------------------------
 
 -- ========== Save with ctrl-s ==========
-vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true, desc = '[s]ave' })
-vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true, desc = '[s]ave' })
-vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { noremap = true, silent = true, desc = '[s]ave' })
+vim.keymap.set('n', shortcuts.save, ':w<CR>', { noremap = true, silent = true, desc = '[s]ave' })
+vim.keymap.set('i', shortcuts.save, '<Esc>:w<CR>a', { noremap = true, silent = true, desc = '[s]ave' })
+vim.keymap.set('v', shortcuts.save, '<Esc>:w<CR>', { noremap = true, silent = true, desc = '[s]ave' })
 -------------------------------------------------------------------------------
 
 -- ========== Make 'd' and 'c' to not copy ==========
@@ -126,12 +127,12 @@ vim.keymap.set('n', 'xx', 'dd', { noremap = true, desc = 'cut line' })
 vim.keymap.set('n', '<leader>ws', '<C-w>v', { desc = '[s]plit' })
 vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = '[h]orizontal split' })
 vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[e]qual' })
-vim.keymap.set('n', '<leader>wk', '<cmd>close<CR>', { desc = '[k]ill' }) -- [shortcuts.kill]
+vim.keymap.set('n', '<leader>w' .. suffixes.kill, '<cmd>close<CR>', { desc = '[k]ill' })
 -------------------------------------------------------------------------------
 
 -- ========== Tabs ==========
 vim.keymap.set('n', '<leader>po', '<cmd>tabnew<CR>', { desc = '[o]pen' })
-vim.keymap.set('n', '<leader>pk', '<cmd>tabclose<CR>', { desc = '[k]ill' }) -- [shortcuts.kill]
+vim.keymap.set('n', '<leader>p' .. suffixes.kill, '<cmd>tabclose<CR>', { desc = '[k]ill' })
 vim.keymap.set('n', '<leader>pn', '<cmd>tabn<CR>', { desc = '[n]ext' })
 vim.keymap.set('n', '<leader>pp', '<cmd>tabp<CR>', { desc = '[p]rev' })
 vim.keymap.set('n', '<leader>pb', '<cmd>tabnew %<CR>', { desc = 'move [b]uffer to new tab' })

@@ -4,6 +4,8 @@ return {
   leave = '<C-l>',
   navigate_up = '<Up>',
   navigate_down = '<Down>',
+  save = '<C-s>',
+  open_vertical_split = '<C-CR>',
   -------------------------------------------------------------------------------
 
   -- ========== Suggestions ==========

@@ -1,7 +1,7 @@
 local mini_files = require 'mini.files'
 local shortcuts = require 'shortcuts'
 mini_files.setup {
-  mappings = { close = shortcuts.leave, go_in_plus = '<CR>', go_out = '<Left>', synchronize = '<C-s>' },
+  mappings = { close = shortcuts.leave, go_in_plus = '<CR>', go_out = '<Left>', synchronize = shortcuts.save },
   content = {
     prefix = function(fs_entry)
       if fs_entry.fs_type == 'directory' then return '', 'MiniFilesFile' end
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd('User', {
         mini_files.close()
       end
     end, { buffer = bufnr, desc = 'open file' })
-    vim.keymap.set('n', '<C-CR>', function()
+    vim.keymap.set('n', shortcuts.open_vertical_split, function()
       local entry = mini_files.get_fs_entry()
       if not entry then return end
       local state = mini_files.get_explorer_state()

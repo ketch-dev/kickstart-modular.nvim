@@ -48,7 +48,7 @@ require('telescope').setup {
       i = {
         [shortcuts.leave] = actions.close,
         [shortcuts.kill_buffer] = actions.nop,
-        ['<C-CR>'] = actions.select_vertical,
+        [shortcuts.open_vertical_split] = actions.select_vertical,
         [shortcuts.navigate_down] = actions.move_selection_next,
         [shortcuts.navigate_up] = actions.move_selection_previous,
         [shortcuts.cycle_suggestion] = actions.nop,
@@ -62,7 +62,7 @@ require('telescope').setup {
         ['<Esc>'] = false,
         [shortcuts.leave] = actions.close,
         [shortcuts.kill_buffer] = actions.nop,
-        ['<C-CR>'] = actions.select_vertical,
+        [shortcuts.open_vertical_split] = actions.select_vertical,
         [shortcuts.navigate_down] = actions.move_selection_next,
         [shortcuts.navigate_up] = actions.move_selection_previous,
         [shortcuts.cycle_suggestion] = actions.nop,

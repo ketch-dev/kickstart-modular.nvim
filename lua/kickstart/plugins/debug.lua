@@ -2,6 +2,7 @@ local debug_actions = require 'kickstart.utils.debug.actions'
 local debug_actual_stop = require 'kickstart.utils.debug.actual_stop'
 local debug_hover = require 'kickstart.utils.debug.hover'
 local debug_signs = require 'kickstart.utils.debug.signs'
+local suffixes = require 'shortcut_suffixes'
 
 vim.pack.add {
   'https://github.com/mfussenegger/nvim-dap',
@@ -13,7 +14,7 @@ vim.pack.add {
 
 require('nvim-dap-virtual-text').setup {}
 
-vim.keymap.set('n', '<leader>du', function() require('dapui').toggle() end, { desc = '[u]i' })
+vim.keymap.set('n', '<leader>d' .. suffixes.ui, function() require('dapui').toggle() end, { desc = '[u]i' })
 vim.keymap.set('n', '<leader>dm', function()
   if not require('dap').session() then require('dap').continue() end
 end, { desc = '[m]enu' })
@@ -28,9 +29,9 @@ vim.keymap.set('n', '<leader>do', function() require('dap').step_over() end, { d
 vim.keymap.set('n', '<leader>dO', function() require('dap').step_out() end, { desc = 'step [O]ut' })
 vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end, { desc = '[b]reakpoint' })
 vim.keymap.set('n', '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, { desc = 'conditional [B]reakpoint' })
-vim.keymap.set('n', '<leader>dr', function() require('dap').run_last() end, { desc = '[r]erun' })
+vim.keymap.set('n', '<leader>d' .. suffixes.rerun, function() require('dap').run_last() end, { desc = '[r]erun' })
 vim.keymap.set('n', '<leader>dp', function() require('dap').pause() end, { desc = '[p]ause' })
-vim.keymap.set('n', '<leader>dk', function() require('dap').terminate() end, { desc = '[k]ill' }) -- [shortcuts.kill]
+vim.keymap.set('n', '<leader>d' .. suffixes.kill, function() require('dap').terminate() end, { desc = '[k]ill' })
 
 local dap = require 'dap'
 local dapui = require 'dapui'

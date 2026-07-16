@@ -1,4 +1,6 @@
 vim.pack.add { 'https://github.com/folke/which-key.nvim' }
+local surround = require 'kickstart.plugins.mini.surround'
+
 require('which-key').setup {
   preset = 'helix',
   sort = { 'local', 'manual', 'order', 'group', 'alphanum', 'mod' },
@@ -17,11 +19,11 @@ require('which-key').setup {
     { '<leader>f', group = '[f]ind' },
     { '<leader>a', group = '[a]i', mode = { 'n', 'x' } },
     { 's', group = '[s]urround', mode = { 'n', 'x' } },
-    { 'sa', desc = '[a]dd', mode = { 'n', 'x' } },
-    { 'sd', desc = '[d]elete', mode = { 'n' } },
-    { 'sr', desc = '[r]eplace', mode = { 'n' } },
-    { 'sh', desc = '[h]ighlight', mode = { 'n' } },
-    { 'sp', desc = 'find prev', mode = { 'n' } },
-    { 'sn', desc = 'find next', mode = { 'n' } },
+    { surround.add, desc = '[a]dd', mode = { 'n', 'x' } },
+    { surround.delete, desc = '[d]elete', mode = { 'n' } },
+    { surround.replace, desc = '[r]eplace', mode = { 'n' } },
+    { surround.highlight, desc = '[h]ighlight', mode = { 'n' } },
+    { surround.find_left, desc = 'find prev', mode = { 'n' } },
+    { surround.find, desc = 'find next', mode = { 'n' } },
   },
 }
