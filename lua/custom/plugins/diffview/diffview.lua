@@ -1,4 +1,5 @@
 local highlights = require 'custom.plugins.diffview.highlights'
+local navigation = require 'custom.plugins.diffview.navigation'
 local open_entry = require 'custom.plugins.diffview.open-entry'
 local open_view = require 'custom.plugins.diffview.open-view'
 local shortcuts = require 'shortcuts'
@@ -35,6 +36,9 @@ require('diffview').setup {
       disable_kill,
     },
     file_panel = {
+      -- Diffview matches key notation case-sensitively when replacing defaults.
+      { 'n', '<up>', navigation.previous_tree_row, { desc = 'previous tree row' } },
+      { 'n', '<down>', navigation.next_tree_row, { desc = 'next tree row' } },
       { 'n', 'j', function() end, { desc = 'no-op' } },
       { 'n', 'k', function() end, { desc = 'no-op' } },
       { 'n', 'h', function() end, { desc = 'no-op' } },
