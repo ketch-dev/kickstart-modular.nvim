@@ -1,3 +1,5 @@
+local shortcuts = require 'shortcuts'
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'clear search highlights' })
 vim.keymap.set('v', 'p', 'P', { desc = 'paste' })
 vim.keymap.set('n', '<Del>', '"_x', { desc = 'delete forward' })
@@ -8,7 +10,7 @@ vim.keymap.set('n', '<C-k>', '<cmd>bdelete<CR>', { desc = '[k]ill buffer' })
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'redo' })
 
 -- ========== Exit command mode ==========
-vim.keymap.set('c', '<C-l>', '<C-c>', { noremap = true, silent = true, desc = '[l]eave cmdline' })
+vim.keymap.set('c', shortcuts.dismiss_suggestion, '<C-c>', { noremap = true, silent = true, desc = '[l]eave cmdline' })
 vim.keymap.set('c', '<Esc>', '<Nop>', { noremap = true, silent = true, desc = 'disable cmdline ESC' })
 -------------------------------------------------------------------------------
 

@@ -1,4 +1,5 @@
 -- ========== Autocompletion ==========
+local shortcuts = require 'shortcuts'
 
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
@@ -22,22 +23,39 @@ require('luasnip.loaders.from_vscode').lazy_load()
 vim.pack.add { { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range '1.*' } }
 require('blink.cmp').setup {
   keymap = {
-    preset = 'default',
-    ['<C-space>'] = { 'hide', 'show' },
-    ['<C-l>'] = { 'hide', 'fallback' },
-    ['<C-k>'] = { function() return true end },
-    ['<Tab>'] = { 'snippet_forward', 'fallback' },
-    ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-    ['<C-n>'] = false,
-    ['<C-p>'] = false,
-    ['<Left>'] = false,
-    ['<Right>'] = false,
-    ['<Up>'] = { 'select_prev', 'fallback' },
-    ['<Down>'] = { 'select_next', 'fallback' },
+    preset = 'none',
+    [shortcuts.trigger_completion] = { 'show' },
+    [shortcuts.dismiss_suggestion] = { 'hide', 'fallback' },
+    [shortcuts.accept_suggestion] = { 'select_and_accept', 'fallback' },
+    [shortcuts.cycle_suggestion] = {
+      function(cmp)
+        if cmp.is_ghost_text_visible() then return cmp.select_next { on_ghost_text = true } end
+      end,
+      'snippet_forward',
+      'fallback',
+    },
+    [shortcuts.cycle_suggestion_backward] = {
+      function(cmp)
+        if cmp.is_ghost_text_visible() then return cmp.select_prev { on_ghost_text = true } end
+      end,
+      'snippet_backward',
+      'fallback',
+    },
+    [shortcuts.previous_suggestion] = { 'select_prev', 'fallback' },
+    [shortcuts.next_suggestion] = { 'select_next', 'fallback' },
   },
   appearance = { nerd_font_variant = 'mono' },
   cmdline = {
-    keymap = { preset = 'cmdline', ['<C-n>'] = false, ['<C-p>'] = false, ['<Left>'] = false, ['<Right>'] = false, ['<Up>'] = false, ['<Down>'] = false },
+    keymap = {
+      preset = 'none',
+      [shortcuts.trigger_completion] = { 'show' },
+      [shortcuts.dismiss_suggestion] = { 'hide', 'fallback' },
+      [shortcuts.accept_suggestion] = { 'select_and_accept', 'fallback' },
+      [shortcuts.cycle_suggestion] = { function() return true end },
+      [shortcuts.cycle_suggestion_backward] = { function() return true end },
+      [shortcuts.previous_suggestion] = { 'select_prev', 'fallback' },
+      [shortcuts.next_suggestion] = { 'select_next', 'fallback' },
+    },
     completion = { menu = { auto_show = function() return vim.fn.getcmdtype() == ':' end } },
   },
   completion = {
