@@ -15,7 +15,7 @@ require('copilot').setup {
       accept_line = false,
       next = false,
       prev = false,
-      dismiss = shortcuts.dismiss_suggestion,
+      dismiss = shortcuts.leave,
       toggle_auto_trigger = false,
     },
   },

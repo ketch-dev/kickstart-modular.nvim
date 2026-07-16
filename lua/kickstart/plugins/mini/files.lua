@@ -1,7 +1,7 @@
 local mini_files = require 'mini.files'
 local shortcuts = require 'shortcuts'
 mini_files.setup {
-  mappings = { close = '<C-l>', go_in_plus = '<CR>', go_out = '<Left>', synchronize = '<C-s>' },
+  mappings = { close = shortcuts.leave, go_in_plus = '<CR>', go_out = '<Left>', synchronize = '<C-s>' },
   content = {
     prefix = function(fs_entry)
       if fs_entry.fs_type == 'directory' then return '', 'MiniFilesFile' end

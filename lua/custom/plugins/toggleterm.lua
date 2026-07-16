@@ -1,5 +1,7 @@
 -- ========== Floating Terminal ==========
 
+local shortcuts = require 'shortcuts'
+
 local AI_ID_BASE = 10000
 
 local kinds = {
@@ -141,7 +143,7 @@ local function bind_terminal_navigation_keys(terminal)
   local next_term_cmd = string.format([[<C-\><C-n><Cmd>lua __toggleterm_switch_terminal('%s', 1)<CR>]], kind)
   local buffer_options = { buffer = terminal.bufnr, silent = true, noremap = true }
 
-  vim.keymap.set('n', '<C-l>', close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = '[l]eave terminal' }))
+  vim.keymap.set('n', shortcuts.leave, close_current_terminal, vim.tbl_extend('force', buffer_options, { desc = '[l]eave terminal' }))
 
   vim.keymap.set('n', '<C-Left>', function() switch_terminal(kind, -1) end, vim.tbl_extend('force', buffer_options, { desc = 'prev terminal' }))
 
@@ -149,7 +151,7 @@ local function bind_terminal_navigation_keys(terminal)
 
   vim.keymap.set(
     't',
-    '<C-l>',
+    shortcuts.leave,
     [[<C-\><C-n><Cmd>lua __toggleterm_close_current_terminal()<CR>]],
     vim.tbl_extend('force', buffer_options, { desc = '[l]eave terminal' })
   )

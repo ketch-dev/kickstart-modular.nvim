@@ -1,7 +1,7 @@
 return {
   kill_buffer = '<C-k>',
+  leave = '<C-l>',
   trigger_completion = '<C-space>',
-  dismiss_suggestion = '<C-l>',
   accept_suggestion = '<C-y>',
   cycle_suggestion = '<Tab>',
   cycle_suggestion_backward = '<S-Tab>',

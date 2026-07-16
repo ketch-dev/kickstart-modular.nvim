@@ -11,7 +11,7 @@ vim.pack.add {
 vim.keymap.set('n', '<leader>gd', open_view.open_or_refresh_diffview, { desc = '[d]iff' })
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', { desc = 'file [h]istory' })
 
-local close = { 'n', '<C-l>', function() require('diffview').close() end, { desc = '[l]eave diffview' } }
+local close = { 'n', shortcuts.leave, function() require('diffview').close() end, { desc = '[l]eave diffview' } }
 local disable_kill = { 'n', shortcuts.kill_buffer, '<Nop>', { desc = 'disable kill buffer' } }
 
 require('diffview').setup {

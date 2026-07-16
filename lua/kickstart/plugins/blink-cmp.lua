@@ -26,7 +26,7 @@ require('blink.cmp').setup {
   keymap = {
     preset = 'none',
     [shortcuts.trigger_completion] = { 'show' },
-    [shortcuts.dismiss_suggestion] = { 'hide', 'fallback' },
+    [shortcuts.leave] = { 'hide', 'fallback' },
     [shortcuts.accept_suggestion] = { 'select_and_accept', 'fallback' },
     [shortcuts.cycle_suggestion] = { completion.cycle_copilot_next, 'snippet_forward', 'fallback' },
     [shortcuts.cycle_suggestion_backward] = { completion.cycle_copilot_prev, 'snippet_backward', 'fallback' },
@@ -38,7 +38,7 @@ require('blink.cmp').setup {
     keymap = {
       preset = 'none',
       [shortcuts.trigger_completion] = { 'show' },
-      [shortcuts.dismiss_suggestion] = { 'hide', 'fallback' },
+      [shortcuts.leave] = { 'hide', 'fallback' },
       [shortcuts.accept_suggestion] = { 'select_and_accept', 'fallback' },
       [shortcuts.cycle_suggestion] = { function() return true end },
       [shortcuts.cycle_suggestion_backward] = { function() return true end },
