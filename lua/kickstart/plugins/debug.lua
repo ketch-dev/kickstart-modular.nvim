@@ -30,7 +30,7 @@ vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() 
 vim.keymap.set('n', '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, { desc = 'conditional [B]reakpoint' })
 vim.keymap.set('n', '<leader>dr', function() require('dap').run_last() end, { desc = '[r]erun' })
 vim.keymap.set('n', '<leader>dp', function() require('dap').pause() end, { desc = '[p]ause' })
-vim.keymap.set('n', '<leader>dk', function() require('dap').terminate() end, { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>dk', function() require('dap').terminate() end, { desc = '[k]ill' }) -- [shortcuts.kill]
 
 local dap = require 'dap'
 local dapui = require 'dapui'

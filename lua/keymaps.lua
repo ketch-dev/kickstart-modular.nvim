@@ -126,12 +126,12 @@ vim.keymap.set('n', 'xx', 'dd', { noremap = true, desc = 'cut line' })
 vim.keymap.set('n', '<leader>ws', '<C-w>v', { desc = '[s]plit' })
 vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = '[h]orizontal split' })
 vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[e]qual' })
-vim.keymap.set('n', '<leader>wk', '<cmd>close<CR>', { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>wk', '<cmd>close<CR>', { desc = '[k]ill' }) -- [shortcuts.kill]
 -------------------------------------------------------------------------------
 
 -- ========== Tabs ==========
 vim.keymap.set('n', '<leader>po', '<cmd>tabnew<CR>', { desc = '[o]pen' })
-vim.keymap.set('n', '<leader>pk', '<cmd>tabclose<CR>', { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>pk', '<cmd>tabclose<CR>', { desc = '[k]ill' }) -- [shortcuts.kill]
 vim.keymap.set('n', '<leader>pn', '<cmd>tabn<CR>', { desc = '[n]ext' })
 vim.keymap.set('n', '<leader>pp', '<cmd>tabp<CR>', { desc = '[p]rev' })
 vim.keymap.set('n', '<leader>pb', '<cmd>tabnew %<CR>', { desc = 'move [b]uffer to new tab' })

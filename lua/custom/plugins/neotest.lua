@@ -34,7 +34,7 @@ vim.keymap.set('n', '<leader>tr', function() require('neotest').run.run_last() e
 vim.keymap.set('n', '<leader>tu', function() require('neotest').summary.toggle() end, { desc = '[u]i' })
 vim.keymap.set('n', '<leader>to', function() require('neotest').output.open { enter = false, auto_close = true } end, { desc = '[o]utput' })
 vim.keymap.set('n', '<leader>tO', function() require('neotest').output_panel.toggle() end, { desc = '[O]utput panel' })
-vim.keymap.set('n', '<leader>tk', function() require('neotest').run.stop() end, { desc = '[k]ill' })
+vim.keymap.set('n', '<leader>tk', function() require('neotest').run.stop() end, { desc = '[k]ill' }) -- [shortcuts.kill]
 vim.keymap.set('n', '<leader>tw', function() require('neotest').watch.toggle(current_path()) end, { desc = '[w]atch file' })
 
 require('neotest').setup {
