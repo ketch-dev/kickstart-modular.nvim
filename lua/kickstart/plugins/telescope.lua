@@ -22,6 +22,11 @@ local actions = require 'telescope.actions'
 local shortcuts = require 'shortcuts'
 local telescope_utils = require 'telescope.utils'
 
+local function close_diffview_before_file_open()
+  if require('diffview.lib').get_current_view() then require('diffview').close() end
+  return 0
+end
+
 local function dim_directory_prefix(opts, path)
   local transformed_path = telescope_utils.transform_path(vim.tbl_extend('force', opts or {}, { path_display = { 'smart' } }), path)
   local filename = telescope_utils.path_tail(transformed_path)
@@ -39,6 +44,7 @@ vim.api.nvim_create_autocmd(
 
 require('telescope').setup {
   defaults = {
+    get_selection_window = close_diffview_before_file_open,
     path_display = dim_directory_prefix,
     scroll_strategy = 'limit',
     layout_strategy = 'horizontal',
