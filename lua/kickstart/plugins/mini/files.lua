@@ -13,7 +13,8 @@ mini_files.setup {
 vim.keymap.set('n', '<C-e>', function()
   local buf_name = vim.api.nvim_buf_get_name(0)
   local cwd = vim.fn.getcwd()
-  mini_files.open(buf_name)
+  local anchor = vim.uv.fs_stat(buf_name) and buf_name or cwd
+  mini_files.open(anchor)
   if buf_name == '' or not vim.startswith(buf_name, cwd) then return end
   local current_dir = vim.fs.dirname(buf_name)
   if current_dir == cwd then return end
